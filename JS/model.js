@@ -83,6 +83,7 @@ const model = {
       bookings: [],
       signUps: [],
       penalties: 0,
+      registeredShowUps: 0,
     },
     {
       id: 1,
@@ -94,9 +95,10 @@ const model = {
       paymentDate: "15-10-2026", //Update to ISO-format
       paymentStatus: true,
       activeBooking: false,
-      bookings: [],
-      signUps: [],
+      bookings: [0],
+      signUps: [0],
       penalties: 0,
+      registeredShowUps: 0,
     },
   ],
 
@@ -126,9 +128,36 @@ const model = {
   ],
 
   //------------------------------------------------------------------------
-  //                          Events
-    //------------------------------------------------------------------------
-  
-  
-  
+  //                        Events & Calender
+  //------------------------------------------------------------------------
+  calender: [
+    {
+      date: "15-10-2026",
+      eventIds: [0],
+      bookings: [
+        {
+          bookingId: 0,
+          userid: 1,
+          equipmentId: [0],
+          startTime: "13.00",
+          endTime: "13.30",
+          approved: true,
+        },
+      ],
+    },
+  ],
+
+  events: [
+    {
+      id: 0,
+      title: "Example Event Title",
+      description: "Example Event Text",
+      startDate: "",
+      endDate: "",
+      startTime: "",
+      endTime: "",
+      reservedRoom: [0],
+      signups: [{ id: 1, approved: true }],
+    },
+  ],
 };
