@@ -32,6 +32,12 @@ const model = {
       category: [0],
       reservable: false,
     },
+    {
+      name: "Manualer 15 kg",
+      id: 1,
+      category: [0],
+      reservable: false,
+    },
   ],
 
   equipmentCategories: [
@@ -138,7 +144,7 @@ const model = {
         {
           bookingId: 0,
           userid: 1,
-          equipmentId: [0],
+          equipmentId: 0,
           startTime: "13.00",
           endTime: "13.30",
           approved: true,
@@ -157,7 +163,7 @@ const model = {
       startTime: "",
       endTime: "",
       reservedRoom: [0],
-      signups: [{ id: 1, approved: true }],
+      signups: [{ userId: 1, approved: true }],
     },
   ],
 };
