@@ -1,7 +1,56 @@
 const model = {
-  app: {},
+  app: {
+    currentPage: "startpage",
+    loggedInUserId: null,
+  },
 
-  viewState: {},
+  viewState: {
+    activeTab:"home", //booking, oppslag, profil, butikk, om oss, 
+  },
+
+  loginForm: {
+    username:"",
+    password:"",
+  },
+
+  recoverPasswordForm: {
+    username:"",
+  },
+
+  newuserForm: {
+    name:"", 
+    phone:"", 
+    mail:"", 
+    password:"", 
+    repeatPassword:"", 
+    address:"", 
+    postcode:"", 
+    paymentMethod:null, 
+  },
+
+   registerBookingForm: {
+    input: null,
+   },
+
+   updatePersonaliaForm:{
+    phone:"", 
+    mail:"", 
+    password:"", 
+    repeatPassword:"", 
+    address:"", 
+    postcode:"", 
+    paymentMethod:null, 
+   },
+
+   inputCommentForm:{
+
+   },
+
+
+
+
+
+
 
   //------------------------------------------------------------------------
   //                             DATA
