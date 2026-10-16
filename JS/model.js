@@ -5,8 +5,7 @@ const model = {
   },
 
   viewState: {
-    activeTab:"home", //booking, oppslag, profil, butikk, om oss, 
-  },
+    activeTab:"home", //booking, oppslag, profil, butikk, om oss,
 
   loginForm: {
     username:"",
@@ -43,9 +42,35 @@ const model = {
    },
 
    inputCommentForm:{
-
+    inputComment:"",
    },
 
+   searchForm:{
+    input: "",
+   },
+
+   setFilter: {
+    filter: null,
+   },
+
+   bookingDate: {
+    input: null,
+   },
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+
+  
 
 
 
