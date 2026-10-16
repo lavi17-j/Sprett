@@ -83,7 +83,7 @@ const model = {
       password: "Admin123",
       membershipType: null,
       approved: true,
-      paymentDate: "2026-10-15", //Update to ISO-format
+      paymentDate: "2026-10-15", 
       paymentStatus: true,
       activeBooking: false,
       bookings: [],
@@ -98,7 +98,7 @@ const model = {
       password: "Kunde123",
       membershipType: 1,
       approved: true,
-      paymentDate: "2026-10-15", //Update to ISO-format
+      paymentDate: "2026-10-15",
       paymentStatus: true,
       activeBooking: false,
       bookings: [0],
