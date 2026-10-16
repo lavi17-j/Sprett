@@ -81,7 +81,7 @@ const model = {
       role: "admin",
       username: "Admin",
       password: "Admin123",
-      membershipType: [],
+      membershipType: null,
       approved: true,
       paymentDate: "2026-10-15", //Update to ISO-format
       paymentStatus: true,
@@ -96,7 +96,7 @@ const model = {
       role: "customer",
       username: "Kunde Kundesen",
       password: "Kunde123",
-      membershipType: [],
+      membershipType: 1,
       approved: true,
       paymentDate: "2026-10-15", //Update to ISO-format
       paymentStatus: true,
@@ -121,7 +121,7 @@ const model = {
       endDate: "",
       startTime: "",
       endTime: "",
-      id: "0",
+      bulletinId: 0,
       isArchived: false,
       comments: [
         {
@@ -140,6 +140,7 @@ const model = {
     {
       date: "2026-10-15",
       eventIds: [0],
+      equipBookings:[0],
     },
   ],
 
