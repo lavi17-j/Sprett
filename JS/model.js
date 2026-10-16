@@ -77,13 +77,13 @@ const model = {
 
   users: [
     {
-      id: 0,
+      userId: 0,
       role: "admin",
       username: "Admin",
       password: "Admin123",
       membershipType: [],
       approved: true,
-      paymentDate: "15-10-2026", //Update to ISO-format
+      paymentDate: "2026-10-15", //Update to ISO-format
       paymentStatus: true,
       activeBooking: false,
       bookings: [],
@@ -92,13 +92,13 @@ const model = {
       registeredShowUps: 0,
     },
     {
-      id: 1,
+      userId: 1,
       role: "customer",
       username: "Kunde Kundesen",
       password: "Kunde123",
       membershipType: [],
       approved: true,
-      paymentDate: "15-10-2026", //Update to ISO-format
+      paymentDate: "2026-10-15", //Update to ISO-format
       paymentStatus: true,
       activeBooking: false,
       bookings: [0],
@@ -138,18 +138,20 @@ const model = {
   //------------------------------------------------------------------------
   calender: [
     {
-      date: "15-10-2026",
+      date: "2026-10-15",
       eventIds: [0],
-      bookings: [
-        {
-          bookingId: 0,
-          userid: 1,
-          equipmentId: 0,
-          startTime: "13.00",
-          endTime: "13.30",
-          approved: true,
-        },
-      ],
+    },
+  ],
+
+  equipmentBookings: [
+    {
+      bookingId: 0,
+      userId: 1,
+      equipmentId: 0,
+      date: "2026-10-15",
+      startTime: "13.00",
+      endTime: "13.30",
+      approved: true,
     },
   ],
 
@@ -164,6 +166,15 @@ const model = {
       endTime: "",
       reservedRoom: [0],
       signups: [{ userId: 1, approved: true }],
+      isArchived: false,
     },
   ],
+  //------------------------------------------------------------------------
+  //                        Opening Hours
+  //------------------------------------------------------------------------
+
+  openingHours: {
+    reception: { open: "09.00", close: "16.00" },
+    gymAccess: { open: "06.00", close: "24.00" },
+  },
 };
