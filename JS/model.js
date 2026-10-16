@@ -5,77 +5,136 @@ const model = {
   },
 
   viewState: {
-    activeTab:"home", //booking, oppslag, profil, butikk, om oss,
+    activeTab: "home", //booking, oppslag, profil, butikk, om oss,
 
-  loginForm: {
-    username:"",
-    password:"",
+    loginPage: {
+      loginForm: {
+        username: "",
+        password: "",
+        errorMessage: "",
+      },
+
+      recoverPasswordForm: {
+        username: "",
+      },
+
+      newUserForm: {
+        name: "",
+        phone: "",
+        mail: "",
+        password: "",
+        repeatPassword: "",
+        address: "",
+        postcode: "",
+        paymentMethod: null,
+      },
+    },
+
+    bookingPage: {
+      registerBookingForm: {
+        input: null,
+      },
+      searchForm: {
+        input: "",
+      },
+
+      setFilter: {
+        filter: null,
+      },
+
+      bookingDate: {
+        input: null,
+      },
+    },
+
+    profilePage: {
+      updatePersonaliaForm: {
+        phone: "",
+        mail: "",
+        password: "",
+        repeatPassword: "",
+        address: "",
+        postcode: "",
+        paymentMethod: null,
+      },
+    },
+
+    bulletinPage: {
+      inputCommentForm: {
+        inputComment: "",
+      },
+    },
+
+    adminMemberPage: {
+      sortingMethod: null,
+    },
+
+    adminChangeMembershipsPage: {
+      newMembership: {
+        name: "",
+        price: "",
+        booking: false,
+        familyAccess: false,
+      },
+    },
+
+    adminCreatePostPage: {
+      title: "",
+      type: null,
+      startTime: null,
+      endTime: null,
+      startDate: null,
+      endDate: null,
+      link: "",
+      inputText: "",
+    },
+
+    adminEditPostPage: {
+      selectedPostID: null,
+      selectedCommentID: null,
+    },
+
+    adminCalenderPage: {
+      selectedTab: "Events", //Equipment
+    },
+
+    adminSignUpsPage: {
+      selectedEventId: null,
+    },
+
+    adminCreateEventPage: {
+      title: "",
+      description: "",
+      type: null,
+      maxParticipants: 30,
+      startTime: null,
+      endTime: null,
+      startDate: null,
+      endDate: null,
+      reservedRoom: null,
+      eventID: null,
+    },
+
+    adminCreateEquipmentPage: {
+      equipmentName: "",
+      equipmentId: null,
+      reservable: false,
+      category: null,
+      addCategory: "",
+    },
+
+    adminEditEquipmentPage: {
+      equipmentName: "",
+      equipmentId: null,
+      reservable: false,
+      category: null,
+    },
+
+    adminRoomCreationPage: {
+      newRoomName: "",
+      editedRoomName: "",
+    },
   },
-
-  recoverPasswordForm: {
-    username:"",
-  },
-
-  newuserForm: {
-    name:"", 
-    phone:"", 
-    mail:"", 
-    password:"", 
-    repeatPassword:"", 
-    address:"", 
-    postcode:"", 
-    paymentMethod:null, 
-  },
-
-   registerBookingForm: {
-    input: null,
-   },
-
-   updatePersonaliaForm:{
-    phone:"", 
-    mail:"", 
-    password:"", 
-    repeatPassword:"", 
-    address:"", 
-    postcode:"", 
-    paymentMethod:null, 
-   },
-
-   inputCommentForm:{
-    inputComment:"",
-   },
-
-   searchForm:{
-    input: "",
-   },
-
-   setFilter: {
-    filter: null,
-   },
-
-   bookingDate: {
-    input: null,
-   },
-
-
-
-
-
-
-
-
-
-
-
-
-  },
-
-  
-
-
-
-
-
 
   //------------------------------------------------------------------------
   //                             DATA
@@ -157,7 +216,7 @@ const model = {
       password: "Admin123",
       membershipType: null,
       approved: true,
-      paymentDate: "2026-10-15", 
+      paymentDate: "2026-10-15",
       paymentStatus: true,
       activeBooking: false,
       bookings: [],
@@ -214,7 +273,7 @@ const model = {
     {
       date: "2026-10-15",
       eventIds: [0],
-      equipBookings:[0],
+      equipBookings: [0],
     },
   ],
 
