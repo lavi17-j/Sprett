@@ -48,7 +48,6 @@ const model = {
     },
 
     profilePage: {
-      updatePersonaliaForm: {
         phone: "",
         mail: "",
         password: "",
@@ -56,13 +55,10 @@ const model = {
         address: "",
         postcode: "",
         paymentMethod: null,
-      },
     },
 
     bulletinPage: {
-      inputCommentForm: {
         inputComment: "",
-      },
     },
 
     adminMemberPage: {
@@ -70,12 +66,10 @@ const model = {
     },
 
     adminChangeMembershipsPage: {
-      newMembership: {
         name: "",
         price: "",
         booking: false,
         familyAccess: false,
-      },
     },
 
     adminCreatePostPage: {
