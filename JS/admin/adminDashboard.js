@@ -34,24 +34,24 @@ function updateAdminView() {
           
           <div id="membershipArea" class="adminCard">
             <h2>Medlemskap</h2>
-            <button>Bruker/Medlemsoversikt</button>
-            <button>Administrer Søknader</button>
+            <button onclick ="${openMemberships()}">Bruker/Medlemsoversikt</button>
+            <button onclick ="${openViewApplications()}">Administrer Søknader</button>
             
             <div class="subSection">
               <h3>Nye Medlemssøknader</h3>
               <div class="applicationItem">
                 ${drawApplications()}
               </div>
-              <button>Flere</button>
+              <button onclick ="${openViewApplications()}">Flere</button>
             </div>
 
-            <button>Endre Abonnementer</button>
+            <button onclick ="${openEditMemberships()}">Endre Abonnementer</button>
           </div>
 
           <div id="bulletinArea" class="adminCard">
             <h2>Oppslagstavla</h2>
-            <button>Lag/Endre Innlegg</button>
-            <button>Administrer Innlegg</button>
+            <button onclick ="${openMakeBulletin()}">Lag/Endre Innlegg</button>
+            <button onclick ="${openEditBulltin()}">Administrer Innlegg</button>
             
             <div class="subSection">
               <h3>Siste Aktivitet</h3>
@@ -67,30 +67,30 @@ function updateAdminView() {
                 </div>
                 <small>Antall Kommentarer</small>
               </div>
-              <button>Se og moderer</button>
+              <button onclick ="${openEditBulltin()}">Se og moderer</button>
             </div>
           </div>
 
           <div class="stackedColumn">
             <div id="bookingArea" class="adminCard">
               <h2>Bookinger/Arrangementer</h2>
-              <button>Kalender</button>
-              <button>Påmeldinger</button>
-              <button>Legg til arrangement</button>
+              <button onclick ="${openCalender()}">Kalender</button>
+              <button onclick ="${openSignUps()}">Påmeldinger</button>
+              <button onclick ="${openAddEvent()}">Legg til arrangement</button>
             </div>
             
             <div id="shopArea" class="adminCard">
               <h2>Nettbutikk</h2>
-              <button>Legg til Produkt</button>
-              <button>Rediger Produkt</button>
+              <button onclick ="${openAddProduct()}">Legg til Produkt</button>
+              <button onclick ="${openEditProduct()}">Rediger Produkt</button>
             </div>
           </div>
 
           <div id="equipmentArea" class="adminCard">
             <h2>Utstyr og Sal</h2>
-            <button>Legg til Utstyr</button>
-            <button>Rediger Utstyr</button>
-            <button>Saler</button>
+            <button onclick ="${openAddEquipment()}">Legg til Utstyr</button>
+            <button onclick ="${openEditEquipment()}">Rediger Utstyr</button>
+            <button onclick ="${openManageRooms()}">Saler</button>
           </div>
 
         </div>
@@ -123,12 +123,18 @@ function drawApplications() {
   for (let i = 0; i < awaitingApproval.length; i++) {
     const user = awaitingApproval[i];
 
+    const membership = model.memberships.find(
+      (m) => m.id === user.membershipType,
+    );
+
+    const membershipName = membership ? membership.name : "Ingen medlemskap";
+
     html += /*HTML*/ `
       <div class="applicantInfo">
         <div class="avatarCircle"></div>
         <div>
           <div>${user.username}</div>
-          <small>Styrke Medlemskap</small>
+          <small>${membershipName} Medlemskap</small>
         </div>
       </div>
       <div class="actionButtons">
@@ -141,4 +147,35 @@ function drawApplications() {
   return html;
 }
 
+//Need to do this one later when the bulletin board stuff is one
 function lastActivity() {}
+
+//------------------------------------------------------------------------
+//                          Membership
+//------------------------------------------------------------------------
+function openMemberships() {}
+function openViewApplications() {}
+function openEditMemberships() {}
+//------------------------------------------------------------------------
+//                          Bulletin Board
+//------------------------------------------------------------------------
+function openMakeBulletin() {}
+function openEditBulltin() {}
+function openReviewBulletin() {}
+//------------------------------------------------------------------------
+//                          Events
+//------------------------------------------------------------------------
+function openCalender() {}
+function openSignUps() {}
+function openAddEvent() {}
+//------------------------------------------------------------------------
+//                          Webstore
+//------------------------------------------------------------------------
+function openAddProduct() {}
+function openEditProduct() {}
+//------------------------------------------------------------------------
+//                          Equipment
+//------------------------------------------------------------------------
+function openAddEquipment() {}
+function openEditEquipment() {}
+function openManageRooms() {}
