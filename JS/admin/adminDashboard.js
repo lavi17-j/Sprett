@@ -34,24 +34,24 @@ function updateAdminView() {
           
           <div id="membershipArea" class="adminCard">
             <h2>Medlemskap</h2>
-            <button onclick ="${openMemberships()}">Bruker/Medlemsoversikt</button>
-            <button onclick ="${openViewApplications()}">Administrer Søknader</button>
+            <button onclick ="openMemberships()">Bruker/Medlemsoversikt</button>
+            <button onclick ="openViewApplications()">Administrer Søknader</button>
             
             <div class="subSection">
               <h3>Nye Medlemssøknader</h3>
               <div class="applicationItem">
                 ${drawApplications()}
               </div>
-              <button onclick ="${openViewApplications()}">Flere</button>
+              <button onclick ="openViewApplications()">Flere</button>
             </div>
 
-            <button onclick ="${openEditMemberships()}">Endre Abonnementer</button>
+            <button onclick ="openEditMemberships()">Endre Abonnementer</button>
           </div>
 
           <div id="bulletinArea" class="adminCard">
             <h2>Oppslagstavla</h2>
-            <button onclick ="${openMakeBulletin()}">Lag/Endre Innlegg</button>
-            <button onclick ="${openEditBulltin()}">Administrer Innlegg</button>
+            <button onclick ="openMakeBulletin()">Lag/Endre Innlegg</button>
+            <button onclick ="openEditBulltin()">Administrer Innlegg</button>
             
             <div class="subSection">
               <h3>Siste Aktivitet</h3>
@@ -67,30 +67,30 @@ function updateAdminView() {
                 </div>
                 <small>Antall Kommentarer</small>
               </div>
-              <button onclick ="${openEditBulltin()}">Se og moderer</button>
+              <button onclick ="openEditBulltin()">Se og moderer</button>
             </div>
           </div>
 
           <div class="stackedColumn">
             <div id="bookingArea" class="adminCard">
               <h2>Bookinger/Arrangementer</h2>
-              <button onclick ="${openCalender()}">Kalender</button>
-              <button onclick ="${openSignUps()}">Påmeldinger</button>
-              <button onclick ="${openAddEvent()}">Legg til arrangement</button>
+              <button onclick ="openCalender()">Kalender</button>
+              <button onclick ="openSignUps()">Påmeldinger</button>
+              <button onclick ="openAddEvent()">Legg til arrangement</button>
             </div>
             
             <div id="shopArea" class="adminCard">
               <h2>Nettbutikk</h2>
-              <button onclick ="${openAddProduct()}">Legg til Produkt</button>
-              <button onclick ="${openEditProduct()}">Rediger Produkt</button>
+              <button onclick ="openAddProduct()">Legg til Produkt</button>
+              <button onclick ="openEditProduct()">Rediger Produkt</button>
             </div>
           </div>
 
           <div id="equipmentArea" class="adminCard">
             <h2>Utstyr og Sal</h2>
-            <button onclick ="${openAddEquipment()}">Legg til Utstyr</button>
-            <button onclick ="${openEditEquipment()}">Rediger Utstyr</button>
-            <button onclick ="${openManageRooms()}">Saler</button>
+            <button onclick ="openAddEquipment()">Legg til Utstyr</button>
+            <button onclick ="openEditEquipment()">Rediger Utstyr</button>
+            <button onclick ="openManageRooms()">Saler</button>
           </div>
 
         </div>
@@ -138,8 +138,8 @@ function drawApplications() {
         </div>
       </div>
       <div class="actionButtons">
-        <button class="approve">Godkjenn</button>
-        <button class="deny">Avslå</button>
+        <button class="approve" onclick ="approveMembership(${user.userId})" >Godkjenn</button>
+        <button class="deny" onclick ="denyMembership(${user.userId})">Avslå</button>
       </div>
     `;
   }
@@ -156,6 +156,24 @@ function lastActivity() {}
 function openMemberships() {}
 function openViewApplications() {}
 function openEditMemberships() {}
+
+function approveMembership(applicant) {
+  const user = model.users.find((u) => u.userId === applicant);
+
+  if (user) {
+    user.approved = true;
+    updateAdminView();
+  }
+}
+function denyMembership(applicant) {
+  const index = model.users.findIndex((u) => u.userId === applicant);
+
+  if (index !== -1) {
+    model.users.splice(index, 1);
+    console.log("Application Denied!");
+  }
+  updateAdminView();
+}
 //------------------------------------------------------------------------
 //                          Bulletin Board
 //------------------------------------------------------------------------
