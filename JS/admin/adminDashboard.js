@@ -40,17 +40,7 @@ function updateAdminView() {
             <div class="subSection">
               <h3>Nye Medlemssøknader</h3>
               <div class="applicationItem">
-                <div class="applicantInfo">
-                  <div class="avatarCircle"></div>
-                  <div>
-                    <div>Navn Navnesen</div>
-                    <small>Styrke Medlemskap</small>
-                  </div>
-                </div>
-                <div class="actionButtons">
-                  <button class="approve">Godkjenn</button>
-                  <button class="deny">Avslå</button>
-                </div>
+                ${drawApplications()}
               </div>
               <button>Flere</button>
             </div>
@@ -109,7 +99,46 @@ function updateAdminView() {
   `;
 }
 
+function drawApplications() {
+  let html = "";
+  const maxDisplayedApplicants = 2;
+  let awaitingApproval = [];
 
-function drawApplications() { }
-function lastActivity() { }
+  for (let i = 0; i < model.users.length; i++) {
+    const currentUser = model.users[i];
 
+    if (currentUser.approved === false) {
+      awaitingApproval.push(currentUser);
+
+      if (awaitingApproval.length >= maxDisplayedApplicants) {
+        break;
+      }
+    }
+  }
+
+  if (awaitingApproval.length === 0) {
+    return `<p>No New Applicants</p>`;
+  }
+
+  for (let i = 0; i < awaitingApproval.length; i++) {
+    const user = awaitingApproval[i];
+
+    html += /*HTML*/ `
+      <div class="applicantInfo">
+        <div class="avatarCircle"></div>
+        <div>
+          <div>${user.username}</div>
+          <small>Styrke Medlemskap</small>
+        </div>
+      </div>
+      <div class="actionButtons">
+        <button class="approve">Godkjenn</button>
+        <button class="deny">Avslå</button>
+      </div>
+    `;
+  }
+
+  return html;
+}
+
+function lastActivity() {}

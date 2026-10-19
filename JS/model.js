@@ -233,6 +233,21 @@ const model = {
       penalties: 0,
       registeredShowUps: 0,
     },
+    {
+      userId: 2,
+      role: "customer",
+      username: "Kundine Kundesen",
+      password: "Kunde123",
+      membershipType: 1,
+      approved: false,
+      paymentDate: "2026-10-15",
+      paymentStatus: true,
+      activeBooking: false,
+      bookings: [0],
+      signUps: [0],
+      penalties: 0,
+      registeredShowUps: 0,
+    },
   ],
 
   //------------------------------------------------------------------------
