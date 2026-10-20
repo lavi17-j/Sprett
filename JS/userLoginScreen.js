@@ -26,7 +26,7 @@ function drawLoginScreen(){
     <p>Adresse</p>
     <p>Åpningstider</p>
 </div>
-`
+`;
     
     return html
 }
