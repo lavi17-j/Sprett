@@ -1,5 +1,5 @@
 function drawAdminHeader() {
-  let html = /*HTML*/ `
+return /*HTML*/ `
     <header class="adminTopBar">
               <div class="userInfo">
                 <span>Navn Navnesen</span>
@@ -9,5 +9,4 @@ function drawAdminHeader() {
     </header>
     `;
 
-  return html
 }

@@ -1,5 +1,5 @@
 function drawAdminSideBar() {
-  sideBarhtml = /*HTML*/ `
+  return /*HTML*/ `
   <div class="sideBar">
     <div class="sidebarLogo">Sprett Admin</div>
     <ul class="sidebarNav">
@@ -14,5 +14,4 @@ function drawAdminSideBar() {
   </div>
   `;
 
-  return sideBarhtml;
 }
