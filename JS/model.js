@@ -238,7 +238,7 @@ const model = {
       role: "customer",
       username: "Kundine Kundesen",
       password: "Kunde123",
-      membershipType: 1,
+      membershipType: 0,
       approved: false,
       paymentDate: "2026-10-15",
       paymentStatus: true,

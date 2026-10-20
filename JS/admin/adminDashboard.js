@@ -1,7 +1,7 @@
 function updateAdminView() {
-  const app = document.getElementById("app");
+  html = "";
 
-  app.innerHTML = /*HTML*/ `
+  html = /*HTML*/ `
     <div class="adminLayout">
 
       <div class="sideBar">
@@ -97,6 +97,8 @@ function updateAdminView() {
       </div>
     </div>
   `;
+
+  return html
 }
 
 function drawApplications() {

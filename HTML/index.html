@@ -4,18 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="../CSS/admin.css" />
   </head>
   <body>
-    <script src="../JS/userLoginScreen.js"></script>
+    <script src="../JS/model.js"></script>
+    <script src="../JS/admin/adminDashboard.js"></script>
+    <script src="../JS/User/notLoggedInPageView.js"></script>
+    <script src="../JS/User/notLoggedInPageController.js"></script>
+    <script src="../common/common.js "></script>
+
     <div id="app"></div>
 
     <script>
       function updateView() {
-        const app = document.getElementById("app")
-      }
-      updateView()
-      drawLoginScreen()
-    </script>
+        const app = document.getElementById("app");
 
+        if (model.app.loggedInUserId === null) {
+          app.innerHTML = updateViewNotLoggedInPage();
+        }
+        return;
+      }
+
+      switch (model.app.currentPage) {
+        case "adminDashboard":
+          updateAdminView();
+          break;
+        case "LoginScreen":
+          drawLoginScreen();
+          break;
+      }
+
+      updateView();
+    </script>
   </body>
 </html>
