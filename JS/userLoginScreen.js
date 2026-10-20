@@ -38,7 +38,9 @@ function handleLogin(){
     // 1. riktig brukernavn, men feil passord
     if (usernameInput === model.usersname[0] && passwordInput !== model.users[0].password){
         model.viewState.loginPage.loginForm.errorMessage = "Feil Passord!"
+        alert(model.viewState.loginPage.loginForm.errorMessage);
     }
+}
 
 
 
