@@ -2,9 +2,9 @@ function drawAdminHeader() {
 return /*HTML*/ `
     <header class="adminTopBar">
               <div class="userInfo">
-                <span>Navn Navnesen</span>
+                <span>${displayUserName()}</span>
                 <div class="userAvatar"></div>
-                <button class="logoutBtn">Log Ut</button>
+                <button class="logoutBtn" onclick=logoutUser()>Log Ut</button>
               </div>
     </header>
     `;

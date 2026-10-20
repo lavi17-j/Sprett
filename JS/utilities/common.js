@@ -5,6 +5,14 @@ function navigateTo(pageName) {
 
 function logoutUser() {
   model.app.loggedInUserId = null;
-  model.app.currentPage = "startpage";
+  model.app.currentPage = "startPage";
   updateView();
+}
+
+function displayUserName() {
+  const loggedInUser = model.users.find(
+    (user) => user.userId === model.app.loggedInUserId,
+  );
+
+  return loggedInUser ? loggedInUser.username : "Gjest";
 }

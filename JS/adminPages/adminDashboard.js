@@ -21,7 +21,7 @@ function drawAdminDashboard() {
             <div class="subSection">
               <h3>Nye Medlemssøknader</h3>
               <div class="applicationItem">
-                ${drawApplications()}
+                ${drawApplications(2)}
               </div>
               <button onclick ="navigateTo('applications')">Flere</button>
             </div>
@@ -82,77 +82,8 @@ function drawAdminDashboard() {
   return html;
 }
 
-function drawApplications() {
-  let html = "";
-  const maxDisplayedApplicants = 2;
-  let awaitingApproval = [];
 
-  for (let i = 0; i < model.users.length; i++) {
-    const currentUser = model.users[i];
-
-    if (currentUser.approved === false) {
-      awaitingApproval.push(currentUser);
-
-      if (awaitingApproval.length >= maxDisplayedApplicants) {
-        break;
-      }
-    }
-  }
-
-  if (awaitingApproval.length === 0) {
-    return `<p>No New Applicants</p>`;
-  }
-
-  for (let i = 0; i < awaitingApproval.length; i++) {
-    const user = awaitingApproval[i];
-
-    const membership = model.memberships.find(
-      (m) => m.id === user.membershipType,
-    );
-
-    const membershipName = membership
-      ? membership.name
-      : "Manglende medlemsskapstype";
-
-    html += /*HTML*/ `
-      <div class="applicantInfo">
-        <div class="avatarCircle"></div>
-        <div>
-          <div>${user.username}</div>
-          <small>${membershipName} Medlemskap</small>
-        </div>
-      </div>
-      <div class="actionButtons">
-        <button class="approve" onclick ="approveMembership(${user.userId})" >Godkjenn</button>
-        <button class="deny" onclick ="denyMembership(${user.userId})">Avslå</button>
-      </div>
-    `;
-  }
-
-  return html;
-}
 
 //Need to do this one later when the bulletin board stuff is one
 function lastActivity() {}
 
-//------------------------------------------------------------------------
-//                          Membership
-//------------------------------------------------------------------------
-
-function approveMembership(applicant) {
-  const user = model.users.find((u) => u.userId === applicant);
-
-  if (user) {
-    user.approved = true;
-    updateView();
-  }
-}
-function denyMembership(applicant) {
-  const index = model.users.findIndex((u) => u.userId === applicant);
-
-  if (index !== -1) {
-    model.users.splice(index, 1);
-    console.log("Application Denied!");
-  }
-  updateView();
-}
