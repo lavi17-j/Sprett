@@ -47,7 +47,6 @@ function createNotLoggedInHeaderHtml(){
     </header>
    
     `;
-
 }
 
 function createPricesHtml(){

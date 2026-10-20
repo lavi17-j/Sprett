@@ -1,7 +1,7 @@
 const model = {
   app: {
-    currentPage: "startpage",
-    loggedInUserId: null,
+    currentPage: "adminDashboard",
+    loggedInUserId: 0,
   },
 
   viewState: {
@@ -48,17 +48,17 @@ const model = {
     },
 
     profilePage: {
-        phone: "",
-        mail: "",
-        password: "",
-        repeatPassword: "",
-        address: "",
-        postcode: "",
-        paymentMethod: null,
+      phone: "",
+      mail: "",
+      password: "",
+      repeatPassword: "",
+      address: "",
+      postcode: "",
+      paymentMethod: null,
     },
 
     bulletinPage: {
-        inputComment: "",
+      inputComment: "",
     },
 
     adminMemberPage: {
@@ -66,10 +66,10 @@ const model = {
     },
 
     adminChangeMembershipsPage: {
-        name: "",
-        price: "",
-        booking: false,
-        familyAccess: false,
+      name: "",
+      price: "",
+      booking: false,
+      familyAccess: false,
     },
 
     adminCreatePostPage: {

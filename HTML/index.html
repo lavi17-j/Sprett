@@ -7,35 +7,26 @@
     <link rel="stylesheet" href="../CSS/admin.css" />
   </head>
   <body>
-    <script src="../JS/model.js"></script>
-    <script src="../JS/adminPages/adminDashboard.js"></script>
-    <script src="../JS/adminUtils/adminHeader.js"></script>
-    <script src="../JS/adminUtils/adminSidebar.js"></script>
-    <script src="../JS/User/notLoggedInPageView.js"></script>
-    <script src="../JS/User/notLoggedInPageController.js"></script>
-    <script src="../JS/common/common.js "></script>
-
     <div id="app"></div>
-
+    <!-- //Common -->
+    <script src="../JS/utilities/model.js"></script>
+    <script src="../JS/utilities/common.js "></script>
+    
+    <!-- //User -->
+    <script src="../JS/User/userControllers/notLoggedInPageController.js"></script>
+    <script src="../JS/User/userPages/notLoggedInPageView.js"></script>
+    <script src="../JS/User/userPages/userLoginScreen.js"></script>
+    
+    <!-- //Admin -->
+    <script src="../JS/adminPages/adminDashboard.js"></script>
+    <script src="../JS/adminComponents/adminHeader.js"></script>
+    <script src="../JS/adminComponents/adminSidebar.js"></script>
+    <script src="../JS/adminComponents/adminSubHeader.js"></script>
+    
+    <!-- //Router -->
+    <script src="../JS/utilities/router.js "></script>
+    
     <script>
-      function updateView() {
-        const app = document.getElementById("app");
-
-        if (model.app.loggedInUserId === null) {
-          app.innerHTML = updateViewNotLoggedInPage();
-        }
-        return;
-      }
-
-      switch (model.app.currentPage) {
-        case "adminDashboard":
-          app.innerHTML = updateAdminView();
-          break;
-        case "LoginScreen":
-          app.innerHTML = drawLoginScreen();
-          break;
-      }
-
       updateView();
     </script>
   </body>

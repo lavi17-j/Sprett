@@ -1,4 +1,4 @@
-function updateAdminView() {
+function drawAdminDashboard() {
   let html = "";
 
   html = /*HTML*/ `
@@ -152,7 +152,7 @@ function approveMembership(applicant) {
 
   if (user) {
     user.approved = true;
-    updateAdminView();
+    updateView();
   }
 }
 function denyMembership(applicant) {
@@ -162,5 +162,5 @@ function denyMembership(applicant) {
     model.users.splice(index, 1);
     console.log("Application Denied!");
   }
-  updateAdminView();
+  updateView();
 }
