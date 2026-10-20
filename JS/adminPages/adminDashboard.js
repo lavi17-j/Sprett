@@ -7,17 +7,9 @@ function drawAdminDashboard() {
       ${drawAdminSideBar()}
 
       <div class="adminMain">
-        <header class="adminTopBar">
-          <div class="userInfo">
-            <span>Navn Navnesen</span>
-            <div class="userAvatar"></div>
-            <button class="logoutBtn">Log Ut</button>
-          </div>
-        </header>
+      ${drawAdminHeader()}
 
-        <div class="adminHeaderBar">
-          <h1>Sprett - Admin Dashboard</h1>
-        </div>
+      ${drawAdminSubHeader()}
 
         <div class="adminContentArea">
           
