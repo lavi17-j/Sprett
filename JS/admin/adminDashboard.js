@@ -34,24 +34,24 @@ function updateAdminView() {
           
           <div id="membershipArea" class="adminCard">
             <h2>Medlemskap</h2>
-            <button onclick ="openMemberships()">Bruker/Medlemsoversikt</button>
-            <button onclick ="openViewApplications()">Administrer Søknader</button>
+            <button onclick ="navigateTo(memberships)">Bruker/Medlemsoversikt</button>
+            <button onclick ="navigateTo(applications)">Administrer Søknader</button>
             
             <div class="subSection">
               <h3>Nye Medlemssøknader</h3>
               <div class="applicationItem">
                 ${drawApplications()}
               </div>
-              <button onclick ="openViewApplications()">Flere</button>
+              <button onclick ="navigateTo(applications)">Flere</button>
             </div>
 
-            <button onclick ="openEditMemberships()">Endre Abonnementer</button>
+            <button onclick ="navigateTo(editSubscriptions)">Endre Abonnementer</button>
           </div>
 
           <div id="bulletinArea" class="adminCard">
             <h2>Oppslagstavla</h2>
-            <button onclick ="openMakeBulletin()">Lag/Endre Innlegg</button>
-            <button onclick ="openEditBulltin()">Administrer Innlegg</button>
+            <button onclick ="navigateTo(manageBulletins)">Lag/Endre Innlegg</button>
+            <button onclick ="navigateTo(editBulletins)">Administrer Innlegg</button>
             
             <div class="subSection">
               <h3>Siste Aktivitet</h3>
@@ -67,30 +67,30 @@ function updateAdminView() {
                 </div>
                 <small>Antall Kommentarer</small>
               </div>
-              <button onclick ="openEditBulltin()">Se og moderer</button>
+              <button onclick ="navigateTo(editBulletins)">Se og moderer</button>
             </div>
           </div>
 
           <div class="stackedColumn">
             <div id="bookingArea" class="adminCard">
               <h2>Bookinger/Arrangementer</h2>
-              <button onclick ="openCalender()">Kalender</button>
-              <button onclick ="openSignUps()">Påmeldinger</button>
-              <button onclick ="openAddEvent()">Legg til arrangement</button>
+              <button onclick ="navigateTo(calender)">Kalender</button>
+              <button onclick ="navigateTo(signUps)">Påmeldinger</button>
+              <button onclick ="navigateTo(addEvent)">Legg til arrangement</button>
             </div>
             
             <div id="shopArea" class="adminCard">
               <h2>Nettbutikk</h2>
-              <button onclick ="openAddProduct()">Legg til Produkt</button>
-              <button onclick ="openEditProduct()">Rediger Produkt</button>
+              <button onclick ="navigateTo(addProduct)">Legg til Produkt</button>
+              <button onclick ="navigateTo(editProduct)">Rediger Produkt</button>
             </div>
           </div>
 
           <div id="equipmentArea" class="adminCard">
             <h2>Utstyr og Sal</h2>
-            <button onclick ="openAddEquipment()">Legg til Utstyr</button>
-            <button onclick ="openEditEquipment()">Rediger Utstyr</button>
-            <button onclick ="openManageRooms()">Saler</button>
+            <button onclick ="navigateTo(addEquipment)">Legg til Utstyr</button>
+            <button onclick ="navigateTo(editEquipment)">Rediger Utstyr</button>
+            <button onclick ="navigateTo(manageRooms)">Saler</button>
           </div>
 
         </div>
@@ -98,7 +98,7 @@ function updateAdminView() {
     </div>
   `;
 
-  return html
+  return html;
 }
 
 function drawApplications() {
@@ -155,9 +155,6 @@ function lastActivity() {}
 //------------------------------------------------------------------------
 //                          Membership
 //------------------------------------------------------------------------
-function openMemberships() {}
-function openViewApplications() {}
-function openEditMemberships() {}
 
 function approveMembership(applicant) {
   const user = model.users.find((u) => u.userId === applicant);
@@ -176,26 +173,3 @@ function denyMembership(applicant) {
   }
   updateAdminView();
 }
-//------------------------------------------------------------------------
-//                          Bulletin Board
-//------------------------------------------------------------------------
-function openMakeBulletin() {}
-function openEditBulltin() {}
-function openReviewBulletin() {}
-//------------------------------------------------------------------------
-//                          Events
-//------------------------------------------------------------------------
-function openCalender() {}
-function openSignUps() {}
-function openAddEvent() {}
-//------------------------------------------------------------------------
-//                          Webstore
-//------------------------------------------------------------------------
-function openAddProduct() {}
-function openEditProduct() {}
-//------------------------------------------------------------------------
-//                          Equipment
-//------------------------------------------------------------------------
-function openAddEquipment() {}
-function openEditEquipment() {}
-function openManageRooms() {}
