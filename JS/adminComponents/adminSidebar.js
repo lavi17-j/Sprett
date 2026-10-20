@@ -1,9 +1,9 @@
 function drawAdminSideBar() {
-  sideBarhtml = /*HTML*/ `
+  return /*HTML*/ `
   <div class="sideBar">
     <div class="sidebarLogo">Sprett Admin</div>
     <ul class="sidebarNav">
-      <li>Dashboard</li>
+      <li onclick="navigateTo('adminDashboard')">Dashboard</li>
       <li>Medlemskap</li>
       <li>Oppslagstavla</li>
       <li>Booking/Arrangementer</li>
@@ -14,5 +14,4 @@ function drawAdminSideBar() {
   </div>
   `;
 
-  return sideBarhtml;
 }
