@@ -8,10 +8,12 @@
   </head>
   <body>
     <script src="../JS/model.js"></script>
-    <script src="../JS/admin/adminDashboard.js"></script>
+    <script src="../JS/adminPages/adminDashboard.js"></script>
+    <script src="../JS/adminUtils/adminHeader.js"></script>
+    <script src="../JS/adminUtils/adminSidebar.js"></script>
     <script src="../JS/User/notLoggedInPageView.js"></script>
     <script src="../JS/User/notLoggedInPageController.js"></script>
-    <script src="../common/common.js "></script>
+    <script src="../JS/common/common.js "></script>
 
     <div id="app"></div>
 
@@ -27,10 +29,10 @@
 
       switch (model.app.currentPage) {
         case "adminDashboard":
-          updateAdminView();
+          app.innerHTML = updateAdminView();
           break;
         case "LoginScreen":
-          drawLoginScreen();
+          app.innerHTML = drawLoginScreen();
           break;
       }
 
