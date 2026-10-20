@@ -1,7 +1,7 @@
 function updateViewNotLoggedInPage(){
-    const app = document.getElementById("app");
+    let html = ""
     
-    app.innerHTML = /*HTML*/ `
+    html = /*HTML*/ `
     ${createNotLoggedInHeaderHtml()}
 
     <button class="wide-button" onclick="goToLoginPage()">
@@ -33,6 +33,8 @@ function updateViewNotLoggedInPage(){
     ${createNotLoggedInFooterHtml()}
     
     `;
+
+    return html
 }
 
 function createNotLoggedInHeaderHtml(){

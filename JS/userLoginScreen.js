@@ -1,6 +1,8 @@
 function drawLoginScreen(){
-    const app = document.getElementById("app");
-    app.innerHTML = /*HTML*/`
+    htlml = "";
+
+
+    html = /*HTML*/`
 <div>
     <h1>Sprett</h1>
     <p>Bli medlem!</p>
@@ -25,6 +27,8 @@ function drawLoginScreen(){
     <p>Åpningstider</p>
 </div>
 `
+    
+    return html
 }
 
 function handleLogin(){
