@@ -1,7 +1,7 @@
 const model = {
   app: {
-    currentPage: "adminDashboard",
-    loggedInUserId: 0,
+    currentPage: "startPage",
+    loggedInUserId: null,
   },
 
   viewState: {
