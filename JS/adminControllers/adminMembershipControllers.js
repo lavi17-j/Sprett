@@ -18,7 +18,7 @@ function denyMembership(applicant) {
 
 function getMembershipName(membershipId) {
   const membership = model.memberships.find((m) => m.id === membershipId);
-  return membership ? membership.name : "Ingen medlemskap";
+  return membership ? membership.name : "Manglende medlemskapstype";
 }
 
 //Fikse opp denne senere
