@@ -41,8 +41,12 @@ model.viewState.loginPage.loginForm.errorMessage = "Feil passord";
 alert(model.viewState.loginPage.loginForm.errorMessage);
 }
 
+2. // Feil brukernavn, men riktig passord
+else if (skrevetBrukernavn !== model.users[0].username && skrevetPassord === model.users[0].password ){
+    model.viewState.loginPage.loginForm.errorMessage = "Feil brukernavn";
+    alert(model.viewState.loginPage.loginForm.errorMessage);
 
-
+}
 
 
 }
