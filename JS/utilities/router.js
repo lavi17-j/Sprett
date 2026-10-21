@@ -12,6 +12,9 @@ function updateView() {
     case "startPage":
       html = updateViewNotLoggedInPage();
       break;
+      case "loggedInPage":
+      html = updateViewLoggedInPage();
+      break;
     case "adminDashboard":
       html = drawAdminDashboard();
       break;
