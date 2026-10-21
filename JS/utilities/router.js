@@ -21,6 +21,9 @@ function updateView() {
     case "applications":
       html = drawManageApplication();
       break;
+    case "editSubscriptions":
+      html = drawAdminEditSubscriptions();
+      break;
     case "LoginScreen":
       html = drawLoginScreen();
       break;
@@ -30,3 +33,4 @@ function updateView() {
 
   app.innerHTML = html;
 }
+
