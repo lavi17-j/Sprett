@@ -9,11 +9,20 @@ function updateView() {
   let html = "";
 
   switch (model.app.currentPage) {
+    case "startPage":
+      html = updateViewNotLoggedInPage();
+      break;
     case "adminDashboard":
       html = drawAdminDashboard();
       break;
     case "memberships":
       html = drawAdminMemberships();
+      break;
+    case "applications":
+      html = drawManageApplication();
+      break;
+    case "editSubscriptions":
+      html = drawAdminEditSubscriptions();
       break;
     case "LoginScreen":
       html = drawLoginScreen();
@@ -24,3 +33,4 @@ function updateView() {
 
   app.innerHTML = html;
 }
+

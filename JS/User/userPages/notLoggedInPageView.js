@@ -37,18 +37,6 @@ function updateViewNotLoggedInPage(){
     return html
 }
 
-function createNotLoggedInHeaderHtml(){
-    return /*HTML*/ `
-    <header class="front-header">
-        <div class="logo-circle"></div>
-        <h1>Sprett</h1>
-        <p>Velkommen, Kunde!</p>
-        <p onclick="goToNewUserPage()" class="link-text">Bli medlem!</p>
-    </header>
-   
-    `;
-}
-
 function createPricesHtml(){
     let html = '';
 
@@ -64,24 +52,7 @@ function createPricesHtml(){
     return html;
 }
 
-function createNotLoggedInFooterHtml(){
-    return /*HTML*/`
-        <footer class="front-footer">
-            <h3>Adresse</h3>
-            <h3>Åpningstider</h3>
-            <p>
-                Resepsjon: ${model.openingHours.reception.open}
-                -
-                ${model.openingHours.reception.close}
-            </p>
-            <p>
-                Treningssenter: ${model.openingHours.gymAccess.open}
-                -
-                ${model.openingHours.gymAccess.close}
-            </p>
-        </footer>
-    `;
-}
+
 
 
     
