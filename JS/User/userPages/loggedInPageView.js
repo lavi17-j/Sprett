@@ -28,12 +28,16 @@ function updateViewLoggedInPage (){
 function createReservationsHtml (){
     let html = "";
 
-    for (const booking of model.equimentBookings) {
+    for (const booking of model.equipmentBookings) {
         if (booking.userId === model.app.loggedInUserId) {
             let equipmentName = "";
             for (const item of model.equipment) {
-                
+              if (item.id === booking.equipmentId) {
+                equipmentName = item.name;
+              }  
             }
+
+            html += /*HTML*/
         }
     }
 }
