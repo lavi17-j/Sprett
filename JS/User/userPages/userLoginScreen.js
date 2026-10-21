@@ -35,19 +35,25 @@ function handleLogin(){
 const skrevetBrukernavn = model.viewState.loginPage.loginForm.username;
 const skrevetPassord = model.viewState.loginPage.loginForm.password;
 
-1. // Riktig brukernavn, men feil passord
+ // Riktig brukernavn, men feil passord
 if(skrevetBrukernavn === model.users[0].username && skrevetPassord !== model.users[0].password){
 model.viewState.loginPage.loginForm.errorMessage = "Feil passord";
 alert(model.viewState.loginPage.loginForm.errorMessage);
 }
 
-2. // Feil brukernavn, men riktig passord
-else if (skrevetBrukernavn !== model.users[0].username && skrevetPassord === model.users[0].password ){
+ // Feil brukernavn, men riktig passord
+else if (skrevetBrukernavn !== model.users[0].username && skrevetPassord === model.users[0].password){
     model.viewState.loginPage.loginForm.errorMessage = "Feil brukernavn";
     alert(model.viewState.loginPage.loginForm.errorMessage);
-
 }
 
+ // Brukernavn og passord er ritkig
+ else if (skrevetBrukernavn === model.users[0].username && skrevetPassord === model.users[0].password){
+    // sendes til loggedInPageView --> venter på Bendik
+    
+ }
+
+ // begge er feil
 
 }
 
