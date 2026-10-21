@@ -66,6 +66,7 @@ const model = {
     },
 
     adminChangeMembershipsPage: {
+      editingId: null,
       name: "",
       price: "",
       booking: false,
