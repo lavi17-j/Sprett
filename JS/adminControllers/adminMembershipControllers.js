@@ -16,6 +16,14 @@ function denyMembership(applicant) {
   updateView();
 }
 
+function getMembershipName(membershipId) {
+  const membership = model.memberships.find((m) => m.id === membershipId);
+  return membership ? membership.name : "Ingen medlemskap";
+}
+
+//Fikse opp denne senere
+function revokeMembership(membershipId) {}
+
 function drawApplications(maxDisplay) {
   let html = "";
   let awaitingApproval = [];
@@ -39,13 +47,7 @@ function drawApplications(maxDisplay) {
   for (let i = 0; i < awaitingApproval.length; i++) {
     const user = awaitingApproval[i];
 
-    const membership = model.memberships.find(
-      (m) => m.id === user.membershipType,
-    );
-
-    const membershipName = membership
-      ? membership.name
-      : "Manglende medlemsskapstype";
+    const membershipName = getMembershipName(user.membershipType);
 
     html += /*HTML*/ `
       <div class="applicantInfo">

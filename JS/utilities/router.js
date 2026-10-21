@@ -12,6 +12,9 @@ function updateView() {
     case "adminDashboard":
       html = drawAdminDashboard();
       break;
+    case "memberships":
+      html = drawAdminMemberships();
+      break;
     case "LoginScreen":
       html = drawLoginScreen();
       break;
