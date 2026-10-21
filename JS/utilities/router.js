@@ -9,6 +9,9 @@ function updateView() {
   let html = "";
 
   switch (model.app.currentPage) {
+    case "startPage":
+      html = updateViewNotLoggedInPage();
+      break;
     case "adminDashboard":
       html = drawAdminDashboard();
       break;
