@@ -12,7 +12,10 @@ function updateView() {
     case "startPage":
       html = updateViewNotLoggedInPage();
       break;
-      case "loggedInPage":
+    case "LoginScreen":
+      html = drawLoginScreen();
+      break;
+    case "loggedInPage":
       html = updateViewLoggedInPage();
       break;
     case "adminDashboard":
@@ -27,8 +30,35 @@ function updateView() {
     case "editSubscriptions":
       html = drawAdminEditSubscriptions();
       break;
-    case "LoginScreen":
-      html = drawLoginScreen();
+    case "editBulletins":
+      html = drawAdminEditBulletins();
+      break;
+    case "manageBulletins":
+      html = drawAdminManageBulletins();
+      break;
+    case "calender":
+      html = drawAdminCalender();
+      break;
+    case "signUps":
+      html = drawAdminSignUps();
+      break;
+    case "addEvent":
+      html = drawAdminAddEvents();
+      break;
+    case "addProduct":
+      html = drawAdminAddProducts();
+      break;
+    case "editProduct":
+      html = drawAdminEditProducts();
+      break;
+    case "addEquipment":
+      html = drawAdminAddEquipment();
+      break;
+    case "editEquipment":
+      html = drawAdminEditEquipment();
+      break;
+    case "manageRooms":
+      html = drawAdminManageRooms();
       break;
     default:
       html = `<p>404 - Page not found</p>`;

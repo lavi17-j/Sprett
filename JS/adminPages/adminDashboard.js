@@ -18,8 +18,8 @@ function drawAdminDashboard() {
 
     <div id="bulletinArea" class="adminCard">
       <h2>Oppslagstavla</h2>
-      <button onclick="navigateTo('manageBulletins')">Lag/Endre Innlegg</button>
-      <button onclick="navigateTo('editBulletins')">Administrer Innlegg</button>
+      <button onclick="navigateTo('editBulletins')">Lag/Endre Innlegg</button>
+      <button onclick="navigateTo('manageBulletins')">Administrer Innlegg</button>
       
       <div class="subSection">
         <h3>Siste Aktivitet</h3>
