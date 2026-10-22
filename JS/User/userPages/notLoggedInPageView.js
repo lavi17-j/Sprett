@@ -30,7 +30,7 @@ function updateViewNotLoggedInPage(){
             </p>
     </section>
 
-    ${createNotLoggedInFooterHtml()}
+    ${createFooterHtml()}
     
     `;
 

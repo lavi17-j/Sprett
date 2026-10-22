@@ -14,15 +14,14 @@ function updateViewLoggedInPage (){
         <input type="text" placeholder="Scan/skriv kode"/>
     </section>
 
-    <section class="info.box">
+    <section class="info-box">
         <h3>Dine reservasjoner</h3>
         ${createReservationsHtml()}
     </section>
 
-    ${createNotLoggedInFooterHtml()}
     `;
 
-    return html;
+    return drawUserShell(content);
 }
 
 function createReservationsHtml (){

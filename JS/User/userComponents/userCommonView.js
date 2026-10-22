@@ -36,7 +36,7 @@ function createLoggedInHeaderHtml (){
     `;
 }
 
-function createNotLoggedInFooterHtml(){
+function createFooterHtml(){
     return /*HTML*/`
         <footer class="front-footer">
             <h3>Adresse</h3>
