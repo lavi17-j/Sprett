@@ -13,7 +13,25 @@ function drawAdminEditSubscriptions() {
   return drawAdminShell(editSubscriptionsContent);
 }
 
-function createMembershipType() {}
+function createMembershipType() {
+  let newId = 0;
+  if (model.memberships.length > 0) {
+    const maxId = Math.max(...model.memberships.map((m) => m.id));
+    newId = maxId + 1;
+  }
+
+  const newMembership = {
+    name: "Nytt Medlemskap",
+    id: newId,
+    price: 0,
+    bookingAllowed: false,
+  };
+
+  model.memberships.push(newMembership);
+
+  model.viewState.adminChangeMembershipsPage.editingId = newId;
+  updateView();
+}
 
 function drawExistingMembershipTypes() {
   let html = "";
