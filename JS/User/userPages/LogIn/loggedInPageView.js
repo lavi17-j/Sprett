@@ -2,13 +2,6 @@ function updateViewLoggedInPage() {
     const html = /*HTML*/ `
     ${createLoggedInHeaderHtml()}
 
-    <nav class="user-nav">
-        <button class="selected">Hjem</button>
-        <button>Booking</button>
-        <button>Oppslag</button>
-        <button>Profil</button>
-    </nav>
-
     <section class="info-box">
         <h3>Registrer oppmøte</h3>
         <input type="text" placeholder="Scan/skriv kode"/>

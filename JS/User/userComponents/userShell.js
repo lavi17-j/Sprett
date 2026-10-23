@@ -15,10 +15,10 @@ return /*HTML*/ `
 
 function createUserNavHtml() {
     const tabs = [
-        {page: "loggedInPage", text: "Hjem"},
-        {page: "bookingPage", text: "Booking"},
-        {page: "bulletinPage", text: "Oppslag"},
-        {page: "profilePage", text: "Profil"},
+      { page: "loggedInPage", text: "Hjem" },
+      { page: "bookingPage", text: "Booking" },
+      { page: "userBulletinBoard", text: "Oppslag" },
+      { page: "profilePage", text: "Profil" },
     ];
 
     let html = "";

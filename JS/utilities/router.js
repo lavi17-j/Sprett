@@ -60,6 +60,9 @@ function updateView() {
     case "manageRooms":
       html = drawAdminManageRooms();
       break;
+    case "userBulletinBoard":
+      html = drawUserBulletinBoard();
+      break;
     default:
       html = `<p>404 - Page not found</p>`;
   }
