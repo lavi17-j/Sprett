@@ -172,3 +172,7 @@ body {
     font-size: 13px;
     font-weight: normal;
 }
+
+.info-box .wide-button {
+    margin-top: 12px;
+}
