@@ -16,3 +16,29 @@ function displayUserName() {
 
   return loggedInUser ? loggedInUser.username : "Gjest";
 }
+
+function checkUserRights (userId) {
+let user = null;
+
+for (const u of model.users) {
+  if (u.userId === userId) {
+    user = u;
+  }
+}
+
+if (user === null) return false;
+if (user.role === "admin") return false;
+
+
+if (user.isBookingAllowed !== true) return false;
+if (user.approved !== true) return false;
+if (user.bookings.length > 0) return false;
+
+for (const membership of model.memberships) {
+  if (membership.id === user.membershipType) {
+    return membership.bookingAllowed;
+  }
+}
+
+return false;
+}
