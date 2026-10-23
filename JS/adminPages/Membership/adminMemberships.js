@@ -34,18 +34,19 @@ function generateMembersOverview() {
     const user = model.users[i];
 
     const membershipName = getMembershipName(user.membershipType);
-
-    const membership = model.memberships.find(
-      (m) => m.id === user.membershipType,
-    );
-    const allowedToBook = membership ? membership.bookingAllowed : false;
-
     const paymentText = user.paymentStatus ? "Betalt" : "Utestående";
     const bookingText = user.activeBooking ? "Ja" : "Nei";
-    const bookingAllowedText = allowedToBook ? "Tillatt" : "Ikke tillatt";
     const approvalText = user.approved ? "Godkjent" : "Avventer";
 
     const actionButtonsHTML = drawMemberActionButtons(user);
+
+    // Sliding toggle switch for booking rights
+    const bookingToggleHTML = /*HTML*/ `
+      <label class="switch">
+        <input type="checkbox" ${user.isBookingAllowed ? "checked" : ""} onchange="toggleBookingRights(${user.userId})">
+        <span class="slider"></span>
+      </label>
+    `;
 
     html += /*HTML*/ `
       <div class="memberRow" style="display: flex; gap: 10px; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
@@ -53,7 +54,7 @@ function generateMembersOverview() {
         <div style="flex: 1.2;">${membershipName}</div>
         <div style="flex: 1;">${paymentText}</div>
         <div style="flex: 1;">${bookingText}</div>
-        <div style="flex: 1;">${bookingAllowedText}</div>
+        <div style="flex: 1; align-items: center;">${bookingToggleHTML}</div>
         <div style="flex: 0.6; text-align: center;">${user.penalties}</div>
         <div style="flex: 1;">${approvalText}</div>
         <div style="flex: 1.2; text-align: right; display: flex; gap: 5px; justify-content: flex-end;"> 

@@ -21,22 +21,7 @@ function drawAdminDashboard() {
       <button onclick="navigateTo('editBulletins')">Lag/Endre Innlegg</button>
       <button onclick="navigateTo('manageBulletins')">Administrer Innlegg</button>
       
-      <div class="subSection">
-        <h3>Siste Aktivitet</h3>
-        <div class="bulletinItem">
-          <div class="bulletinHeader">
-            <div class="avatarCircle"></div>
-            <div>
-              <strong>Tittel på oppslag</strong>
-              <div>Brukerens Navn</div>
-              <small>Brukerens Kommentar står her</small>
-            </div>
-            <span class="closeX">✕</span>
-          </div>
-          <small>Antall Kommentarer</small>
-        </div>
-        <button onclick="navigateTo('editBulletins')">Se og moderer</button>
-      </div>
+      ${drawDashboardLatestActivity()}
     </div>
 
     <div class="stackedColumn">
@@ -62,9 +47,5 @@ function drawAdminDashboard() {
     </div>
   `;
 
-  // 2. Wrap it inside the shared admin shell layout and return it
   return drawAdminShell(dashboardContent);
 }
-
-//Need to do this one later when the bulletin board stuff is one
-function lastActivity() {}

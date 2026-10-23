@@ -3,9 +3,21 @@ function approveMembership(applicant) {
 
   if (user) {
     user.approved = true;
+
+    const userMembership = model.memberships.find(
+      (m) => m.id === user.membershipType,
+    );
+
+    if (user.approved && userMembership && userMembership.bookingAllowed) {
+      user.isBookingAllowed = true;
+    } else {
+      user.isBookingAllowed = false;
+    }
+
     updateView();
   }
 }
+
 function denyMembership(applicant) {
   const index = model.users.findIndex((u) => u.userId === applicant);
 
@@ -108,4 +120,12 @@ function drawDetailedApplications() {
   }
 
   return html;
+}
+
+function toggleBookingRights(userId) {
+  const user = model.users.find((u) => u.userId === userId);
+  if (user) {
+    user.isBookingAllowed = !user.isBookingAllowed;
+    updateView();
+  }
 }
