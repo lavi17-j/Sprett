@@ -32,7 +32,7 @@ if (user.role === "admin") return false;
 
 if (user.isBookingAllowed !== true) return false;
 if (user.approved !== true) return false;
-if (user.bookings.length > 0) return false;
+if (user.activeBooking === true) return false;
 
 for (const membership of model.memberships) {
   if (membership.id === user.membershipType) {
