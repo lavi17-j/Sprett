@@ -108,8 +108,8 @@ function drawAdminEditBulletins() {
           }
 
           <div style="display: flex; gap: 10px;">
-            <button onclick="saveDraftPost()">Lagre</button>
-            <button onclick="publishPost()" style="background: #333 !important; color: white !important;">Publiser</button>
+            <button onclick="createPost(false)">Lagre</button>
+            <button onclick="createPost(true)" style="background: #333 !important; color: white !important;">Publiser</button>
           </div>
         </div>
 
@@ -204,7 +204,7 @@ function updateTimeState(timeField, type, value) {
   postState[timeField] = `${hours}:${minutes}`;
 }
 
-function publishPost() {
+function createPost(publishingState) {
   const postState = model.viewState.adminCreatePostPage;
 
   if (!postState.title && !postState.inputText) {
@@ -228,6 +228,7 @@ function publishPost() {
     endTime: postState.endTime || "",
     bulletinId: newId,
     link: postState.link || "",
+    isPublished: publishingState,
     isArchived: false,
     comments: [],
   };
@@ -245,14 +246,9 @@ function publishPost() {
     inputText: "",
   };
 
-  alert("Innlegg publisert!");
   updateView();
 }
 
-//Denne må fikses
-function saveDraftPost() {
-  alert("Utkast lagret!");
-}
 
 function selectEventForPost(eventId) {
   const postState = model.viewState.adminCreatePostPage;
