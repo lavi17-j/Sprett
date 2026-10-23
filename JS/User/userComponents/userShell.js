@@ -18,7 +18,7 @@ function createUserNavHtml() {
       { page: "loggedInPage", text: "Hjem" },
       { page: "bookingPage", text: "Booking" },
       { page: "userBulletinBoard", text: "Oppslag" },
-      { page: "profilePage", text: "Profil" },
+      { page: "userProfileHome", text: "Profil" },
     ];
 
     let html = "";

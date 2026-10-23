@@ -63,6 +63,9 @@ function updateView() {
     case "userBulletinBoard":
       html = drawUserBulletinBoard();
       break;
+    case "userProfileHome":
+      html = drawUserProfileHomePage();
+      break;
     default:
       html = `<p>404 - Page not found</p>`;
   }
