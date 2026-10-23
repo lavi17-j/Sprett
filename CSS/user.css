@@ -176,3 +176,20 @@ body {
 .info-box .wide-button {
     margin-top: 12px;
 }
+
+.date-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 8px;
+}
+
+.date-button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    padding: 24px 8px;
+    cursor: pointer;
+}
