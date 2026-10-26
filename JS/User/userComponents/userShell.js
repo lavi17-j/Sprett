@@ -1,5 +1,5 @@
 function drawUserShell(contentHtml) {
-return /*HTML*/ `
+  return /*HTML*/ `
 <div class="userLayout">
     ${createLoggedInHeaderHtml()}
     ${createUserNavHtml()}
@@ -14,28 +14,31 @@ return /*HTML*/ `
 }
 
 function createUserNavHtml() {
-    const tabs = [
-      { page: "loggedInPage", text: "Hjem" },
-      { page: "bookingPage", text: "Booking" },
-      { page: "userBulletinBoard", text: "Oppslag" },
-      { page: "userProfileHome", text: "Profil" },
-    ];
+  const tabs = [
+    //Legg til sidene her også for å få riktig tav navigation til å vises
+    { pages: ["loggedInPage"], text: "Hjem" },
+    { pages: ["bookingPage"], text: "Booking" },
+    { pages: ["userBulletinBoard"], text: "Oppslag" },
+    {
+      pages: ["userProfileHome", "userEditProfile", "userEditSubscription"],
+      text: "Profil",
+    },
+  ];
 
-    let html = "";
+  let html = "";
 
-    for (const tab of tabs) {
-        let selectedClass = "";
-        if (model.app.currentPage === tab.page) {
-            selectedClass = "selected";
-        }
+  for (const tab of tabs) {
+    let selectedClass = "";
+    if (tab.pages.includes(model.app.currentPage)) {
+      selectedClass = "selected";
+    }
 
-        html += /*HTML*/ `
-            <button class="${selectedClass}" onclick="navigateTo('${tab.page}')">
+    html += /*HTML*/ `
+            <button class="${selectedClass}" onclick="navigateTo('${tab.pages[0]}')">
                 ${tab.text}
             </button>
         `;
+  }
 
-    }
-
-    return /*HTML*/ `<nav class="user-nav">${html}</nav>`;
+  return /*HTML*/ `<nav class="user-nav">${html}</nav>`;
 }

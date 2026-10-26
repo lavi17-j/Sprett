@@ -66,6 +66,12 @@ function updateView() {
     case "userProfileHome":
       html = drawUserProfileHomePage();
       break;
+    case "userEditProfile":
+      html = drawUserChangePersonaliaPage();
+      break;
+    case "userEditSubscription":
+      html = drawUserEditSub();
+      break;
     default:
       html = `<p>404 - Page not found</p>`;
   }
