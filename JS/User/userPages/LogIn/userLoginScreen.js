@@ -1,59 +1,88 @@
-function drawLoginScreen(){
-    htlml = "";
-    html = /*HTML*/`
-<div>
-    <h1>Sprett</h1>
-    <p>Bli medlem!</p>
+function drawLoginScreen() {
+  const loginState = model.viewState.loginPage.loginForm;
 
-    <h2>Innlogging</h2>
+  const loginContent = /*HTML*/ `
+    <div class="info-box" style="margin-top: 10px;">
+      <h3>Innlogging</h3>
 
-    <p>Brukernavn/Epost</p>
-    <input type="text" 
-    value="${model.viewState.loginPage.loginForm.username}"
-    oninput="model.viewState.loginPage.loginForm.username = this.value">
-    
-    <p>Passord</p>
-    <input type="text"
-    value="${model.viewState.loginPage.loginForm.password}"
-    oninput="model.viewState.loginPage.loginForm.password = this.value">
-    
-    <br />
-    <br />
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+        
+        <div>
+          <label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px;">Brukernavn eller E-post</label>
+          <input 
+            type="text" 
+            value="${loginState.username}"
+            placeholder="Skriv inn brukernavn..."
+            oninput="model.viewState.loginPage.loginForm.username = this.value"
+          >
+        </div>
 
-    <button id="login-button" onclick="handleLogin()">logg inn!</button>
-    <button>Tilbake</button>
-    <button>Glemt passord?</button> 
+        <div>
+          <label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px;">Passord</label>
+          <input 
+            type="password"
+            value="${loginState.password}"
+            placeholder="Skriv inn passord..."
+            oninput="model.viewState.loginPage.loginForm.password = this.value"
+          >
+        </div>
 
-    <p>Adresse</p>
-    <p>Åpningstider</p>
-</div>
-`;
-    return html
-}
-function handleLogin(){
+        ${
+          loginState.errorMessage
+            ? /*HTML*/ `<div style="color: #cc0000; font-size: 12px; font-weight: bold; text-align: center;">${loginState.errorMessage}</div>`
+            : ""
+        }
 
-const skrevetBrukernavn = model.viewState.loginPage.loginForm.username;
-const skrevetPassord = model.viewState.loginPage.loginForm.password;
+        <button class="wide-button" onclick="handleLogin()" style="margin: 8px 0 0 0; width: 100%; background-color: #000000; color: #ffffff;">
+          Logg inn
+        </button>
 
- // Riktig brukernavn, men feil passord
-if(skrevetBrukernavn === model.users[0].username && skrevetPassord !== model.users[0].password){
-model.viewState.loginPage.loginForm.errorMessage = "Feil passord";
-alert(model.viewState.loginPage.loginForm.errorMessage);
-}
+        <div style="display: flex; gap: 6px;">
+          <button class="wide-button" onclick="navigateTo('startPage')" style="margin: 0; flex: 1; background-color: #f1f1f1;">
+            Tilbake
+          </button>
+          <button class="wide-button" onclick="alert('Glemt passord-funksjonalitet kommer senere')" style="margin: 0; flex: 1; background-color: #f1f1f1;">
+            Glemt passord?
+          </button>
+        </div>
 
- // Feil brukernavn, men riktig passord
-else if (skrevetBrukernavn !== model.users[0].username && skrevetPassord === model.users[0].password){
-    model.viewState.loginPage.loginForm.errorMessage = "Feil brukernavn";
-    alert(model.viewState.loginPage.loginForm.errorMessage);
-}
+      </div>
+    </div>
+  `;
 
- // Brukernavn og passord er ritkig
- else if (skrevetBrukernavn === model.users[0].username && skrevetPassord === model.users[0].password){
-    // sendes til loggedInPageView --> venter på Bendik
-    
- }
-
- // begge er feil
-
+  return drawNotLoggedInShell(loginContent);
 }
 
+function handleLogin() {
+  const loginState = model.viewState.loginPage.loginForm;
+  const usernameInput = loginState.username.trim();
+  const passwordInput = loginState.password.trim();
+
+  const foundUser = model.users.find(
+    (u) => u.username === usernameInput || u.email === usernameInput,
+  );
+
+  if (!foundUser) {
+    loginState.errorMessage = "Bruknavn eller e-post finnes ikke.";
+    updateView();
+    return;
+  }
+
+  if (foundUser.password !== passwordInput) {
+    loginState.errorMessage = "Feil passord.";
+    updateView();
+    return;
+  }
+
+  loginState.errorMessage = "";
+  loginState.username = "";
+  loginState.password = "";
+
+  model.app.loggedInUserId = foundUser.userId;
+
+  if (foundUser.role === "admin") {
+    navigateTo("adminDashboard");
+  } else {
+    navigateTo("loggedInPage");
+  }
+}

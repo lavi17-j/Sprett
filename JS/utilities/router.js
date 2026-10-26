@@ -1,9 +1,14 @@
 function updateView() {
   const app = document.getElementById("app");
 
-  if (model.app.loggedInUserId === null) {
+  const publicPages = ["startPage", "LoginScreen", "newUserRegistration"];
+
+  if (
+    model.app.loggedInUserId === null &&
+    !publicPages.includes(model.app.currentPage)
+  ) {
     app.innerHTML = updateViewNotLoggedInPage();
-    return; 
+    return;
   }
 
   let html = "";
@@ -81,4 +86,3 @@ function updateView() {
 
   app.innerHTML = html;
 }
-
