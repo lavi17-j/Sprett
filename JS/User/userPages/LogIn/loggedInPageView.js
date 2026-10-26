@@ -1,6 +1,5 @@
 function updateViewLoggedInPage() {
     const html = /*HTML*/ `
-    ${createLoggedInHeaderHtml()}
 
     <section class="info-box">
         <h3>Registrer oppmøte</h3>
