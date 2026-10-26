@@ -8,7 +8,7 @@ function drawAdminSideBar() {
       <li onclick="navigateTo('editBulletins')">Oppslagstavla</li>
       <li>Booking/Arrangementer</li>
       <li>Butikk</li>
-      <li>Utstyr og Sal</li>
+      <li onclick="navigateTo('adminManageRooms')">Utstyr og Sal</li>
       <li>Annet</li>
     </ul>
   </div>
