@@ -8,7 +8,7 @@ function drawAdminManageRooms() {
             type="text"
             placeholder="Navn på sal"
             value="${state.newRoomName}"
-            oninput="model.viewstate.adminRoomCreationPage.newRoomName = this.value"
+            oninput="model.viewState.adminRoomCreationPage.newRoomName = this.value"
             />
              <button onclick="addRoom()">Ok</button>
     </div>
@@ -33,7 +33,7 @@ function createRoomListHtml() {
                     <input
                         type="text"
                         value="${state.editedRoomName}"
-                        oninput="model.viewstate.adminRoomCreationPage.editedRoomName = this.value"
+                        oninput="model.viewState.adminRoomCreationPage.editedRoomName = this.value"
                     />
                     <button onclick="saveRoom()">Lagre</button>
                 </div>    
