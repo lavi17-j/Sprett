@@ -66,8 +66,14 @@ function updateView() {
     case "userProfileHome":
       html = drawUserProfileHomePage();
       break;
-    case "adminManageRooms":
-      html = drawAdminManageRooms();
+    case "userEditProfile":
+      html = drawUserChangePersonaliaPage();
+      break;
+    case "userEditSubscription":
+      html = drawUserEditSub();
+      break;
+    case "userChangeMembershipType":
+      html = drawUserSelectSub();
       break;
     default:
       html = `<p>404 - Page not found</p>`;

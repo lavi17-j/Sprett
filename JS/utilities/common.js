@@ -17,38 +17,38 @@ function displayUserName() {
   return loggedInUser ? loggedInUser.username : "Gjest";
 }
 
-function checkUserRights (userId) {
-let user = null;
+function checkUserRights(userId) {
+  let user = null;
 
-for (const u of model.users) {
-  if (u.userId === userId) {
-    user = u;
+  for (const u of model.users) {
+    if (u.userId === userId) {
+      user = u;
+    }
   }
-}
 
-if (user === null) return false;
-if (user.role === "admin") return false;
+  if (user === null) return false;
+  if (user.role === "admin") return false;
 
+  if (user.isBookingAllowed !== true) return false;
+  if (user.approved !== true) return false;
+  if (user.activeBooking === true) return false;
 
-if (user.isBookingAllowed !== true) return false;
-if (user.approved !== true) return false;
-if (user.activeBooking === true) return false;
-
-for (const membership of model.memberships) {
-  if (membership.id === user.membershipType) {
-    return membership.bookingAllowed;
+  for (const membership of model.memberships) {
+    if (membership.id === user.membershipType) {
+      return membership.bookingAllowed;
+    }
   }
-}
 
-return false;
+  return false;
 }
 
 function formatDate(dateString) {
-  const parts = dateString.split("-");
+  if (!dateString || !dateString.includes("-")) return "-";
 
+  const parts = dateString.split("-");
   const year = parts[0].slice(2);
   const month = parts[1];
   const day = parts[2];
 
-  return day + "." + month + "." + year;
+  return `${day}.${month}.${year}`;
 }
