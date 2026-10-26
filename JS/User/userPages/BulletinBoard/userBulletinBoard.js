@@ -1,11 +1,12 @@
 function drawUserBulletinBoard() {
-  const selectedId = model.viewState.bulletinPage.selectedBulletinId;
-  const isFocused = selectedId !== null;
+  const pageState = model.viewState.bulletinPage;
+  const isFocused =
+    pageState.selectedBulletinId !== null || pageState.selectedEventId !== null;
 
   let bulletinBoardContent = /*HTML*/ `
     <div class="userContentArea">
       <div class="info-box">
-        <h3>Oppslagstavle</h3>
+        <h3>Oppslagstavle & Arrangementer</h3>
         
         ${
           isFocused
@@ -16,7 +17,7 @@ function drawUserBulletinBoard() {
         }
 
         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
-          ${drawUserBulletinsList(selectedId)}
+          ${drawUserBulletinsList()}
         </div>
       </div>
     </div>
@@ -24,4 +25,3 @@ function drawUserBulletinBoard() {
 
   return drawUserShell(bulletinBoardContent);
 }
-

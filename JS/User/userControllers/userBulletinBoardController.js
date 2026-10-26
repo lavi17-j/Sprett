@@ -1,10 +1,18 @@
 function focusBulletin(bulletinId) {
   model.viewState.bulletinPage.selectedBulletinId = bulletinId;
+  model.viewState.bulletinPage.selectedEventId = null;
+  updateView();
+}
+
+function focusEvent(eventId) {
+  model.viewState.bulletinPage.selectedEventId = eventId;
+  model.viewState.bulletinPage.selectedBulletinId = null;
   updateView();
 }
 
 function clearBulletinFocus() {
   model.viewState.bulletinPage.selectedBulletinId = null;
+  model.viewState.bulletinPage.selectedEventId = null;
   updateView();
 }
 
@@ -44,7 +52,10 @@ function deleteUserComment(bulletinId, commentId) {
   if (commentIndex !== -1) {
     const comment = bulletin.comments[commentIndex];
 
-    if (comment.userId === model.app.loggedInUserId || model.app.loggedInUserId === 0) {
+    if (
+      comment.userId === model.app.loggedInUserId ||
+      model.app.loggedInUserId === 0
+    ) {
       bulletin.comments.splice(commentIndex, 1);
       updateView();
     }
@@ -57,36 +68,54 @@ function getUsernameById(userId) {
   return user ? user.username : "Unknown user";
 }
 
-function drawUserBulletinsList(selectedId) {
+function toggleEventSignup(eventId) {
+  const event = model.events.find((e) => e.id === eventId);
+  if (!event) return;
+
+  const userId = model.app.loggedInUserId;
+  if (!event.signups) event.signups = [];
+
+  const existingSignupIndex = event.signups.findIndex(
+    (s) => s.userId === userId,
+  );
+
+  if (existingSignupIndex >= 0) {
+    event.signups.splice(existingSignupIndex, 1);
+  } else {
+    event.signups.push({ userId: userId, approved: true });
+  }
+
+  updateView();
+}
+
+function drawUserBulletinsList() {
+  const pageState = model.viewState.bulletinPage;
+  const selectedBulletinId = pageState.selectedBulletinId;
+  const selectedEventId = pageState.selectedEventId;
+
+  if (selectedEventId != null) {
+    return drawFocusedEvent(selectedEventId);
+  }
+
   let html = "";
 
-  if (!model.bulletins || model.bulletins.length === 0) {
-    return "<p style='text-align: center; color: #666;'>No bulletins found.</p>";
-  }
-
+  html += `<div style="font-weight: bold; font-size: 14px; margin-bottom: 6px;">Oppslag</div>`;
   const bulletinsToDisplay =
-    selectedId !== null
-      ? model.bulletins.filter((b) => b.bulletinId === selectedId)
+    selectedBulletinId !== null
+      ? model.bulletins.filter((b) => b.bulletinId === selectedBulletinId)
       : model.bulletins;
-
-  if (bulletinsToDisplay.length === 0) {
-    return "<p style='text-align: center; color: #666;'>Bulletin not found.</p>";
-  }
 
   for (let i = 0; i < bulletinsToDisplay.length; i++) {
     const bulletin = bulletinsToDisplay[i];
-
     if (bulletin.isArchived) continue;
 
-    const isFocused = selectedId !== null;
+    const isFocused = selectedBulletinId !== null;
     const maxLength = 140;
     const rawText = bulletin.description || "";
-
     let displayText = rawText;
     if (!isFocused && rawText.length > maxLength) {
       displayText = rawText.substring(0, maxLength) + "...";
     }
-
     const formattedText = displayText.replace(/\n/g, "<br>");
 
     html += /*HTML*/ `
@@ -101,10 +130,8 @@ function drawUserBulletinsList(selectedId) {
           flex-direction: column; 
           gap: 6px; 
           cursor: ${isFocused ? "default" : "pointer"};
-          transition: background 0.2s;
+          margin-bottom: 10px;
         "
-        onmouseover="if(!${isFocused}) this.style.background='#f9f9f9'"
-        onmouseout="if(!${isFocused}) this.style.background='#ffffff'"
       >
         <div style="font-weight: bold; font-size: 14px; border-bottom: 1px solid #000000; padding-bottom: 4px;">
           ${bulletin.title}
@@ -115,7 +142,7 @@ function drawUserBulletinsList(selectedId) {
         ${
           !isFocused && rawText.length > maxLength
             ? /*HTML*/ `
-          <div style="font-size: 11px; color: #666; font-style: italic; margin-top: 2px;">Click to read more...</div>
+          <div style="font-size: 11px; color: #666; font-style: italic; margin-top: 2px;">Trykk for å se mer...</div>
         `
             : ""
         }
@@ -132,7 +159,7 @@ function drawUserBulletinsList(selectedId) {
             <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;" onclick="event.stopPropagation()">
               <textarea 
                 style="width: 100%; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 13px; padding: 8px; border: 2px solid #000000; border-radius: 6px; resize: vertical; min-height: 60px;"
-                placeholder="Write a comment..."
+                placeholder="Skriv en kommentar..."
                 oninput="model.viewState.bulletinPage.inputComment = this.value"
               >${model.viewState.bulletinPage.inputComment || ""}</textarea>
               <button class="wide-button" onclick="addComment(${bulletin.bulletinId})" style="margin: 0; width: 100%;">Post comment</button>
@@ -145,7 +172,73 @@ function drawUserBulletinsList(selectedId) {
     `;
   }
 
+  if (selectedBulletinId === null) {
+    html += `<div style="font-weight: bold; font-size: 14px; margin: 16px 0 6px 0;">Arrangementer</div>`;
+    const events = model.events.filter((e) => !e.isArchived);
+
+    if (events.length === 0) {
+      html += `<p style='font-size: 12px; color: #666; font-style: italic;'>Ingen arrangementer.</p>`;
+    }
+
+    for (const event of events) {
+      html += /*HTML*/ `
+        <div 
+          onclick="focusEvent(${event.id})"
+          style="
+            border: 2px solid #000000; 
+            border-radius: 10px; 
+            padding: 12px; 
+            background: #f0f8ff; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 6px; 
+            cursor: pointer;
+            margin-bottom: 10px;
+          "
+        >
+          <div style="font-weight: bold; font-size: 14px; border-bottom: 1px solid #000000; padding-bottom: 4px; color: #0044aa;">
+            ${event.title}
+          </div>
+          <div style="font-size: 12px; color: #444;">
+            Dato: ${formatDate(event.startDate) || "Ikke satt"} kl. ${event.startTime || "00.00"}
+          </div>
+        </div>
+      `;
+    }
+  }
+
   return html;
+}
+
+function drawFocusedEvent(eventId) {
+  const event = model.events.find((e) => e.id === eventId);
+  if (!event) return "<p>Arrangementet ble ikke funnet.</p>";
+
+  const userId = model.app.loggedInUserId;
+  const isSignedUp =
+    event.signups && event.signups.some((s) => s.userId === userId);
+  const signupCount = event.signups ? event.signups.length : 0;
+
+  return /*HTML*/ `
+    <div style="border: 2px solid #000000; border-radius: 10px; padding: 12px; background: #ffffff; display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-weight: bold; font-size: 16px; border-bottom: 1px solid #000000; padding-bottom: 4px; color: #0044aa;">
+        ${event.title}
+      </div>
+      <div style="font-size: 13px;">
+        <strong>Tidspunkt:</strong> ${formatDate(event.startDate)} kl. ${event.startTime || "00.00"} - ${event.endTime || "00.00"}
+      </div>
+      <div style="font-size: 13px; line-height: 1.4;">
+        ${event.description}
+      </div>
+      <div style="font-size: 12px; color: #666;">
+        Påmeldte deltakere: ${signupCount}
+      </div>
+
+      <button class="wide-button" style="margin-top: 10px; background-color: ${isSignedUp ? "#fff0f0" : "#e6f4ea"}; color: ${isSignedUp ? "#cc0000" : "#006600"}; font-weight: bold;" onclick="toggleEventSignup(${event.id})">
+        ${isSignedUp ? "Meld meg av" : "Meld deg på"}
+      </button>
+    </div>
+  `;
 }
 
 function drawBulletinCommentsList(bulletin) {
@@ -157,7 +250,9 @@ function drawBulletinCommentsList(bulletin) {
   for (let j = 0; j < bulletin.comments.length; j++) {
     const comment = bulletin.comments[j];
     const username = getUsernameById(comment.userId);
-    const isOwner = comment.userId === model.app.loggedInUserId || model.app.loggedInUserId === 0;
+    const isOwner =
+      comment.userId === model.app.loggedInUserId ||
+      model.app.loggedInUserId === 0;
 
     html += /*HTML*/ `
       <div style="border: 1px solid #000000; border-radius: 6px; padding: 8px; background: #fafafa; position: relative; display: flex; flex-direction: column; gap: 4px; ${isOwner ? "padding-right: 25px;" : ""}">
