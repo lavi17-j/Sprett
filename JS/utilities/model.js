@@ -60,6 +60,7 @@ const model = {
     bulletinPage: {
       inputComment: "",
       selectedBulletinId: null, //
+      selectedEventId: null,
     },
 
     adminMemberPage: {
