@@ -69,3 +69,12 @@ function getNextPaymentDate(user) {
 
   return nextPayment.toISOString().split("T")[0];
 }
+
+function selectMembership(membershipId) {
+  const user = model.users.find((u) => u.userId === model.app.loggedInUserId);
+  if (!user) return;
+
+  user.membershipType = membershipId;
+
+  navigateTo("userEditSubscription");
+}

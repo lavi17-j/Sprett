@@ -72,6 +72,9 @@ function updateView() {
     case "userEditSubscription":
       html = drawUserEditSub();
       break;
+    case "userChangeMembershipType":
+      html = drawUserSelectSub();
+      break;
     default:
       html = `<p>404 - Page not found</p>`;
   }

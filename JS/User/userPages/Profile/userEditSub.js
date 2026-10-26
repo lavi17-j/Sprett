@@ -55,7 +55,7 @@ function drawUserEditSub() {
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <button class="wide-button" style="margin: 0; width: 100%;" onclick="navigateTo('changeMembershipType')">
+          <button class="wide-button" style="margin: 0; width: 100%;" onclick="navigateTo('userChangeMembershipType')">
             Endre medlemskapstype
           </button>
           <button class="wide-button" style="margin: 0; width: 100%; background-color: #f9f9f9;" onclick="alert('Pausefunksjonalitet kommer senere')">
