@@ -38,3 +38,19 @@ function deleteRoom(roomId) {
     model.rooms = model.rooms.filter((room) => room.id !== roomId);
     updateView();
 }
+
+function saveRoomName() {
+    const state = model.viewState.adminRoomCreationPage;
+    const name = state.editedRoomName.trim();
+    if (name === "") return;
+
+    for (const room of model.rooms) {
+        if (room.id === state.editingRoomId) {
+            room.name = name;
+        }
+    }
+
+    state.editingRoomId = null;
+    state.editedRoomName = "";
+    updateView();
+}

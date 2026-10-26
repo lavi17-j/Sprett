@@ -35,7 +35,7 @@ function createRoomListHtml() {
                         value="${state.editedRoomName}"
                         oninput="model.viewState.adminRoomCreationPage.editedRoomName = this.value"
                     />
-                    <button onclick="saveRoom()">Lagre</button>
+                    <button onclick="saveRoomName()">Lagre</button>
                 </div>    
             `;
         } else {
