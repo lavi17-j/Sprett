@@ -129,6 +129,7 @@ const model = {
     adminRoomCreationPage: {
       newRoomName: "",
       editedRoomName: "",
+      editingRoomId: null,
     },
   },
 
