@@ -32,7 +32,7 @@ function createReservationsHtml() {
             html += /*HTML*/ `
                 <div class="reservation-row">
                     <span>${equipmentName}</span>
-                    <span>${booking.date} kl. ${booking.startTime}-${booking.endTime}</span>
+                    <span>${formatDate(booking.date)} kl. ${booking.startTime}-${booking.endTime}</span>
                 </div>
             `;
         }
@@ -59,7 +59,7 @@ function createReservationsHtml() {
             <div class="reservation-row">
                 <span>${event.title}</span>
                 <span>${roomNames}</span>
-                <span>${event.startDate} ${event.startTime}</span>
+                <span>${formatDate(event.startDate)} ${event.startTime}</span>
                 <span>${statusText}</span>
             </div>
         `;

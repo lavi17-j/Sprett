@@ -43,12 +43,12 @@ for (const membership of model.memberships) {
 return false;
 }
 
-function formatDate() {
+function formatDate(dateString) {
   const parts = dateString.split("-");
 
   const year = parts[0].slice(2);
   const month = parts[1];
   const day = parts[2];
 
-  return day + "-" + month + "-" + year;
+  return day + "." + month + "." + year;
 }
