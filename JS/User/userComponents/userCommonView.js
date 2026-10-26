@@ -32,6 +32,7 @@ function createLoggedInHeaderHtml (){
         <div class="profile-picture">Profilbildet</div>
         <p>Velkommen, ${username}!</p>
         <p>${membershipName}</p>
+        <button onclick="logoutUser()">Log Ut</button>
     </header>
     `;
 }

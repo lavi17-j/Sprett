@@ -42,3 +42,27 @@ function createUserNavHtml() {
 
   return /*HTML*/ `<nav class="user-nav">${html}</nav>`;
 }
+
+function drawNotLoggedInShell(contentHtml) {
+  return /*HTML*/ `
+    <div class="userLayout">
+      <!-- Public Header -->
+      <div class="front-header">
+        <h1>Sprett</h1>
+        <p>Treningssenter</p>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="userContentArea">
+        ${contentHtml}
+      </div>
+
+      <!-- Public Footer -->
+      <div class="front-footer">
+        <h3>Åpningstider</h3>
+        <p>Resepsjon: ${model.openingHours.reception.open} - ${model.openingHours.reception.close}</p>
+        <p>Gym: ${model.openingHours.gymAccess.open} - ${model.openingHours.gymAccess.close}</p>
+      </div>
+    </div>
+  `;
+}
