@@ -36,11 +36,22 @@ function generateMembersOverview() {
     const membershipName = getMembershipName(user.membershipType);
     const paymentText = user.paymentStatus ? "Betalt" : "Utestående";
     const bookingText = user.activeBooking ? "Ja" : "Nei";
-    const approvalText = user.approved ? "Godkjent" : "Avventer";
+
+    let statusText = user.approved ? "Godkjent" : "Avventer";
+    let statusColor = user.approved ? "#006600" : "#666666";
+
+    if (user.approved) {
+      if (user.membershipStatus === "paused") {
+        statusText = "Pauset";
+        statusColor = "#b8860b";
+      } else if (user.membershipStatus === "pending_cancellation") {
+        statusText = "Oppsigelse";
+        statusColor = "#cc0000";
+      }
+    }
 
     const actionButtonsHTML = drawMemberActionButtons(user);
 
-    // Sliding toggle switch for booking rights
     const bookingToggleHTML = /*HTML*/ `
       <label class="switch">
         <input type="checkbox" ${user.isBookingAllowed ? "checked" : ""} onchange="toggleBookingRights(${user.userId})">
@@ -56,7 +67,7 @@ function generateMembersOverview() {
         <div style="flex: 1;">${bookingText}</div>
         <div style="flex: 1; align-items: center;">${bookingToggleHTML}</div>
         <div style="flex: 0.6; text-align: center;">${user.penalties}</div>
-        <div style="flex: 1;">${approvalText}</div>
+        <div style="flex: 1; color: ${statusColor}; font-weight: bold;">${statusText}</div>
         <div style="flex: 1.2; text-align: right; display: flex; gap: 5px; justify-content: flex-end;"> 
           ${actionButtonsHTML}
         </div>

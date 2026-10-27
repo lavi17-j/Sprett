@@ -58,11 +58,14 @@ function drawUserEditSub() {
           <button class="wide-button" style="margin: 0; width: 100%;" onclick="navigateTo('userChangeMembershipType')">
             Endre medlemskapstype
           </button>
-          <button class="wide-button" style="margin: 0; width: 100%; background-color: #f9f9f9;" onclick="alert('Pausefunksjonalitet kommer senere')">
-            Pause medlemskap
+          
+          <button class="wide-button" style="margin: 0; width: 100%; background-color: ${isPaused ? "#e6f4ea" : "#f9f9f9"};" onclick="togglePauseMembership()">
+            ${isPaused ? "Gjenoppta medlemskap" : "Pause medlemskap"}
           </button>
-          <button class="wide-button" style="margin: 0; width: 100%; background-color: #fff0f0;" onclick="alert('Oppsigelsesfunksjonalitet kommer senere')">
-            Be om oppsigelse av medlemskap
+          
+          <button class="wide-button" style="margin: 0; width: 100%; background-color: #fff0f0; ${isPendingCancellation ? "opacity: 0.6; cursor: not-allowed;" : ""}" 
+            ${isPendingCancellation ? "disabled" : 'onclick="requestCancellation()"'}>
+            ${isPendingCancellation ? "Oppsigelse til behandling" : "Be om oppsigelse av medlemskap"}
           </button>
         </div>
       </div>
