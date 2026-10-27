@@ -1,8 +1,8 @@
 function drawAdminAddEquipment() {
-    const state = model.viewState.adminCreateEquipmentPage;
-    const isReservable = state.reservable;
+  const state = model.viewState.adminCreateEquipmentPage;
+  const isReservable = state.reservable;
 
-    const content = /*HTML*/ `
+  const content = /*HTML*/ `
         <div class="adminCard">
             <input
                 type="text"
@@ -19,7 +19,7 @@ function drawAdminAddEquipment() {
             <input
                 type="text"
                 placeholder="ID for utstyr"
-                value="${state.equipmentId === null ? '' : state.equipmentId}"
+                value="${state.equipmentId === null ? "" : state.equipmentId}"
                 oninput="model.viewState.adminCreateEquipmentPage.equipmentId = this.value"
             />
             <input
@@ -34,8 +34,8 @@ function drawAdminAddEquipment() {
             <div class="subSection">
                 <p>Kan reserveres?</p>
                 <div class="actionButtons">
-                    <button onclick="setNewEquipmentReservable(true)" class="${isReservable ? 'active' : ''}">✓</button>
-                    <button onclick="setNewEquipmentReservable(false)" class="${isReservable ? '' : 'active'}">X</button>
+                    <button onclick="setNewEquipmentReservable(true)" class="${isReservable ? "active" : ""}">✓</button>
+                    <button onclick="setNewEquipmentReservable(false)" class="${isReservable ? "" : "active"}">X</button>
                 </div>
             </div>
         </div>
@@ -61,22 +61,21 @@ function drawAdminAddEquipment() {
         <button onclick="saveEquipment()">Lagre</button>
      `;
 
-     return drawAdminShell(content);
+  return drawAdminShell(content);
 }
 
-function createCategoryOptionsHtml() {
-    let html = "";
+function createCategoryOptionsHtml(selectedCategory) {
+  let html = "";
 
-    for (const category of model.equipmentCategories) {
-        let selected = "";
-        if (String(category.id) === String(selectedCategory)) {
-            selected = "selected";
-        }
-        html += /*HTML*/ `
-            <option value="${category.id}" ${selected}>${category.name}</option>
-
-        `;
+  for (const category of model.equipmentCategories) {
+    let selected = "";
+    if (String(category.id) === String(selectedCategory)) {
+      selected = "selected";
     }
+    html += /*HTML*/ `
+            <option value="${category.id}" ${selected}>${category.name}</option>
+        `;
+  }
 
-    return html;
+  return html;
 }
