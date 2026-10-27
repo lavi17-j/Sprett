@@ -78,3 +78,34 @@ function selectMembership(membershipId) {
 
   navigateTo("userEditSubscription");
 }
+
+function togglePauseMembership() {
+  const user = model.users.find((u) => u.userId === model.app.loggedInUserId);
+  if (!user) return;
+
+  if (user.membershipStatus === "paused") {
+    user.membershipStatus = "standard";
+  } else if (user.membershipStatus === "standard") {
+    user.membershipStatus = "paused";
+  } else {
+    alert(
+      "Kan ikke pause et medlemskap som har en pågående oppsigelsessøknad.",
+    );
+    return;
+  }
+  updateView();
+}
+
+function requestCancellation() {
+  const user = model.users.find((u) => u.userId === model.app.loggedInUserId);
+  if (!user) return;
+
+  if (
+    confirm(
+      "Er du sikker på at du ønsker å sende inn oppsigelse for medlemskapet ditt?",
+    )
+  ) {
+    user.membershipStatus = "pending_cancellation";
+    updateView();
+  }
+}
