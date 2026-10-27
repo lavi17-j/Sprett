@@ -13,8 +13,18 @@ function drawUserEditSub() {
     ? formatDate(user.membershipStartUpDate || user.membershipApplicationDate)
     : "-";
 
-  const statusText =
-    user && user.approved ? "Aktiv (Godkjent)" : "Venter på godkjenning";
+  const isPaused = user && user.membershipStatus === "paused";
+  const isPendingCancellation =
+    user && user.membershipStatus === "pending_cancellation";
+
+  let statusText = "Aktiv (Godkjent)";
+  if (user && !user.approved) {
+    statusText = "Venter på godkjenning";
+  } else if (isPaused) {
+    statusText = "Pauset";
+  } else if (isPendingCancellation) {
+    statusText = "Oppsigelse til behandling";
+  }
 
   const userEditSubContent = /*HTML*/ `
     <div class="userContentArea">
