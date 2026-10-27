@@ -18,24 +18,56 @@ function drawExistingBulletinsForManagement() {
     return "<p>Ingen oppslag funnet.</p>";
   }
 
-  for (let i = 0; i < model.bulletins.length; i++) {
-    const bulletin = model.bulletins[i];
+  let drafts = model.bulletins.filter((b) => !b.isPublished);
+  let activeOrArchived = model.bulletins.filter((b) => b.isPublished);
+
+  if (drafts.length > 0) {
+    html += `<h3 style="font-size: 0.9rem; margin: 0 0 10px 0; color: #b8860b;">Utkast (Ikke publisert)</h3>`;
+    for (let i = 0; i < drafts.length; i++) {
+      const bulletin = drafts[i];
+
+      html += /*HTML*/ `
+        <div class="bulletinItem" style="background: #fffdf5; border-color: #e6dbb9; margin-bottom: 15px;">
+          <div style="border: 2px solid #333; padding: 8px 12px; background: #fff; border-radius: 4px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+            <span>${bulletin.title || "Uten tittel"}</span>
+            <span style="font-size: 0.8rem; color: #b8860b; font-weight: bold;">(Utkast)</span>
+          </div>
+
+          <div style="border: 2px solid #333; padding: 12px; background: #fff; border-radius: 4px; min-height: 40px; font-size: 0.9rem; word-break: break-word;">
+            ${bulletin.description ? bulletin.description.replace(/\n/g, "<br>") : "<em>Ingen tekst</em>"}
+          </div>
+
+          <div style="display: flex; gap: 8px; justify-content: flex-start; margin-top: 5px;">
+            <button onclick="publishDraft(${bulletin.bulletinId})" style="background: #333 !important; color: white !important; border: 2px solid #333; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">Publiser nå</button>
+            <button onclick="deleteBulletin(${bulletin.bulletinId})" style="background: #be0000 !important; color: white !important; border: 2px solid #333; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Slett utkast</button>
+          </div>
+        </div>
+      `;
+    }
+    html += `<hr style="border: 0; border-top: 2px solid #ddd; margin: 20px 0;">`;
+  }
+
+  html += `<h3 style="font-size: 0.9rem; margin: 0 0 10px 0;">Publiserte og Arkiverte Innlegg</h3>`;
+
+  if (activeOrArchived.length === 0) {
+    html += `<p style="font-size: 0.85rem; color: #666;">Ingen publiserte oppslag.</p>`;
+    return html;
+  }
+
+  for (let i = 0; i < activeOrArchived.length; i++) {
+    const bulletin = activeOrArchived[i];
 
     html += /*HTML*/ `
-      <div class="bulletinItem">
-        
-        <!-- Bulletin Title/Header -->
+      <div class="bulletinItem" style="margin-bottom: 15px;">
         <div style="border: 2px solid #333; padding: 8px 12px; background: #fff; border-radius: 4px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
           <span>${bulletin.title}</span>
           ${bulletin.isArchived ? '<span style="font-size: 0.8rem; color: #666; font-weight: normal;">(Arkivert)</span>' : ""}
         </div>
 
-        <!-- Bulletin Text / Description -->
-        <div style="border: 2px solid #333; padding: 12px; background: #fff; border-radius: 4px; min-height: 50px; font-size: 0.9rem; word-break: break-word;">
+        <div style="border: 2px solid #333; padding: 12px; background: #fff; border-radius: 4px; min-height: 40px; font-size: 0.9rem; word-break: break-word;">
           ${bulletin.description ? bulletin.description.replace(/\n/g, "<br>") : ""}
         </div>
 
-        <!-- Comments Section -->
         <div class="subSection" style="background: #fff;">
           <h3 style="border-bottom: 1px solid #333; padding-bottom: 4px; margin-bottom: 8px;">Kommentarer</h3>
           <div style="display: flex; flex-direction: column; gap: 8px;">

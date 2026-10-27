@@ -32,7 +32,6 @@ function getLatestCommentActivity() {
 
   let allComments = [];
 
-  // 1. Flatten all comments from all bulletins into a single list
   for (let i = 0; i < model.bulletins.length; i++) {
     const bulletin = model.bulletins[i];
     if (bulletin.comments && bulletin.comments.length > 0) {
@@ -52,11 +51,8 @@ function getLatestCommentActivity() {
 
   if (allComments.length === 0) return null;
 
-  // 2. Find the latest comment (using commentId or array position)
-  // Assuming higher commentId or the last item pushed is the latest
   const latest = allComments[allComments.length - 1];
 
-  // 3. Resolve the username
   const user = model.users.find((u) => u.userId === latest.userId);
   latest.userName = user ? user.username : "Ukjent bruker";
 
@@ -94,4 +90,83 @@ function drawDashboardLatestActivity() {
       <button onclick="navigateTo('manageBulletins')">Se og moderer</button>
     </div>
   `;
+}
+
+function generateEventDropdown() {
+  const currentLink = model.viewState.adminCreatePostPage.link;
+  const isDefaultSelected =
+    currentLink === "" || currentLink === null || currentLink === undefined;
+
+  let html = `<option value="" ${isDefaultSelected ? "selected" : ""}>Velg arrangement...</option>`;
+
+  for (let i = 0; i < model.events.length; i++) {
+    const event = model.events[i];
+    const isSelected =
+      String(currentLink) === String(event.id) ? "selected" : "";
+    html += `<option value="${event.id}" ${isSelected}>ID: ${event.id} - ${event.title}</option>`;
+  }
+  return html;
+}
+
+function createPost(publishingState) {
+  const postState = model.viewState.adminCreatePostPage;
+
+  if (!postState.title && !postState.inputText) {
+    alert("Vennligst fyll ut tittel eller tekst før du publiserer.");
+    return;
+  }
+
+  let newId = 0;
+  if (model.bulletins && model.bulletins.length > 0) {
+    const maxId = Math.max(...model.bulletins.map((b) => b.bulletinId));
+    newId = maxId + 1;
+  }
+
+  const newBulletin = {
+    title: postState.title || "",
+    description: postState.inputText || "",
+    bulletinId: newId,
+    link: postState.link || "",
+    isPublished: publishingState,
+    isArchived: false,
+    comments: [],
+  };
+
+  model.bulletins.push(newBulletin);
+
+  model.viewState.adminCreatePostPage = {
+    title: "",
+    link: "",
+    inputText: "",
+  };
+
+  updateView();
+}
+
+function selectEventForPost(eventId) {
+  const postState = model.viewState.adminCreatePostPage;
+  postState.link = eventId;
+
+  if (eventId === "") {
+    return;
+  }
+
+  const selectedEvent = model.events.find(
+    (e) => String(e.id) === String(eventId),
+  );
+
+  if (selectedEvent) {
+    postState.title = selectedEvent.title || "";
+    postState.inputText = selectedEvent.description || "";
+  }
+
+  updateView();
+}
+
+function publishDraft(bulletinId) {
+  const bulletin = model.bulletins.find((b) => b.bulletinId === bulletinId);
+  if (bulletin) {
+    bulletin.isPublished = true;
+    updateView();
+  }
 }
