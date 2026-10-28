@@ -98,6 +98,8 @@ const model = {
 
     adminCalenderPage: {
       selectedTab: "Events", //Equipment
+      selectedDate: null,
+      selectedEventId: null,
     },
 
     adminSignUpsPage: {
@@ -429,6 +431,17 @@ const model = {
       reservedRoom: [0],
       signups: [{ userId: 1, approved: true }],
       isArchived: false,
+    },
+  ],
+
+  eventTypes: [
+    {
+      id: 0,
+      name: "Økt",
+    },
+    {
+      id: 1,
+      name: "Arrangement",
     },
   ],
   //------------------------------------------------------------------------
