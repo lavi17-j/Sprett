@@ -116,3 +116,58 @@ function saveNewEquipment() {
     state.spinNumber = "";
     updateView();
 }
+
+function startEditEquipment(equipmentId) {
+    const state = model.viewState.adminEditEquipmentPage;
+
+    for (const item of model.equipment) {
+        if (item.id === model.equipmentId) {
+            state.equipmentId = item.id;
+            state.equipmentName = item.name;
+            state.reservable = item.reservable;
+            state.spec = item.spec;
+            if (item.category.length > 0) {
+                state.category = item.category[0];
+            } else {
+                state.category = null;
+            }
+        }
+    }
+
+    updateView();
+}
+
+function saveEquipmentChanges() {
+    const state = model.viewState.adminEditEquipmentPage;
+    const name = state.equipmentName.trim();
+    if (name === "") return;
+
+    for (const item of model.equipment) {
+        if (item.id === state.equipmentId) {
+            item.name = name;
+            item.reservable = state.reservable;
+            item.spec = state.spec;
+
+            if (state.category === null || state.category === "") {
+                item.category = [];
+            } else {
+                item.category = [Number(state.category)];
+            }
+        }
+        
+    }
+
+    updateView();
+}
+
+function deleteEquipment(equipmentId) {
+    for (const booking of model.equipmentBookings) {
+        if (booking.equipmentId === equipmentId) {
+            alert("Utstyret er booket og kan ikke slettes.");
+            return;
+        }
+    }
+
+    model.equipment = model.equipment.filter((item) => item.id !== equipmentId);
+    updateView();
+}

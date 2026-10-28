@@ -269,3 +269,16 @@ input:checked + .slider:before {
   flex: none;
   width: 32px;
 }
+
+.equipmentList {
+  max-width: 220px;
+}
+
+.equipmentListItem {
+  text-align: left;
+}
+
+.actionButtons button.active {
+  font-weight: bold;
+  background: #e0e0e0;
+}
