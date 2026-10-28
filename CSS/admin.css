@@ -293,3 +293,8 @@ input:checked + .slider:before {
   flex: 1;
   text-align: left;
 }
+
+.codeoftheday{
+  position: fixed;
+  bottom: 15px;
+}
