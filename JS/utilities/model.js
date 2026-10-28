@@ -30,6 +30,11 @@ const model = {
       },
     },
 
+    userHomePage: {
+      codeOfTheDayInput: "",
+      errorMessage: "",
+    },
+
     bookingPage: {
       registerBookingForm: {
         input: null,
@@ -228,6 +233,7 @@ const model = {
       postCode: "0000",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
     {
       userId: 1,
@@ -252,6 +258,7 @@ const model = {
       email: "post@epost.no",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
     {
       userId: 2,
@@ -276,6 +283,7 @@ const model = {
       email: "post@epost.no",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
     {
       userId: 3,
@@ -300,6 +308,7 @@ const model = {
       email: "post@epost.no",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
     {
       userId: 4,
@@ -324,6 +333,7 @@ const model = {
       email: "post@epost.no",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
   ],
 
@@ -429,4 +439,6 @@ const model = {
     reception: { open: "09.00", close: "16.00" },
     gymAccess: { open: "06.00", close: "24.00" },
   },
+
+  codeOfTheDay: "",
 };

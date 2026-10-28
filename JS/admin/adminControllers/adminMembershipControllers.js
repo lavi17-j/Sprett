@@ -195,7 +195,7 @@ function approveCancellation(userId) {
   ) {
     user.membershipType = null;
     user.membershipStatus = "standard";
-    user.approved = false; 
+    user.approved = false;
     user.membershipStartUpDate = "";
     updateView();
   }
@@ -209,4 +209,20 @@ function denyCancellation(userId) {
     user.membershipStatus = "standard";
     updateView();
   }
+}
+
+function generateCodeOfTheDay() {
+  let dailyCode = "";
+
+  var characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var charactersLength = characters.length;
+  for (var i = 0; i < 6; i++) {
+    dailyCode += characters.charAt(
+      Math.floor(Math.random() * charactersLength),
+    );
+  }
+  model.codeOfTheDay = dailyCode;
+  console.log(model.codeOfTheDay)
+  return dailyCode;
 }
