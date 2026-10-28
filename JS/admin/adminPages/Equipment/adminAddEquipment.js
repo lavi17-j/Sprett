@@ -10,24 +10,6 @@ function drawAdminAddEquipment() {
                 value="${state.equipmentName}"
                 oninput="model.viewState.adminCreateEquipmentPage.equipmentName = this.value"
             />
-            <input
-                type="text"
-                placeholder="Spinnvidde"
-                value="${state.spec}"
-                oninput="model.viewState.adminCreateEquipmentPage.spec = this.value"
-            />
-            <input
-                type="text"
-                placeholder="ID for utstyr"
-                value="${state.equipmentId === null ? "" : state.equipmentId}"
-                oninput="model.viewState.adminCreateEquipmentPage.equipmentId = this.value"
-            />
-            <input
-                type="text"
-                placeholder="Spinn#"
-                value="${state.spinNumber}"
-                oninput="model.viewState.adminCreateEquipmentPage.spinNumber = this.value"
-            />
         </div>
 
         <div class="adminCard">

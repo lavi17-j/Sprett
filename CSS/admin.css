@@ -282,3 +282,14 @@ input:checked + .slider:before {
   font-weight: bold;
   background: #e0e0e0;
 }
+
+.equipmentRow {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.equipmentRow .equipmentListItem {
+  flex: 1;
+  text-align: left;
+}

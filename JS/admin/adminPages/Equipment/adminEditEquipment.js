@@ -13,20 +13,9 @@ function drawAdminEditEquipment() {
                 type="text"
                 placeholder="Navn på utstyr"
                 value="${state.equipmentName}"
-                oninput="model.viewState.adminEquipmentPage.equipmentName = this.value"
+                oninput="model.viewState.adminEditEquipmentPage.equipmentName = this.value"
             />
-            <input
-                type="text"
-                placeholder="ID for utstyr"
-                value="${state.equipmentId === null ? '' : state.equipmentId}"
-                readonly
-            />
-            <input
-                type="text"
-                placeholder="Spinnvidde"
-                value="${state.spec}"
-                oninput="model.viewState.adminEditEquipmentPage.spec = this.value"
-            />
+
         </div>
 
         <div class="adminCard">
@@ -59,9 +48,12 @@ function createEquipmentListHtml() {
 
     for (const item of model.equipment) {
         html += /*HTML*/ `
-            <button class="equipmentListItem" onclick="startEditEquipment(${item.id})">
-                ${item.name}
-            </button>
+            <div class="subSection equipmentRow">
+                <button class="equipmentListItem" onclick="startEditEquipment(${item.id})">
+                    ${item.name}
+                </button>
+                <button onclick="deleteEquipment(${item.id})">X</button>
+            </div>
         `;
     }
 

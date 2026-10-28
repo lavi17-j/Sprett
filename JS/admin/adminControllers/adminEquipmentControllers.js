@@ -104,38 +104,34 @@ function saveNewEquipment() {
         id: newId,
         reservable: state.reservable,
         category: categoryId === null ? [] : [categoryId],
-        spec: state.spec,
-        spinNumber: state.spinNumber,
     });
 
     state.equipmentName = "";
     state.equipmentId = null;
     state.reservable = false;
     state.category = null;
-    state.spec = "";
-    state.spinNumber = "";
     updateView();
 }
 
 function startEditEquipment(equipmentId) {
-    const state = model.viewState.adminEditEquipmentPage;
+  const state = model.viewState.adminEditEquipmentPage;
 
-    for (const item of model.equipment) {
-        if (item.id === model.equipmentId) {
-            state.equipmentId = item.id;
-            state.equipmentName = item.name;
-            state.reservable = item.reservable;
-            state.spec = item.spec;
-            if (item.category.length > 0) {
-                state.category = item.category[0];
-            } else {
-                state.category = null;
-            }
-        }
+  for (const item of model.equipment) {
+    if (item.id === equipmentId) {
+      state.equipmentId = item.id;
+      state.equipmentName = item.name;
+      state.reservable = item.reservable;
+      if (item.category.length > 0) {
+        state.category = item.category[0];
+      } else {
+        state.category = null;
+      }
     }
+  }
 
-    updateView();
+  updateView();
 }
+
 
 function saveEquipmentChanges() {
     const state = model.viewState.adminEditEquipmentPage;
@@ -146,7 +142,6 @@ function saveEquipmentChanges() {
         if (item.id === state.equipmentId) {
             item.name = name;
             item.reservable = state.reservable;
-            item.spec = state.spec;
 
             if (state.category === null || state.category === "") {
                 item.category = [];
