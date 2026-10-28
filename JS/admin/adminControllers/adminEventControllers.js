@@ -141,3 +141,60 @@ function createHourOptions(selectedValue) {
   }
   return options;
 }
+
+function setCalenderTab(tabName) {
+  model.viewState.adminCalenderPage.selectedTab = tabName;
+  updateView();
+}
+
+function selectedCalenderDate(date) {
+  model.viewState.adminCalenderPage.selectedDate = date;
+  updateView();
+}
+
+function selectEvent(eventId) {
+  model.viewState.adminCalenderPage.selectedEventId = eventId;
+  updateView();
+}
+
+function getSelectedEvent() {
+  const state = model.viewState.adminCalenderPage;
+
+  for (const event of model.events) {
+    if (event.id === model.events) {
+      return event;
+    }
+  }
+
+  return null;
+}
+
+function getUsername(userId) {
+  for (const user of model.users) {
+    if (user.userId === userId) {
+      return user.username;
+    }
+  }
+
+  return "Ukjent bruker";
+}
+
+function getEquipmentName(equipmentId) {
+  for (const item of model.equipment) {
+    if (item.id === equipmentId) {
+      return item.name;
+    }
+  }
+
+  return "Ukjent utstyr";
+}
+
+function getRoomName(roomIds) {
+  for (const room of model.rooms) {
+    if (roomIds.includes(room.id)) {
+      return room.name;
+    }
+  }
+
+  return "Ingen sal";
+}
