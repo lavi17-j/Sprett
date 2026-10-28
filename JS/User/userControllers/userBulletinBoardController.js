@@ -69,7 +69,7 @@ function getUsernameById(userId) {
 }
 
 function toggleEventSignup(eventId) {
-  const event = model.events.find((e) => e.id === eventId);
+  const event = model.events.find((e) => String(e.id) === String(eventId));
   if (!event) return;
 
   const userId = model.app.loggedInUserId;
@@ -211,8 +211,8 @@ function drawUserBulletinsList() {
 }
 
 function drawFocusedEvent(eventId) {
-  const event = model.events.find((e) => e.id === eventId);
-  if (!event) return "<p>Arrangementet ble ikke funnet.</p>";
+const event = model.events.find((e) => String(e.id) === String(eventId));
+if (!event) return "<p>Arrangementet ble ikke funnet.</p>";
 
   const userId = model.app.loggedInUserId;
   const isSignedUp =
