@@ -298,3 +298,41 @@ input:checked + .slider:before {
   position: fixed;
   bottom: 15px;
 }
+
+.calenderCard {
+  flex-direction: column;
+}
+
+.calenderColumns {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.calenderDateList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.calenderRow {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.calenderRow.selected {
+  border-width: 3px;
+}
+
+.eventDetail {
+  flex: 1;
+}
+
+.signupRow {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

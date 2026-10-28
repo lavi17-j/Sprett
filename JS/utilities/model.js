@@ -431,6 +431,7 @@ const model = {
       reservedRoom: [0],
       signups: [{ userId: 1, approved: true }],
       isArchived: false,
+      maxParticipants: null,
     },
   ],
 
