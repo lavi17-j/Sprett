@@ -40,7 +40,7 @@ function drawAdminAddEquipment() {
             <button onclick="addEquipmentCategory()">Legg til</button>
         </div>
 
-        <button onclick="saveEquipment()">Lagre</button>
+        <button onclick="saveNewEquipment()">Lagre</button>
      `;
 
   return drawAdminShell(content);
