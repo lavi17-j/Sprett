@@ -6,9 +6,10 @@ function drawAdminSideBar() {
         <li onclick="navigateTo('adminDashboard')">Dashboard</li>
         <li onclick="navigateTo('memberships')">Medlemskap</li>
         <li onclick="navigateTo('editBulletins')">Oppslagstavla</li>
-        <li>Booking/Arrangementer</li>
+        <li onclick="navigateTo('addEquipment')">Booking/Arrangementer</li>
         <li>Butikk</li>
-        <li onclick="navigateTo('manageRooms')">Utstyr og Sal</li>
+        <li onclick="navigateTo('addEquipment')">Utstyr</li>
+        <li onclick="navigateTo('manageRooms')">Sal</li>
         <li>Annet</li>
       </ul>
       <div class="codeoftheday adminCard">

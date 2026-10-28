@@ -183,7 +183,7 @@ function drawUserBulletinsList() {
     for (const event of events) {
       html += /*HTML*/ `
         <div 
-          onclick="focusEvent(${event.id})"
+          onclick="focusEvent('${event.id}')"
           style="
             border: 2px solid #000000; 
             border-radius: 10px; 
@@ -234,7 +234,7 @@ function drawFocusedEvent(eventId) {
         Påmeldte deltakere: ${signupCount}
       </div>
 
-      <button class="wide-button" style="margin-top: 10px; background-color: ${isSignedUp ? "#fff0f0" : "#e6f4ea"}; color: ${isSignedUp ? "#cc0000" : "#006600"}; font-weight: bold;" onclick="toggleEventSignup(${event.id})">
+      <button class="wide-button" style="margin-top: 10px; background-color: ${isSignedUp ? "#fff0f0" : "#e6f4ea"}; color: ${isSignedUp ? "#cc0000" : "#006600"}; font-weight: bold;" onclick="toggleEventSignup('${event.id}')">
         ${isSignedUp ? "Meld meg av" : "Meld deg på"}
       </button>
     </div>
