@@ -118,6 +118,42 @@ function drawUserBulletinsList() {
     }
     const formattedText = displayText.replace(/\n/g, "<br>");
 
+    let linkedEventHtml = "";
+    if (isFocused && bulletin.link) {
+      const linkedEvent = model.events.find(
+        (e) => String(e.id) === String(bulletin.link),
+      );
+      if (linkedEvent) {
+        const userId = model.app.loggedInUserId;
+        const isSignedUp =
+          linkedEvent.signups &&
+          linkedEvent.signups.some((s) => s.userId === userId);
+        const signupCount = linkedEvent.signups
+          ? linkedEvent.signups.length
+          : 0;
+
+        linkedEventHtml = /*HTML*/ `
+          <div style="margin-top: 12px; border: 2px solid #0044aa; border-radius: 8px; padding: 10px; background: #f0f8ff; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-weight: bold; font-size: 14px; color: #0044aa; border-bottom: 1px solid #0044aa; padding-bottom: 4px;">
+              Tilknyttet arrangement: ${linkedEvent.title}
+            </div>
+            <div style="font-size: 12px; color: #444;">
+              <strong>Tidspunkt:</strong> ${formatDate(linkedEvent.startDate)} kl. ${linkedEvent.startTime || "00.00"} - ${linkedEvent.endTime || "00.00"}
+            </div>
+            <div style="font-size: 12px; color: #333;">
+              ${linkedEvent.description || ""}
+            </div>
+            <div style="font-size: 11px; color: #666;">
+              Påmeldte deltakere: ${signupCount} / ${linkedEvent.maxParticipants || "Ubegrenset"}
+            </div>
+            <button class="wide-button" style="margin-top: 6px; background-color: ${isSignedUp ? "#fff0f0" : "#e6f4ea"}; color: ${isSignedUp ? "#cc0000" : "#006600"}; font-weight: bold;" onclick="toggleEventSignup('${linkedEvent.id}')">
+              ${isSignedUp ? "Meld meg av arrangement" : "Meld deg på arrangement"}
+            </button>
+          </div>
+        `;
+      }
+    }
+
     html += /*HTML*/ `
       <div 
         onclick="${isFocused ? "" : `focusBulletin(${bulletin.bulletinId})`}"
@@ -147,11 +183,13 @@ function drawUserBulletinsList() {
             : ""
         }
 
+        ${linkedEventHtml}
+
         ${
           isFocused
             ? /*HTML*/ `
           <div style="margin-top: 15px; border-top: 1px solid #000000; padding-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-            <div style="font-weight: bold; font-size: 13px;">Comments</div>
+            <div style="font-weight: bold; font-size: 13px;">Kommentarer</div>
             <div style="display: flex; flex-direction: column; gap: 6px;">
               ${drawBulletinCommentsList(bulletin)}
             </div>
@@ -211,8 +249,8 @@ function drawUserBulletinsList() {
 }
 
 function drawFocusedEvent(eventId) {
-const event = model.events.find((e) => String(e.id) === String(eventId));
-if (!event) return "<p>Arrangementet ble ikke funnet.</p>";
+  const event = model.events.find((e) => String(e.id) === String(eventId));
+  if (!event) return "<p>Arrangementet ble ikke funnet.</p>";
 
   const userId = model.app.loggedInUserId;
   const isSignedUp =
@@ -231,7 +269,7 @@ if (!event) return "<p>Arrangementet ble ikke funnet.</p>";
         ${event.description}
       </div>
       <div style="font-size: 12px; color: #666;">
-        Påmeldte deltakere: ${signupCount}
+        Påmeldte deltakere: ${signupCount} / ${event.maxParticipants || "Ubegrenset"}
       </div>
 
       <button class="wide-button" style="margin-top: 10px; background-color: ${isSignedUp ? "#fff0f0" : "#e6f4ea"}; color: ${isSignedUp ? "#cc0000" : "#006600"}; font-weight: bold;" onclick="toggleEventSignup('${event.id}')">

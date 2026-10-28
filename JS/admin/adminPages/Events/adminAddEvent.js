@@ -1,10 +1,16 @@
 function drawAdminAddEvents() {
   const pageState = model.viewState.adminCreateEventPage;
 
-  let roomOptions = `<option value="">Ingen sal valgt (Valgfritt)</option>`;
+  let roomOptions = `<option value="">Ingen sal valgt</option>`;
   for (const room of model.rooms) {
     const isSelected = pageState.reservedRoom === room.id ? "selected" : "";
     roomOptions += `<option value="${room.id}" ${isSelected}>${room.name}</option>`;
+  }
+
+  let typeOptions = `<option value="">Ingen type valgt</option>`;
+  for (const type of model.eventTypes) {
+    const isSelected = pageState.type === type.id ? "selected" : "";
+    typeOptions += `<option value="${type.id}" ${isSelected}>${type.name}</option>`;
   }
 
   const html = /*HTML*/ `
@@ -29,6 +35,16 @@ function drawAdminAddEvents() {
           oninput="model.viewState.adminCreateEventPage.description = this.value"
           style="width: 100%; height: 100px; padding: 8px; margin-top: 4px; border: 2px solid #333; border-radius: 4px; font-family: sans-serif; box-sizing: border-box;"
         >${pageState.description || ""}</textarea>
+      </label>
+
+<label>
+        <strong>Type</strong>
+        <select 
+          onchange="model.viewState.adminCreateEventPage.type = this.value === '' ? null : Number(this.value)"
+          style="width: 100%; padding: 8px; margin-top: 4px; border: 2px solid #333; border-radius: 4px; background: #fff; box-sizing: border-box;"
+        >
+          ${typeOptions}
+        </select>
       </label>
 
       <label>
