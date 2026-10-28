@@ -145,21 +145,7 @@ function createPost(publishingState) {
 
 function selectEventForPost(eventId) {
   const postState = model.viewState.adminCreatePostPage;
-  postState.link = eventId;
-
-  if (eventId === "") {
-    return;
-  }
-
-  const selectedEvent = model.events.find(
-    (e) => String(e.id) === String(eventId),
-  );
-
-  if (selectedEvent) {
-    postState.title = selectedEvent.title || "";
-    postState.inputText = selectedEvent.description || "";
-  }
-
+  postState.link = eventId === "" ? null : eventId;
   updateView();
 }
 
