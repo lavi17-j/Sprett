@@ -147,7 +147,7 @@ function setCalenderTab(tabName) {
   updateView();
 }
 
-function selectedCalenderDate(date) {
+function setCalenderDate(date) {
   model.viewState.adminCalenderPage.selectedDate = date;
   updateView();
 }
