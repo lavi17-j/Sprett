@@ -1,5 +1,6 @@
 function drawAdminCalender() {
     const state = model.viewState.adminCalenderPage;
+    cleanBookings();
 
     const content = /*HTML*/ `
         <div class="adminCard calenderCard">
