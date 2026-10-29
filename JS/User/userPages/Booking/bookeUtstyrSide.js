@@ -66,31 +66,56 @@ function lagUtstyrsSokeresultaterHtml() {
     return passerSok && passerKategori;
   });
 
-  if (utstyr.length === 0) {
+  if (utstyr.length === 0 && soketekst !== "") {
     return "<p>Fant ikke utstyr som passer søket eller filteret.</p>";
   }
 
-  const gruppertUtstyr = new Map();
-  for (const element of utstyr) {
-    const kategoriId = element.category.length > 0 ? element.category[0] : null;
-    const kategori = model.equipmentCategories.find(
-      (oppforing) => oppforing.id === kategoriId,
-    );
-    const gruppenavn = kategori ? kategori.name : "Annet utstyr";
-    if (!gruppertUtstyr.has(gruppenavn)) {
-      gruppertUtstyr.set(gruppenavn, []);
-    }
-    gruppertUtstyr.get(gruppenavn).push(element);
-  }
-
   let html = "";
-  for (const [kategorinavn, elementer] of gruppertUtstyr) {
+  const valgteKategorier =
+    kategorifilter === null || kategorifilter === ""
+      ? model.equipmentCategories
+      : model.equipmentCategories.filter(
+          (kategori) => String(kategori.id) === String(kategorifilter),
+        );
+
+  for (const kategori of valgteKategorier) {
+    const elementer = utstyr.filter((element) =>
+      element.category.some(
+        (kategoriId) => String(kategoriId) === String(kategori.id),
+      ),
+    );
     const tilgjengeligeAntall = elementer.filter(erUtstyrTilgjengeligIDag).length;
     html += /*HTML*/ `
       <div style="border: 2px solid #000000; border-radius: 10px; padding: 12px; margin-bottom: 10px;">
-        <h4 style="margin: 0 0 8px 0;">${unnslippUtstyrHtml(kategorinavn)}</h4>
+        <h4 style="margin: 0 0 8px 0;">${unnslippUtstyrHtml(kategori.name)}</h4>
         <p style="margin: 0 0 8px 0;">Antall tilgjengelige: ${tilgjengeligeAntall}</p>
-        ${elementer
+        ${
+          elementer.length === 0
+            ? "<p>Ingen utstyr i denne kategorien passer søket.</p>"
+            : elementer
+                .map((element) => {
+                  const status = !element.reservable
+                    ? "Kan ikke reserveres"
+                    : erUtstyrTilgjengeligIDag(element)
+                      ? "Tilgjengelig"
+                      : "Allerede booket i dag";
+                  return `<p style="margin: 4px 0;">${unnslippUtstyrHtml(element.name)} - ${status}</p>`;
+                })
+                .join("")
+        }
+      </div>
+    `;
+  }
+
+  const ukategorisertUtstyr = utstyr.filter(
+    (element) => element.category.length === 0,
+  );
+  if (ukategorisertUtstyr.length > 0 && !kategorifilter) {
+    html += /*HTML*/ `
+      <div style="border: 2px solid #000000; border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+        <h4 style="margin: 0 0 8px 0;">Annet utstyr</h4>
+        <p style="margin: 0 0 8px 0;">Antall tilgjengelige: ${ukategorisertUtstyr.filter(erUtstyrTilgjengeligIDag).length}</p>
+        ${ukategorisertUtstyr
           .map((element) => {
             const status = !element.reservable
               ? "Kan ikke reserveres"
