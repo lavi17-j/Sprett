@@ -5,6 +5,43 @@ function drawUserProfileHomePage() {
       ? model.memberships.find((m) => m.id === user.membershipType)
       : null;
 
+  // Filter for bestillinger basert på hvem som er logget inn
+  const userOrders = model.orders.filter(
+    (order) => order.userId === model.app.loggedInUserId,
+  );
+
+  let ordersHtml = "";
+  for (const order of userOrders) {
+    let itemsList = "";
+    for (const item of order.items) {
+      const product = model.webStoreProducts.find(
+        (p) => p.productId === item.productId,
+      );
+      const productName = product ? product.productName : "Ukjent produkt";
+      itemsList += `<div style="font-size: 11px; color: #444;">• ${productName} (x${item.quantity})</div>`;
+    }
+
+    ordersHtml += /*HTML*/ `
+      <div style="border: 2px solid #000; border-radius: 10px; padding: 8px; margin-bottom: 8px; background: #fafafa;">
+        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 12px; margin-bottom: 4px;">
+          <span>Bestilling #${order.orderId}</span>
+          <span>${formatDate(order.date)}</span>
+        </div>
+        <div style="margin-bottom: 6px;">
+          ${itemsList}
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; border-top: 1px dashed #ccc; padding-top: 4px;">
+          <span><strong>Total:</strong> ${order.totalPrice} kr</span>
+          <span style="color: #0044aa; font-style: italic;">${order.status}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  if (ordersHtml === "") {
+    ordersHtml = `<div style="padding: 6px 0; font-style: italic; color: #666; text-align: center; font-size: 12px;">Ingen aktive bestillinger</div>`;
+  }
+
   const userProfileHomePageContent = /*HTML*/ `
     <div class="userContentArea">
       
@@ -41,45 +78,15 @@ function drawUserProfileHomePage() {
         <button class="wide-button" onclick="navigateTo('userEditSubscription')">Administrer</button>
       </div>
 
+      <div class="info-box">
+        <h3>Dine Bestillinger</h3>
+        <div style="display: flex; flex-direction: column; gap: 4px; max-height: 200px; overflow-y: auto;">
+          ${ordersHtml}
+        </div>
+      </div>
+
     </div>
   `;
 
   return drawUserShell(userProfileHomePageContent);
-}
-
-function getUserAddress() {
-  const user = model.users.find((u) => u.userId === model.app.loggedInUserId);
-  if (!user) return "Ingen adresse registrert";
-  return `${user.address || ""}, ${user.postCode || ""}`;
-}
-
-function drawSubscriptionInfo() {
-  const user = model.users.find((u) => u.userId === model.app.loggedInUserId);
-
-  if (
-    !user ||
-    user.membershipType === null ||
-    user.membershipType === undefined
-  ) {
-    return `<div style="padding: 4px 0; font-style: italic; color: #666;">Ingen aktivt medlemskap</div>`;
-  }
-
-  const membership = model.memberships.find(
-    (m) => m.id === user.membershipType,
-  );
-
-  if (!membership) {
-    return `<div style="padding: 4px 0; font-style: italic; color: #666;">Ukjent medlemskapstype</div>`;
-  }
-
-  return /*HTML*/ `
-    <div class="price-row">
-      <span>Type:</span>
-      <strong>${membership.name}</strong>
-    </div>
-    <div class="price-row" style="margin-bottom: 10px;">
-      <span>Pris:</span>
-      <strong>${membership.price} kr / mnd</strong>
-    </div>
-  `;
 }

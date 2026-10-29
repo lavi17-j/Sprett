@@ -30,6 +30,25 @@ const model = {
       },
     },
 
+    adminAddProductsPage: {
+      productName: "",
+      productProducer: "",
+      productPrice: null,
+      productDescription: "",
+      productQuantity: null,
+      hasDiscount: false,
+    },
+
+    adminEditProductsPage: {
+      editingProductId: null,
+      productName: "",
+      productProducer: "",
+      productPrice: null,
+      productDescription: "",
+      productQuantity: null,
+      hasDiscount: false,
+    },
+
     userWebStorePage: {
       selectedProductId: null,
       selectedQuantity: 1,
