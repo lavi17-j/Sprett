@@ -29,6 +29,12 @@ function updateView() {
     case "bookingPage":
       html = tegnBookeUtstyrSide();
       break;
+    case "eventDetailsPage":
+      html = tegnArrangementDetaljerSide();
+      break;
+    case "arrangementerSide":
+      html = tegnArrangementerSide();
+      break;
     case "adminDashboard":
       html = drawAdminDashboard();
       break;

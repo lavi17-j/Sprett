@@ -38,6 +38,13 @@ function tegnHjemmesideBooking() {
     <section class="info-box">
       <h3>Arrangementer</h3>
       ${lagArrangementerHtml()}
+      <button
+        class="wide-button"
+        style="margin: 8px 0 0 0; width: 100%;"
+        onclick="navigateTo('arrangementerSide')"
+      >
+        Se alle arrangementer
+      </button>
     </section>
 
     <button class="wide-button" onclick="navigateTo('bookingPage')" style="margin: 0; width: 100%; background-color: #000000; color: #ffffff;">
@@ -96,7 +103,13 @@ function lagArrangementerHtml() {
 
       return /*HTML*/ `
         <div class="reservation-row">
-          <strong>${unnslippBookingHtml(arrangement.title)}</strong>
+          <button
+            class="wide-button"
+            style="margin: 0 0 8px 0; width: 100%;"
+            onclick="visArrangementDetaljer('${arrangement.id}')"
+          >
+            ${unnslippBookingHtml(arrangement.title)}
+          </button>
           <span>Dato: ${unnslippBookingHtml(formatDate(arrangement.startDate))}</span>
           <span>Tid: ${unnslippBookingHtml(arrangement.startTime || "Ikke oppgitt")} - ${unnslippBookingHtml(arrangement.endTime || "Ikke oppgitt")}</span>
           ${
@@ -105,12 +118,8 @@ function lagArrangementerHtml() {
               : ""
           }
           <span>Påmeldte: ${pameldteAntall} / ${arrangement.maxParticipants || "Ubegrenset"}</span>
-          <button
-            class="wide-button"
-            style="margin: 8px 0 0 0; width: 100%;"
-            onclick="toggleEventSignup('${arrangement.id}')"
-          >
-            ${erPameldt ? "Meld deg av" : "Meld deg på"}
+          <button class="wide-button" style="margin: 8px 0 0 0; width: 100%;" onclick="visArrangementDetaljer('${arrangement.id}')">
+            Detaljer om arrangementet
           </button>
         </div>
       `;
