@@ -1,43 +1,197 @@
+function drawNewUserRegistration() {
+  const form = model.viewState.loginPage.newUserForm;
+  const membershipOptions = model.memberships
+    .map(
+      (membership) => /*HTML*/ `
+        <option value="${membership.id}" ${
+          String(form.membershipType) === String(membership.id) ? "selected" : ""
+        }>
+          ${escapeRegistrationHtml(membership.name)} - ${membership.price} kr / mnd
+        </option>
+      `,
+    )
+    .join("");
 
+  const content = form.successMessage
+    ? /*HTML*/ `
+        <div class="info-box">
+          <h3>Søknad sendt</h3>
+          <p>${escapeRegistrationHtml(form.successMessage)}</p>
+          <button class="wide-button" onclick="navigateTo('startPage')">
+            Tilbake til forsiden
+          </button>
+        </div>
+      `
+    : /*HTML*/ `
+        <div class="info-box">
+          <h3>Bli kunde</h3>
+          <form onsubmit="registerUser(); return false;" style="display: flex; flex-direction: column; gap: 10px;">
+            <label>
+              Navn
+              <input type="text" autocomplete="name" required value="${escapeRegistrationHtml(form.name)}"
+                oninput="model.viewState.loginPage.newUserForm.name = this.value">
+            </label>
+            <label>
+              E-post
+              <input type="email" autocomplete="email" required value="${escapeRegistrationHtml(form.mail)}"
+                oninput="model.viewState.loginPage.newUserForm.mail = this.value">
+            </label>
+            <label>
+              Telefonnummer
+              <input type="tel" autocomplete="tel" required value="${escapeRegistrationHtml(form.phone)}"
+                oninput="model.viewState.loginPage.newUserForm.phone = this.value">
+            </label>
+            <label>
+              Adresse
+              <input type="text" autocomplete="street-address" required value="${escapeRegistrationHtml(form.address)}"
+                oninput="model.viewState.loginPage.newUserForm.address = this.value">
+            </label>
+            <label>
+              Postnummer
+              <input type="text" inputmode="numeric" autocomplete="postal-code" required value="${escapeRegistrationHtml(form.postcode)}"
+                oninput="model.viewState.loginPage.newUserForm.postcode = this.value">
+            </label>
+            <label>
+              Medlemskap
+              <select required onchange="model.viewState.loginPage.newUserForm.membershipType = this.value">
+                <option value="">Velg medlemskap</option>
+                ${membershipOptions}
+              </select>
+            </label>
+            <label>
+              Ønsket betalingsmåte
+              <select required onchange="model.viewState.loginPage.newUserForm.paymentMethod = this.value">
+                <option value="">Velg betalingsmåte</option>
+                <option value="kort" ${form.paymentMethod === "kort" ? "selected" : ""}>Kort</option>
+                <option value="vipps" ${form.paymentMethod === "vipps" ? "selected" : ""}>Vipps</option>
+              </select>
+            </label>
+            <label>
+              Passord
+              <input type="password" autocomplete="new-password" required value="${escapeRegistrationHtml(form.password)}"
+                oninput="model.viewState.loginPage.newUserForm.password = this.value">
+            </label>
+            <label>
+              Gjenta passord
+              <input type="password" autocomplete="new-password" required value="${escapeRegistrationHtml(form.repeatPassword)}"
+                oninput="model.viewState.loginPage.newUserForm.repeatPassword = this.value">
+            </label>
+            ${
+              form.errorMessage
+                ? `<p role="alert" style="color: #cc0000;">${escapeRegistrationHtml(form.errorMessage)}</p>`
+                : ""
+            }
+            <button class="wide-button" type="submit" style="margin: 0; width: 100%; background-color: #000000; color: #ffffff;">
+              Send søknad
+            </button>
+            <button class="wide-button" type="button" onclick="navigateTo('startPage')" style="margin: 0; width: 100%;">
+              Avbryt
+            </button>
+          </form>
+        </div>
+      `;
 
-
-
-
+  return drawUserShell(content);
+}
 
 function registerUser() {
-const input = model.inputs.registration;
+  const form = model.viewState.loginPage.newUserForm;
+  const name = form.name.trim();
+  const email = form.mail.trim().toLowerCase();
+  const phone = form.phone.trim();
+  const address = form.address.trim();
+  const postcode = form.postcode.trim();
+  const password = form.password;
+  const hasMembershipSelection = form.membershipType !== "";
+  const membershipType = Number(form.membershipType);
 
-// Valgfri validering
-if (!input.username || !input.password) {
-alert("Please enter username and password.");
-return;
+  form.errorMessage = "";
+
+  if (!name || !email || !phone || !address || !postcode || !password) {
+    form.errorMessage = "Fyll ut alle feltene.";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    form.errorMessage = "Skriv inn en gyldig e-postadresse.";
+  } else if (!/^\d{8}$/.test(phone)) {
+    form.errorMessage = "Telefonnummer må bestå av 8 siffer.";
+  } else if (!/^\d{4}$/.test(postcode)) {
+    form.errorMessage = "Postnummer må bestå av 4 siffer.";
+  } else if (password.length < 8) {
+    form.errorMessage = "Passordet må være minst 8 tegn.";
+  } else if (password !== form.repeatPassword) {
+    form.errorMessage = "Passordene er ikke like.";
+  } else if (
+    model.users.some(
+      (user) =>
+        user.email && user.email.trim().toLowerCase() === email,
+    )
+  ) {
+    form.errorMessage = "Det finnes allerede en kunde med denne e-postadressen.";
+  } else if (
+    !hasMembershipSelection ||
+    !model.memberships.some((membership) => membership.id === membershipType)
+  ) {
+    form.errorMessage = "Velg et gyldig medlemskap.";
+  } else if (!form.paymentMethod) {
+    form.errorMessage = "Velg en betalingsmåte.";
+  }
+
+  if (form.errorMessage) {
+    updateView();
+    return;
+  }
+
+  const userId =
+    model.users.length > 0
+      ? Math.max(...model.users.map((user) => user.userId)) + 1
+      : 0;
+  const today = new Date().toISOString().slice(0, 10);
+  const usernameExists = model.users.some(
+    (user) =>
+      user.username && user.username.trim().toLowerCase() === name.toLowerCase(),
+  );
+  const username = usernameExists ? `${name} (${userId})` : name;
+
+  model.users.push({
+    userId,
+    role: "customer",
+    username,
+    password,
+    membershipType,
+    membershipStatus: "standard",
+    approved: false,
+    paymentDate: null,
+    paymentMethod: form.paymentMethod,
+    paymentStatus: false,
+    activeBooking: false,
+    isBookingAllowed: false,
+    bookings: [],
+    signUps: [],
+    penalties: 0,
+    registeredShowUps: 0,
+    address,
+    postCode: postcode,
+    phone: Number(phone),
+    email,
+    membershipApplicationDate: today,
+    membershipStartUpDate: today,
+    lastCheckInDate: null,
+  });
+
+  form.errorMessage = "";
+  form.successMessage =
+    "Søknaden din er registrert og må godkjennes før medlemskapet blir aktivt.";
+  updateView();
 }
 
-// Generate unique ID based on existing users
-const newUserId = model.users.length > 0
-? Math.max(...model.users.map(u => u.userId)) + 1
-: 0;
-
-// Create user object
-const newUser = {
-userId: newUserId,
-role: "customer",
-username: input.username,
-password: input.password,
-membershipType: 1,
-approved: false,
-paymentDate: "2026-10-21",
-paymentStatus: true,
-activeBooking: false,
-bookings: [],
-signUps: [],
-penalties: 0,
-registeredShowUps: 0
-};
-
-// Push into the model array
-model.users.push(newUser);
+function escapeRegistrationHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (character) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return entities[character];
+  });
 }
-
-
-model.viewState.loginPage.newUserForm

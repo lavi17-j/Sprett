@@ -20,6 +20,9 @@ function updateView() {
     case "LoginScreen":
       html = drawLoginScreen();
       break;
+    case "newUserRegistration":
+      html = drawNewUserRegistration();
+      break;
     case "loggedInPage":
       html = updateViewLoggedInPage();
       break;
