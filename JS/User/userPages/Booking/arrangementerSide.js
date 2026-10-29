@@ -16,6 +16,7 @@ function tegnArrangementerSide() {
                 <strong>${unnslippBookingHtml(arrangement.title || "Arrangement")}</strong>
                 <span>Dato: ${unnslippBookingHtml(formatDate(arrangement.startDate))}</span>
                 <span>Tid: ${unnslippBookingHtml(arrangement.startTime || "Ikke oppgitt")}</span>
+                <span style="font-weight: bold; margin-top: 6px;">Meld deg på</span>
               </button>
             `,
           )
