@@ -26,6 +26,9 @@ function updateView() {
     case "loggedInPage":
       html = updateViewLoggedInPage();
       break;
+    case "bookingPage":
+      html = tegnBookeUtstyrSide();
+      break;
     case "adminDashboard":
       html = drawAdminDashboard();
       break;

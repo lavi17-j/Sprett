@@ -1,5 +1,5 @@
 function drawNewUserRegistration() {
-  const form = model.viewState.loginPage.newUserForm;
+  const form = getNewUserRegistrationForm();
   const membershipOptions = model.memberships
     .map(
       (membership) => /*HTML*/ `
@@ -95,7 +95,7 @@ function drawNewUserRegistration() {
 }
 
 function registerUser() {
-  const form = model.viewState.loginPage.newUserForm;
+  const form = getNewUserRegistrationForm();
   const name = form.name.trim();
   const email = form.mail.trim().toLowerCase();
   const phone = form.phone.trim();
@@ -181,6 +181,14 @@ function registerUser() {
   form.successMessage =
     "Søknaden din er registrert og må godkjennes før medlemskapet blir aktivt.";
   updateView();
+}
+
+function getNewUserRegistrationForm() {
+  const form = model.viewState.loginPage.newUserForm;
+  if (form.membershipType === undefined) form.membershipType = "";
+  if (form.errorMessage === undefined) form.errorMessage = "";
+  if (form.successMessage === undefined) form.successMessage = "";
+  return form;
 }
 
 function escapeRegistrationHtml(value) {
