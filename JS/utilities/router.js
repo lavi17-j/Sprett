@@ -24,7 +24,7 @@ function updateView() {
       html = drawNewUserRegistration();
       break;
     case "loggedInPage":
-      html = updateViewLoggedInPage();
+      html = tegnHjemmesideBooking();
       break;
     case "bookingPage":
       html = tegnBookeUtstyrSide();
