@@ -41,12 +41,12 @@ function createEventsTabHtml() {
 
 function createCalenderRowsHtml() {
     const state = model.viewState.adminCalenderPage;
-    let hmtl = "";
+    let html = "";
 
     for (const day of model.calender) {
         const isSelected = state.selectedDate === day.date;
 
-        hmtl += /*HTML*/ `
+        html += /*HTML*/ `
             <div class="subSection calenderRow ${isSelected ? "selected" : ""}">
                 <button onclick="setCalenderDate('${day.date}')">
                     ${formatDate(day.date)}
@@ -56,11 +56,11 @@ function createCalenderRowsHtml() {
         `;
     }
 
-    if (hmtl === "") {
-        hmtl = "<p>Ingen datoer i kalenderen.</p>";
+    if (html === "") {
+        html = "<p>Ingen datoer i kalenderen.</p>";
     }
 
-    return hmtl;
+    return html;
 }
 
 function createDateEventsHtml(day) {
@@ -88,8 +88,8 @@ function createEventDetailHtml () {
             <h2>${event.title}</h2>
             <p>${event.description}</p>
             <p>${getRoomName(event.reservedRoom)}</p>
-            <p>${formatDate(event.startDate)} ${event.startTime}-${event.endTime}<p>
-            <p>Maks deltakere: ${event.maxParticipants}<p>
+            <p>${formatDate(event.startDate)} ${event.startTime}-${event.endTime}</p>
+            <p>Maks deltakere: ${event.maxParticipants}</p>
         </div>
     `;
 }
