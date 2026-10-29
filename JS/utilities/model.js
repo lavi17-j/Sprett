@@ -27,6 +27,9 @@ const model = {
         address: "",
         postcode: "",
         paymentMethod: null,
+        membershipType: "",
+        errorMessage: "",
+        successMessage: "",
       },
     },
 
