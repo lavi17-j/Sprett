@@ -30,6 +30,13 @@ const model = {
       },
     },
 
+    userWebStorePage: {
+      selectedProductId: null,
+      selectedQuantity: 1,
+    },
+
+    shoppingCart: [],
+
     userHomePage: {
       codeOfTheDayInput: "",
       errorMessage: "",
@@ -455,4 +462,31 @@ const model = {
   },
 
   codeOfTheDay: "",
+
+  //------------------------------------------------------------------------
+  //                             Webstore
+  //------------------------------------------------------------------------
+
+  webStoreProducts: [
+    {
+      productId: 0,
+      productName: "Proteinbar",
+      productProducer: "Arla",
+      productPrice: 19.9,
+      productDescription: "Manglende Beskrivelse",
+      productQuantity: 20,
+      hasDiscount: false,
+    },
+  ],
+
+  orders: [
+    {
+      orderId: 0,
+      userId: 1,
+      items: [{ productId: 0, quantity: 2 }],
+      totalPrice: 39.8,
+      status: "Avventer henting",
+      date: "2026-10-29",
+    },
+  ],
 };

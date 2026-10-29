@@ -86,6 +86,12 @@ function updateView() {
     case "userChangeMembershipType":
       html = drawUserSelectSub();
       break;
+    case "userWebstore":
+      html = drawUserWebstore();
+      break;
+    case "adminOrders":
+      html = drawAdminOrderFulfillment();
+      break;
     default:
       html = `<p>404 - Page not found</p>`;
   }

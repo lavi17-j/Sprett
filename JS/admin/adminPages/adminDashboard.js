@@ -36,6 +36,7 @@ function drawAdminDashboard() {
         <h2>Nettbutikk</h2>
         <button onclick="navigateTo('addProduct')">Legg til Produkt</button>
         <button onclick="navigateTo('editProduct')">Rediger Produkt</button>
+        <button onclick="navigateTo('adminOrders')">Se Bestillinger</button>
       </div>
     </div>
 

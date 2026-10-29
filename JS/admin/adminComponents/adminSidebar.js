@@ -10,11 +10,11 @@ function drawAdminSideBar() {
         <li onclick="navigateTo('calender')">Kalender</li>
         <li onclick="navigateTo('addEvent')">Legg til Arrangement</li>
         <li onclick="navigateTo('editEvent')">Rediger Arrangement</li>
-        <li>Butikk</li>
         <li onclick="navigateTo('addEquipment')">Legg til Utstyr</li>
         <li onclick="navigateTo('editEquipment')">Rediger Utstyr</li>
         <li onclick="navigateTo('manageRooms')">Saler</li>
-        <li>Annet</li>
+        <li onclick="navigateTo('addProduct')">Legg til Produkt</li>
+        <li onclick="navigateTo('editProduct')">Rediger Produkter</li>
       </ul>
       <div class="codeoftheday adminCard">
         <h3>Dagens Kode</h3>
