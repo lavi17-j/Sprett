@@ -1,7 +1,7 @@
 const model = {
   app: {
-    currentPage: "startPage",
-    loggedInUserId: null,
+    currentPage: "adminDashboard",
+    loggedInUserId: 0,
   },
 
   viewState: {
@@ -28,6 +28,25 @@ const model = {
         postcode: "",
         paymentMethod: null,
       },
+    },
+
+    adminAddProductsPage: {
+      productName: "",
+      productProducer: "",
+      productPrice: null,
+      productDescription: "",
+      productQuantity: null,
+      hasDiscount: false,
+    },
+
+    adminEditProductsPage: {
+      editingProductId: null,
+      productName: "",
+      productProducer: "",
+      productPrice: null,
+      productDescription: "",
+      productQuantity: null,
+      hasDiscount: false,
     },
 
     userWebStorePage: {
