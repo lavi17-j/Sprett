@@ -13,7 +13,7 @@ function updateViewLoggedInPage() {
           />
           <button 
             class="wide-button" 
-            style="margin: 0; width: 100%; background-color: #000000; color: #ffffff;"
+            style="margin: 0; width: 100%;"
             onclick="checkCodeOfTheDay(model.viewState.userHomePage.codeOfTheDayInput); updateView();"
           >
             Sjekk kode
@@ -32,7 +32,9 @@ function updateViewLoggedInPage() {
 }
 
 function createReservationsHtml() {
+  cleanBookings();
   const currentUser = model.users.find(
+    
     (user) => user.userId === model.app.loggedInUserId,
   );
 
@@ -73,7 +75,7 @@ function createReservationsHtml() {
 
 function checkCodeOfTheDay(inputCode) {
   const pageState = model.viewState.userHomePage;
-  const today = new Date().toISOString().split("T")[0]; 
+  const today = new Date().toISOString().split("T")[0];
 
   if (inputCode === "") {
     pageState.errorMessage = "Skriv inn kode i feltet over";
