@@ -1,34 +1,33 @@
-body {
-  font-family: sans-serif;
-  margin: 0;
-  background-color: #f9f9f9;
-}
-
+/* ==========================================================================
+   ADMIN LAYOUT & DASHBOARD
+   ========================================================================== */
 .adminLayout {
   display: flex;
   height: 100vh;
-  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .sideBar {
-  width: 250px;
+  width: 260px;
   height: 100vh;
-  border-right: 3px solid #333;
-  background: #fff;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  gap: 15px;
-  box-sizing: border-box;
-  overflow: hidden; 
+  padding: 20px;
+  gap: 16px;
 }
 
 .sidebarLogo {
-  border: 2px solid #333;
-  padding: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   text-align: center;
-  font-weight: bold;
-  border-radius: 4px;
+  border-radius: 8px;
+  letter-spacing: -0.025em;
 }
 
 .sidebarNav {
@@ -37,71 +36,94 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  overflow-y: auto; 
-  flex: 1; 
+  gap: 4px;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .sidebarNav li {
-  border: 2px solid #333;
-  padding: 7px;
-  border-radius: 4px;
-  background: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #475569;
+  background: transparent;
   cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sidebarNav li:hover {
+  background: #f1f5f9;
+  color: #0f172a;
 }
 
 .adminMain {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 24px;
   overflow-y: auto;
-  gap: 20px;
+  gap: 24px;
+  background: #f8fafc;
 }
 
 .adminTopBar {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .userInfo {
   display: flex;
   align-items: center;
   gap: 10px;
-  border: 2px solid #333;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: #fff;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 30px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .userAvatar {
-  width: 22px;
-  height: 22px;
-  border: 2px solid #333;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
+  background: #cbd5e1;
+  border: 1px solid #cbd5e1;
 }
 
 .logoutBtn {
-  border: 2px solid #333;
-  padding: 6px 12px;
-  background: #fff;
-  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
   cursor: pointer;
+  transition: background 0.15s;
+}
+
+.logoutBtn:hover {
+  background: #f1f5f9;
 }
 
 .adminSubHeader {
-  border: 3px solid #333;
-  padding: 5px 15px;
-  background: #fff;
-  border-radius: 4px;
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .adminHeaderBar h1 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  color: #0f172a;
+  letter-spacing: -0.025em;
 }
 
 .adminContentArea {
@@ -111,34 +133,58 @@ body {
 }
 
 .adminCard {
-  border: 3px solid #333;
-  background: #fff;
-  padding: 12px;
-  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   flex: 1;
   box-sizing: border-box;
 }
 
 .adminCard h2 {
-  font-size: 1rem;
-  margin: 0 0 5px 0;
-  text-align: center;
-  border: 2px solid #333;
-  padding: 6px;
-  border-radius: 4px;
-  background: #f1f1f1;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  text-align: left;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.adminCard button, .adminCard input, .adminCard select, .adminCard textarea {
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #1e293b;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.adminCard input:focus, .adminCard select:focus, .adminCard textarea:focus {
+  outline: none;
+  border-color: #f44e01;
+  box-shadow: 0 0 0 3px rgba(244, 78, 1, 0.12);
 }
 
 .adminCard button {
-  border: 2px solid #333;
-  padding: 8px;
-  background: #fff;
-  border-radius: 4px;
+  font-weight: 600;
   cursor: pointer;
-  text-align: center;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  transition: background 0.15s;
+}
+
+.adminCard button:hover {
+  background: #1e293b;
 }
 
 .stackedColumn {
@@ -149,9 +195,10 @@ body {
 }
 
 .subSection {
-  border: 2px solid #333;
-  padding: 8px;
-  border-radius: 4px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -159,42 +206,54 @@ body {
 
 .subSection h3 {
   font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .applicationItem, .bulletinItem {
-  border: 2px solid #333;
-  padding: 6px;
-  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  background: #fafafa;
+  gap: 8px;
 }
 
 .applicantInfo {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .avatarCircle {
-  width: 18px;
-  height: 18px;
-  border: 2px solid #333;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
+  background: #e2e8f0;
 }
 
 .actionButtons {
   display: flex;
-  gap: 4px;
+  gap: 6px;
 }
 
 .actionButtons button {
   flex: 1;
-  padding: 4px;
-  font-size: 0.75rem;
+  padding: 6px;
+  font-size: 0.8rem;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.actionButtons button:hover {
+  background: #f1f5f9;
 }
 
 .bulletinHeader {
@@ -202,7 +261,7 @@ body {
   align-items: flex-start;
   gap: 6px;
   position: relative;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .closeX {
@@ -210,6 +269,7 @@ body {
   right: 0;
   top: 0;
   cursor: pointer;
+  color: #94a3b8;
 }
 
 /* Sliding Switch Styles */
@@ -230,123 +290,53 @@ body {
   position: absolute;
   cursor: pointer;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc;
+  background-color: #cbd5e1;
   transition: .3s;
   border-radius: 24px;
-  border: 1px solid #333;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
+  height: 18px;
+  width: 18px;
   left: 3px;
   bottom: 3px;
   background-color: white;
   transition: .3s;
   border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 
 input:checked + .slider {
-  background-color: #4CAF50;
+  background-color: #10b981;
 }
 
 input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-.roomRow {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.roomRow .actionButtons button {
-  flex: none;
-  width: 32px;
-}
-
-.equipmentList {
-  max-width: 220px;
-}
-
-.equipmentListItem {
-  text-align: left;
-}
-
-.actionButtons button.active {
-  font-weight: bold;
-  background: #e0e0e0;
-}
-
-.equipmentRow {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.equipmentRow .equipmentListItem {
-  flex: 1;
-  text-align: left;
-}
-
-.codeoftheday{
- margin-top: auto;
- flex: none !important;
- width: 100%;
- box-sizing: border-box;
-}
-
-.calenderCard {
-  flex-direction: column;
-}
-
-.calenderColumns {
+.roomRow, .equipmentRow, .signupRow, .calenderRow {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.calenderDateList {
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 10px;
-  flex: 1;
 }
 
-.calenderRow {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+.codeoftheday {
+  margin-top: auto;
+  flex: none !important;
+  width: 100%;
+  box-sizing: border-box;
+  background: #f8fafc !important;
+  text-align: center;
 }
 
-.calenderRow.selected {
-  border-width: 3px;
-}
-
-.eventDetail {
-  flex: 1;
-}
-
-.signupRow {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.signUpsCard {
-  flex-direction: column;
-}
-
-.signUpEventRow {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.signUpEventRow span:first-child {
-  flex: 1;
+.codeoftheday h2 {
+  background: transparent !important;
+  border: none !important;
+  font-size: 1.5rem !important;
+  color: #f44e01;
+  letter-spacing: 0.05em;
+  justify-content: center;
+  text-align: center;
 }
