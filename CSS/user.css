@@ -28,7 +28,8 @@ body:has(.userLayout) {
 
 @media (min-width: 768px) {
   .userLayout {
-    max-width: 820px; 
+    max-width: none;
+    min-width: 1200px;
     border-radius: 12px;
     margin: 32px auto;
     min-height: calc(100vh - 64px);
@@ -192,6 +193,7 @@ body:has(.userLayout) {
   padding: 10px;
   cursor: pointer;
   transition: background 0.15s;
+  box-sizing: border-box;
 }
 
 .wide-button:hover {

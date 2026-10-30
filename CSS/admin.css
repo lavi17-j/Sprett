@@ -340,3 +340,16 @@ input:checked + .slider:before {
   justify-content: center;
   text-align: center;
 }
+
+/* ==========================================================================
+   APPLICATIONS & ADMIN MANAGEMENT STYLES
+   ========================================================================== */
+
+.empty-state {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+  padding: 12px;
+  margin: 0;
+}
