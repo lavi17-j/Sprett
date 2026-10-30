@@ -29,7 +29,7 @@
     <script src="../JS/User/userPages/Profile/userEditSub.js"></script>
     <script src="../JS/User/userPages/Profile/userSelectSub.js"></script>
     <script src="../JS/User/userControllers/userProfilePageController.js"></script>
-
+    <script src="../JS/User/userPages/Booking/userBookingOverviewScreen.js"
     <!-- //Admin -->
      <script src="../JS/admin/adminComponents/adminShell.js"></script>
     <script src="../JS/admin/adminPages/adminDashboard.js"></script>
@@ -59,6 +59,12 @@
     <script src="../JS/utilities/router.js "></script>
 
     <script>
+ // Midlertidig test-visning for min skjerm
+ function updateView() {
+        const app = document.getElementById("app");
+        app.innerHTML = drawBookingOverviewScreen();
+      }
+
       updateView();
     </script>
   </body>
