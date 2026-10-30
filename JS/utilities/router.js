@@ -34,6 +34,9 @@ function updateView() {
     case "loggedInPage":
       html = tegnHjemmesideBooking();
       break;
+    case "bookingOverview":
+      html = drawBookingOverviewScreen();
+      break;
     case "bookingPage":
       html = tegnBookeUtstyrSide();
       break;
