@@ -46,15 +46,13 @@
   border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #475569;
-  background: transparent;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .sidebarNav li:hover {
-  background: #f1f5f9;
-  color: #0f172a;
+  background:#0f172a;
+  color: #ffffff;
 }
 
 .adminMain {
@@ -184,7 +182,7 @@
 }
 
 .adminCard button:hover {
-  background: #1e293b;
+  background: #414c5f;
 }
 
 .stackedColumn {

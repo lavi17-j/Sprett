@@ -3,7 +3,7 @@ function drawAdminSideBar() {
     <div class="sideBar">
       <div class="sidebarLogo">Sprett Admin</div>
       <ul class="sidebarNav">
-        <li onclick="navigateTo('adminDashboard')">Dashboard</li>
+        <li class="button" onclick="navigateTo('adminDashboard')">Dashboard</li>
         <li onclick="navigateTo('memberships')">Medlemskap</li>
         <li onclick="navigateTo('applications')">Søknader</li>
         <li onclick="navigateTo('editBulletins')">Oppslagstavla</li>
