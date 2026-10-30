@@ -1,7 +1,12 @@
 function updateView() {
   const app = document.getElementById("app");
 
-  const publicPages = ["startPage", "LoginScreen", "newUserRegistration"];
+  const publicPages = [
+    "startPage",
+    "LoginScreen",
+    "newUserRegistration",
+    "userRecoverPassword",
+  ];
 
   if (
     model.app.loggedInUserId === null &&
@@ -20,8 +25,23 @@ function updateView() {
     case "LoginScreen":
       html = drawLoginScreen();
       break;
+    case "userRecoverPassword":
+      html = drawRecoverPasswordScreen();
+      break;
+    case "newUserRegistration":
+      html = drawNewUserRegistration();
+      break;
     case "loggedInPage":
-      html = updateViewLoggedInPage();
+      html = tegnHjemmesideBooking();
+      break;
+    case "bookingPage":
+      html = tegnBookeUtstyrSide();
+      break;
+    case "eventDetailsPage":
+      html = tegnArrangementDetaljerSide();
+      break;
+    case "arrangementerSide":
+      html = tegnArrangementerSide();
       break;
     case "adminDashboard":
       html = drawAdminDashboard();
@@ -80,6 +100,18 @@ function updateView() {
     case "userChangeMembershipType":
       html = drawUserSelectSub();
       break;
+    case "userWebstore":
+      html = drawUserWebstore();
+      break;
+    case "adminOrders":
+      html = drawAdminOrderFulfillment();
+      break;
+      case "userFeedback":
+        html = drawUserFeedbackPage();
+        break;
+      case "adminFeedback":
+        html = drawAdminFeedback();
+        break;
     default:
       html = `<p>404 - Page not found</p>`;
   }

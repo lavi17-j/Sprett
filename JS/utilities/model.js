@@ -30,6 +30,37 @@ const model = {
       },
     },
 
+    adminAddProductsPage: {
+      productName: "",
+      productProducer: "",
+      productPrice: null,
+      productDescription: "",
+      productQuantity: null,
+      hasDiscount: false,
+    },
+
+    adminEditProductsPage: {
+      editingProductId: null,
+      productName: "",
+      productProducer: "",
+      productPrice: null,
+      productDescription: "",
+      productQuantity: null,
+      hasDiscount: false,
+    },
+
+    userWebStorePage: {
+      selectedProductId: null,
+      selectedQuantity: 1,
+    },
+
+    shoppingCart: [],
+
+    userHomePage: {
+      codeOfTheDayInput: "",
+      errorMessage: "",
+    },
+
     bookingPage: {
       registerBookingForm: {
         input: null,
@@ -93,6 +124,8 @@ const model = {
 
     adminCalenderPage: {
       selectedTab: "Events", //Equipment
+      selectedDate: null,
+      selectedEventId: null,
     },
 
     adminSignUpsPage: {
@@ -131,6 +164,11 @@ const model = {
       newRoomName: "",
       editedRoomName: "",
       editingRoomId: null,
+    },
+
+    userFeedbackPage: {
+      feedbackText: "",
+      message: "",
     },
   },
 
@@ -228,6 +266,7 @@ const model = {
       postCode: "0000",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
     {
       userId: 1,
@@ -247,11 +286,12 @@ const model = {
       penalties: 0,
       registeredShowUps: 0,
       address: "Ingensteds 15A",
-      postCode: "0000",
+      postCode: "0001",
       phone: 12345678,
       email: "post@epost.no",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
     {
       userId: 2,
@@ -270,12 +310,13 @@ const model = {
       signUps: [0],
       penalties: 0,
       registeredShowUps: 0,
-      address: "Ingensteds 15A",
-      postCode: "0000",
-      phone: 12345678,
+      address: "Ingensteds 16A",
+      postCode: "0002",
+      phone: 23456789,
       email: "post@epost.no",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
     {
       userId: 3,
@@ -294,36 +335,38 @@ const model = {
       signUps: [0],
       penalties: 0,
       registeredShowUps: 0,
-      address: "Ingensteds 15A",
-      postCode: "0000",
-      phone: 12345678,
+      address: "Ingensteds 17A",
+      postCode: "0003",
+      phone: 34567891,
       email: "post@epost.no",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
     {
       userId: 4,
       role: "customer",
-      username: "Kundine Kundesen",
+      username: "Kundaniel Kundeseth",
       password: "Kunde123",
       membershipType: 1,
-      membershipStatus: "standard",
-      approved: false,
+      membershipStatus: "pending_cancellation",
+      approved: true,
       paymentDate: "2026-10-15",
       paymentMethod: "kort",
       paymentStatus: true,
       activeBooking: false,
       isBookingAllowed: false,
-      bookings: [0],
-      signUps: [0],
-      penalties: 0,
-      registeredShowUps: 0,
-      address: "Ingensteds 15A",
-      postCode: "0000",
+      bookings: [],
+      signUps: [],
+      penalties: 3,
+      registeredShowUps: 25,
+      address: "Ingensteds 18B",
+      postCode: "0004",
       phone: 12345678,
       email: "post@epost.no",
       membershipApplicationDate: "2026-10-15",
       membershipStartUpDate: "2026-10-15",
+      lastCheckInDate: null,
     },
   ],
 
@@ -419,6 +462,20 @@ const model = {
       reservedRoom: [0],
       signups: [{ userId: 1, approved: true }],
       isArchived: false,
+      maxParticipants: null,
+    },
+  ],
+
+  feedback: [],
+
+  eventTypes: [
+    {
+      id: 0,
+      name: "Økt",
+    },
+    {
+      id: 1,
+      name: "Arrangement",
     },
   ],
   //------------------------------------------------------------------------
@@ -429,4 +486,33 @@ const model = {
     reception: { open: "09.00", close: "16.00" },
     gymAccess: { open: "06.00", close: "24.00" },
   },
+
+  codeOfTheDay: "",
+
+  //------------------------------------------------------------------------
+  //                             Webstore
+  //------------------------------------------------------------------------
+
+  webStoreProducts: [
+    {
+      productId: 0,
+      productName: "Proteinbar",
+      productProducer: "Arla",
+      productPrice: 19.9,
+      productDescription: "Manglende Beskrivelse",
+      productQuantity: 20,
+      hasDiscount: false,
+    },
+  ],
+
+  orders: [
+    {
+      orderId: 0,
+      userId: 1,
+      items: [{ productId: 0, quantity: 2 }],
+      totalPrice: 39.8,
+      status: "Avventer henting",
+      date: "2026-10-29",
+    },
+  ],
 };

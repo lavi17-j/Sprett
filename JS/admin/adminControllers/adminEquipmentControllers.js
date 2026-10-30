@@ -54,3 +54,115 @@ function saveRoomName() {
     state.editedRoomName = "";
     updateView();
 }
+
+function setNewEquipmentReservable(value) {
+    model.viewState.adminCreateEquipmentPage.reservable = value;
+    updateView();
+}
+
+function setEditEquipmentReservable(value) {
+    model.viewState.adminCreateEquipmentPage.reservable = value;
+    updateView();
+}
+
+function addEquipmentCategory() {
+    const state = model.viewState.adminCreateEquipmentPage;
+    const name = state.addCategory.trim();
+    if (name === "") return;
+
+    let newId = 0;
+    for (const category of model.equipmentCategories) {
+        if (category.id >= newId) {
+            newId = category.id + 1;
+        }
+    }
+
+    model.equipmentCategories.push({id: newId, name: name});
+    state.addCategory = "";
+    updateView();
+}
+
+function saveNewEquipment() {
+    const state = model.viewState.adminCreateEquipmentPage;
+    const name = state.equipmentName.trim();
+    if (name === "") return;
+
+    let newId = 0;
+    for (const item of model.equipment) {
+        if (item.id >= newId) {
+            newId = item.id + 1;
+        }
+    }
+
+    let categoryId = null;
+    if (state.category !== "") {
+        categoryId = Number(state.category);
+    }
+
+    model.equipment.push({
+        name: name,
+        id: newId,
+        reservable: state.reservable,
+        category: categoryId === null ? [] : [categoryId],
+    });
+
+    state.equipmentName = "";
+    state.equipmentId = null;
+    state.reservable = false;
+    state.category = null;
+    updateView();
+}
+
+function startEditEquipment(equipmentId) {
+  const state = model.viewState.adminEditEquipmentPage;
+
+  for (const item of model.equipment) {
+    if (item.id === equipmentId) {
+      state.equipmentId = item.id;
+      state.equipmentName = item.name;
+      state.reservable = item.reservable;
+      if (item.category.length > 0) {
+        state.category = item.category[0];
+      } else {
+        state.category = null;
+      }
+    }
+  }
+
+  updateView();
+}
+
+
+function saveEquipmentChanges() {
+    const state = model.viewState.adminEditEquipmentPage;
+    const name = state.equipmentName.trim();
+    if (name === "") return;
+
+    for (const item of model.equipment) {
+        if (item.id === state.equipmentId) {
+            item.name = name;
+            item.reservable = state.reservable;
+
+            if (state.category === null || state.category === "") {
+                item.category = [];
+            } else {
+                item.category = [Number(state.category)];
+            }
+        }
+        
+    }
+
+    updateView();
+}
+
+function deleteEquipment(equipmentId) {
+    for (const booking of model.equipmentBookings) {
+        if (booking.equipmentId === equipmentId) {
+            alert("Utstyret er booket og kan ikke slettes.");
+            return;
+        }
+    }
+
+    model.equipment = model.equipment.filter((item) => item.id !== equipmentId);
+    updateView();
+}

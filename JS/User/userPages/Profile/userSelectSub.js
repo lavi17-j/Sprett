@@ -3,12 +3,12 @@ function drawUserSelectSub() {
     <div class="userContentArea">
       <div class="info-box">
         <h3>Velg Medlemskapstype</h3>
-        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px;">
           ${drawAvailableSubs()}
         </div>
       </div>
 
-      <button class="wide-button" onclick="navigateTo('userEditSub')" style="background-color: #f1f1f1; margin-top: 10px;">
+      <button class="wide-button" onclick="navigateTo('userEditSubscription')" style="background-color: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; margin-top: 0;">
         Tilbake
       </button>
     </div>
@@ -19,7 +19,7 @@ function drawUserSelectSub() {
 
 function drawAvailableSubs() {
   if (!model.memberships || model.memberships.length === 0) {
-    return "<p style='text-align: center; color: #666;'>Ingen medlemskap tilgjengelig.</p>";
+    return `<p style='text-align: center; color: #64748b; font-style: italic;'>Ingen medlemskap tilgjengelig.</p>`;
   }
 
   const user = model.users.find((u) => u.userId === model.app.loggedInUserId);
@@ -31,18 +31,18 @@ function drawAvailableSubs() {
     const isCurrent = currentMembershipId === membership.id;
 
     html += /*HTML*/ `
-      <div style="border: 2px solid #000000; border-radius: 10px; padding: 12px; background: ${isCurrent ? "#f4f9ff" : "#ffffff"};">
-        <div style="font-weight: bold; font-size: 15px; margin-bottom: 4px;">${membership.name}</div>
-        <div class="price-row">
-          <span>Pris:</span>
-          <strong>${membership.price} kr / mnd</strong>
+      <div style="border: 1px solid ${isCurrent ? "#93c5fd" : "#e2e8f0"}; border-radius: 8px; padding: 14px; background: ${isCurrent ? "#f0f9ff" : "#ffffff"}; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+        <div style="font-weight: 600; font-size: 1rem; color: #0f172a; margin-bottom: 6px;">${membership.name}</div>
+        <div class="price-row" style="border-bottom: none; padding: 2px 0;">
+          <span style="color: #64748b;">Pris:</span>
+          <strong style="color: #0f172a;">${membership.price} kr / mnd</strong>
         </div>
-        <div style="font-size: 12px; color: #666; margin-bottom: 10px;">
+        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 12px;">
           ${membership.bookingAllowed ? "Inkluderer utstyrsbooking" : ""}
         </div>
         ${
           isCurrent
-            ? /*HTML*/ `<div style="font-size: 13px; font-weight: bold; color: #006600; text-align: center; padding: 6px; background: #e6f4ea; border-radius: 6px;">Ditt nåværende medlemskap</div>`
+            ? /*HTML*/ `<div style="font-size: 0.85rem; font-weight: 600; color: #065f46; text-align: center; padding: 8px; background: #d1fae5; border-radius: 6px; border: 1px solid #a7f3d0;">Ditt nåværende medlemskap</div>`
             : /*HTML*/ `<button class="wide-button" style="margin: 0; width: 100%;" onclick="selectMembership(${membership.id})">Velg denne</button>`
         }
       </div>

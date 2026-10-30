@@ -3,7 +3,7 @@ function drawManageApplication() {
     <div class="adminCard" style="width: 100%;">
       <h2>Behandle Søknader</h2>
       
-      <div class="applicationListContainer" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; width: 100%; margin-top: 8px;">
         ${drawDetailedApplications()}
       </div>
     </div>

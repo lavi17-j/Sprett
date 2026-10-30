@@ -1,82 +1,70 @@
 function drawAdminAddEquipment() {
-    const state = model.viewState.adminCreateEquipmentPage;
-    const isReservable = state.reservable;
+  const state = model.viewState.adminCreateEquipmentPage;
+  const isReservable = state.reservable;
 
-    const content = /*HTML*/ `
-        <div class="adminCard">
-            <input
-                type="text"
-                placeholder="Navn på utstyr"
-                value="${state.equipmentName}"
-                oninput="model.viewState.adminCreateEquipmentPage.equipmentName = this.value"
-            />
-            <input
-                type="text"
-                placeholder="Spinnvidde"
-                value="${state.spec}"
-                oninput="model.viewState.adminCreateEquipmentPage.spec = this.value"
-            />
-            <input
-                type="text"
-                placeholder="ID for utstyr"
-                value="${state.equipmentId === null ? '' : state.equipmentId}"
-                oninput="model.viewState.adminCreateEquipmentPage.equipmentId = this.value"
-            />
-            <input
-                type="text"
-                placeholder="Spinn#"
-                value="${state.spinNumber}"
-                oninput="model.viewState.adminCreateEquipmentPage.spinNumber = this.value"
-            />
+  const content = /*HTML*/ `
+    <div class="adminCard">
+      <h2>Legg til Nytt Utstyr</h2>
+
+      <div class="subSection">
+        <h3>Navn på utstyr</h3>
+        <input
+          type="text"
+          placeholder="Skriv inn navn på utstyr..."
+          value="${state.equipmentName}"
+          oninput="model.viewState.adminCreateEquipmentPage.equipmentName = this.value"
+        />
+      </div>
+
+      <div class="subSection">
+        <h3>Kan reserveres?</h3>
+        <div class="actionButtons">
+          <button onclick="setNewEquipmentReservable(true)" class="${isReservable ? "active" : ""}" style="${isReservable ? "background: #0f172a; color: #fff;" : ""}">Ja</button>
+          <button onclick="setNewEquipmentReservable(false)" class="${isReservable ? "" : "active"}" style="${!isReservable ? "background: #0f172a; color: #fff;" : ""}">Nei</button>
         </div>
+      </div>
 
-        <div class="adminCard">
-            <div class="subSection">
-                <p>Kan reserveres?</p>
-                <div class="actionButtons">
-                    <button onclick="setNewEquipmentReservable(true)" class="${isReservable ? 'active' : ''}">✓</button>
-                    <button onclick="setNewEquipmentReservable(false)" class="${isReservable ? '' : 'active'}">X</button>
-                </div>
-            </div>
-        </div>
+      <div class="subSection">
+        <h3>Kategori</h3>
+        <select
+          onchange="model.viewState.adminCreateEquipmentPage.category = this.value"
+          style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; background: #ffffff; font-family: inherit; font-size: 0.9rem;"
+        >
+          <option value="">Velg Kategori</option>
+          ${createCategoryOptionsHtml(state.category)}
+        </select>
 
-        <div clas="adminCard">
-            <p>Kategori</p>
-            <select
-                onchange="model.viewState.adminCreateEquipmentPage.category = this.value"
-            >
-                <option value="">Velg Kategori</option>
-                ${createCategoryOptionsHtml(state.category)}
-            </select>
-
-            <input
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <input
             type="text"
-            placeholder="Legg til kategori"
+            placeholder="Legg til ny kategori..."
             value="${state.addCategory}"
             oninput="model.viewState.adminCreateEquipmentPage.addCategory = this.value"
-            />
-            <button onclick="addEquipmentCategory()">Legg til</button>
+            style="flex: 1;"
+          />
+          <button onclick="addEquipmentCategory()" style="width: auto; padding: 10px 16px;">Legg til</button>
         </div>
+      </div>
 
-        <button onclick="saveEquipment()">Lagre</button>
-     `;
+      <button onclick="saveNewEquipment()" style="margin-top: 8px;">Lagre utstyr</button>
+    </div>
+  `;
 
-     return drawAdminShell(content);
+  return drawAdminShell(content);
 }
 
-function createCategoryOptionsHtml() {
-    let html = "";
+function createCategoryOptionsHtml(selectedCategory) {
+  let html = "";
 
-    for (const category of model.equipmentCategories) {
-        let selected = "";
-        if (String(category.id) === String(selectedCategory)) {
-            selected = "selected";
-        }
-        html += /*HTML*/ `
-            <option value="${category.id}" ${selected}>${category.name}</option>
-
-        `;
+  for (const category of model.equipmentCategories) {
+    let selected = "";
+    if (String(category.id) === String(selectedCategory)) {
+      selected = "selected";
     }
+    html += /*HTML*/ `
+      <option value="${category.id}" ${selected}>${category.name}</option>
+    `;
+  }
 
-    return html;
+  return html;
 }

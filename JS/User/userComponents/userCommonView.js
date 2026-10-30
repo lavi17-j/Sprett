@@ -10,31 +10,32 @@ function createNotLoggedInHeaderHtml(){
     `;
 }
 
-function createLoggedInHeaderHtml (){
-    let username = "";
-    let membershipName = "";
+function createLoggedInHeaderHtml() {
+  let username = "";
+  let membershipName = "";
 
-    for (const user of model.users) {
-        if (user.userId === model.app.loggedInUserId) {
-            username = user.username;
+  for (const user of model.users) {
+    if (user.userId === model.app.loggedInUserId) {
+      username = user.username;
 
-            for (const membership of model.memberships) {
-                if (membership.id === user.membershipType) {
-                    membershipName = membership.name + "-medlem";
-                }
-            }
+      for (const membership of model.memberships) {
+        if (membership.id === user.membershipType) {
+          membershipName = membership.name + "-medlem";
         }
+      }
     }
+  }
 
-    return /*HTML*/ `
-    <header class="front-header">
-        <h1>Sprett</h1>
-        <div class="profile-picture">Profilbildet</div>
-        <p>Velkommen, ${username}!</p>
-        <p>${membershipName}</p>
-        <button onclick="logoutUser()">Log Ut</button>
+  return /*HTML*/ `
+    <header class="front-header" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+      <div class="logo-circle"></div>
+      <h1>Sprett</h1>
+      <div class="profile-picture" style="margin: 4px auto;">${username.charAt(0).toUpperCase()}</div>
+      <p style="font-weight: 600; color: #0f172a;">Velkommen, ${username}!</p>
+      ${membershipName ? `<p>${membershipName}</p>` : ""}
+      <button class="wide-button" style="max-width: 140px; margin-top: 8px; padding: 6px 12px; font-size: 0.8rem; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;" onclick="logoutUser()">Log Ut</button>
     </header>
-    `;
+  `;
 }
 
 function createFooterHtml(){
@@ -52,6 +53,11 @@ function createFooterHtml(){
                 -
                 ${model.openingHours.gymAccess.close}
             </p>
+            ${model.app.loggedInUserId !== null ? /*HTML*/ `
+                <p class="link-text" onclick="navigateTo('userFeedback')">
+                    Har du noen tilbakemeldinger? Trykk her.
+                </p>
+                ` : ""}
         </footer>
     `;
 }

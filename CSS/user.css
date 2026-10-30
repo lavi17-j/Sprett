@@ -1,195 +1,274 @@
-.userLayout {
-    width: 100%;
-    max-width: 375px;
-    min-height: 100vh;
-    margin: 0 auto;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #000000;
+/* ==========================================================================
+   USER MOBILE & DESKTOP RESPONSIVE LAYOUT
+   ========================================================================== */
+
+body:has(.userLayout) {
+  background-color: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
 }
 
-body {
-    background-color: #e8e8e8;
+.userLayout {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #1e293b;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-left: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+}
+
+@media (min-width: 768px) {
+  .userLayout {
+    max-width: none;
+    min-width: 1200px;
+    border-radius: 12px;
+    margin: 32px auto;
+    min-height: calc(100vh - 64px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: 1px solid #cbd5e1;
+  }
+
+  .userContentArea {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .userContentArea > .info-box:nth-child(3),
+  .userContentArea > .info-box:last-child {
+    grid-column: span 2;
+  }
 }
 
 .front-header {
-    border: 3px solid #000000;
-    border-radius: 20px;
-    margin: 8px;
-    padding: 12px;
-    text-align: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  margin: 0;
+  padding: 16px;
+  text-align: center;
 }
 
 .front-header h1 {
-    margin: 0;
-    font-size: 28px;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
 }
 
 .front-header p {
-    margin: 2px 0;
-    font-size: 12px;
+  margin: 4px 0 0 0;
+  font-size: 0.8rem;
+  color: #64748b;
 }
 
 .logo-circle {
-    width: 40px;
-    height: 40px;
-    border: 3px solid #000000;
-    border-radius: 50%;
-    display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: #f44e01;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 6px;
 }
 
 .profile-picture {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #000000;
-    border-radius: 50%;
-    font-size: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    float: left;
+  width: 38px;
+  height: 38px;
+  background: #e2e8f0;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .link-text {
-    text-decoration: underline;
-    cursor: pointer;
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .user-nav {
-    display: flex;
-    gap: 4px;
-    margin: 0 8px 8px 8px;
-    padding-bottom: 4px;
-    border-bottom: 2px solid #000000;
+  display: flex;
+  gap: 6px;
+  padding: 10px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  overflow-x: auto;
 }
 
 .user-nav button {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    background-color: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 6px;
-    padding: 4px 8px;
-    cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.user-nav button:hover {
+  background-color: #f1f5f9;
 }
 
 .user-nav button.selected {
-    background-color: #000000;
-    color: #ffffff;
+  background-color: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
 }
 
 .userContentArea {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 0 8px 8px 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background: #f8fafc;
 }
 
 .info-box {
-    border: 3px solid #000000;
-    border-radius: 20px;
-    padding: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .info-box h3 {
-    margin: 0 0 8px 0;
-    font-size: 13px;
-    font-weight: normal;
-    text-align: center;
-    border: 2px solid #000000;
-    border-radius: 10px;
-    padding: 3px;
+  margin: 0 0 12px 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .info-box input {
-    width: 100%;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    padding: 10px;
-    border: 2px solid #000000;
-    border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.info-box input:focus {
+  border-color: #f44e01;
+  box-shadow: 0 0 0 3px rgba(244, 78, 1, 0.12);
 }
 
 .wide-button {
-    display: block;
-    width: calc(100%-16px);
-    margin: 0 8px 8px 8px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    background-color: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 12px;
-    padding: 8px;
-    cursor: pointer;
+  display: block;
+  width: 100%;
+  margin: 12px 0 0 0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  box-sizing: border-box;
+}
+
+.wide-button:hover {
+  background-color: #1e293b;
 }
 
 .price-list {
-    border: 3px solid #000000;
-    border-radius: 20px;
-    margin: 0 8px 8px 8px;
-    padding: 12px;
-}
-
-.rotated-heading {
-    margin: 0 0 8px 0;
-    font-size: 22px;
-    text-align: right;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin: 0 16px 16px 16px;
+  padding: 16px;
 }
 
 .price-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 15px;
-    padding: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  padding: 6px 0;
+  border-bottom: 1px dashed #f1f5f9;
 }
 
 .reservation-row {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #000000;
-    border-radius: 10px;
-    padding: 8px;
-    margin-bottom: 8px;
-    font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
 }
 
 .front-footer {
-    border: 3px solid #000000;
-    border-radius: 20px;
-    margin: 8px;
-    padding: 12px;
-    font-size: 12px;
-}
-
-.front-footer h3 {
-    display: inline-block;
-    margin: 0 12px 6px 0;
-    font-size: 13px;
-    font-weight: normal;
-}
-
-.info-box .wide-button {
-    margin-top: 12px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  margin: 0;
+  padding: 16px;
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: center;
 }
 
 .date-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 4px;
 }
 
 .date-button {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 16px 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.date-button:hover {
+  border-color: #0f172a;
+  background: #f8fafc;
+}
+
+.feedback-input {
+    width: 100%;
+    min-height: 120px;
+    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    background-color: #ffffff;
-    border: 3px solid #000000;
-    border-radius: 20px;
-    padding: 24px 8px;
-    cursor: pointer;
+    font-size: 14px;
+    padding: 10px;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    margin-bottom: 8px;
 }
