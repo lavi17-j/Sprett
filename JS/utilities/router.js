@@ -32,13 +32,13 @@ function updateView() {
       html = drawNewUserRegistration();
       break;
     case "loggedInPage":
-      html = tegnHjemmesideBooking();
+      html = updateViewLoggedInPage();
       break;
     case "bookingOverview":
       html = drawBookingOverviewScreen();
       break;
     case "bookingPage":
-      html = tegnBookeUtstyrSide();
+      html = tegnHjemmesideBooking();
       break;
     case "eventDetailsPage":
       html = tegnArrangementDetaljerSide();
