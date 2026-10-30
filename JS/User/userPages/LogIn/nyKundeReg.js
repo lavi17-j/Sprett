@@ -91,7 +91,7 @@ function drawNewUserRegistration() {
         </div>
       `;
 
-  return drawUserShell(content);
+  return drawNotLoggedInShell(content);
 }
 
 function registerUser() {

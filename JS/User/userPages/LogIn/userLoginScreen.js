@@ -5,6 +5,8 @@ function drawLoginScreen() {
     <div class="info-box">
       <h3>Innlogging</h3>
 
+      <form>
+
       <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px;">
         
         <div>
@@ -47,6 +49,7 @@ function drawLoginScreen() {
         </div>
 
       </div>
+      </form>
     </div>
   `;
 
