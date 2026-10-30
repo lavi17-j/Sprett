@@ -165,6 +165,11 @@ const model = {
       editedRoomName: "",
       editingRoomId: null,
     },
+
+    userFeedbackPage: {
+      feedbackText: "",
+      message: "",
+    },
   },
 
   //------------------------------------------------------------------------
@@ -460,6 +465,8 @@ const model = {
       maxParticipants: null,
     },
   ],
+
+  feedback: [],
 
   eventTypes: [
     {

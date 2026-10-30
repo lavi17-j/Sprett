@@ -40,11 +40,19 @@ function drawAdminDashboard() {
       </div>
     </div>
 
-    <div id="equipmentArea" class="adminCard">
-      <h2>Utstyr og Sal</h2>
-      <button onclick="navigateTo('addEquipment')">Legg til Utstyr</button>
-      <button onclick="navigateTo('editEquipment')">Rediger Utstyr</button>
-      <button onclick="navigateTo('manageRooms')">Saler</button>
+    <div class="stackedColumn">
+      <div id="equipmentArea" class="adminCard">
+        <h2>Utstyr og Sal</h2>
+        <button onclick="navigateTo('addEquipment')">Legg til Utstyr</button>
+        <button onclick="navigateTo('editEquipment')">Rediger Utstyr</button>
+        <button onclick="navigateTo('manageRooms')">Saler</button>
+      </div>
+
+      <div id="feedbackArea" class="adminCard">
+        <h2>Forslagskasse</h2>
+        ${drawDashBoardFeedback(3)}
+        <button onclick="navigateTO('adminFeedback')">Se alle</button>
+      </div>
     </div>
   `;
 

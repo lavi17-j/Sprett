@@ -98,6 +98,12 @@ function updateView() {
     case "adminOrders":
       html = drawAdminOrderFulfillment();
       break;
+      case "userFeedback":
+        html = drawUserFeedbackPage();
+        break;
+      case "adminFeedback":
+        html = drawAdminFeedback();
+        break;
     default:
       html = `<p>404 - Page not found</p>`;
   }

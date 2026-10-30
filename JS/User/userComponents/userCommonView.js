@@ -52,6 +52,11 @@ function createFooterHtml(){
                 -
                 ${model.openingHours.gymAccess.close}
             </p>
+            ${model.app.loggedInUserId !== null ? /*HTML*/ `
+                <p class="link-text" onclick="navigateTo('userFeedback')">
+                    Har du noen tilbakemeldinger? Trykk her.
+                </p>
+                ` : ""}
         </footer>
     `;
 }

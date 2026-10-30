@@ -350,3 +350,8 @@ input:checked + .slider:before {
 .signUpEventRow span:first-child {
   flex: 1;
 }
+
+.feedbackUnread {
+  border-width: 3px;
+  background: #fffbe6;
+}
