@@ -4,17 +4,15 @@ body {
   background-color: #f9f9f9;
 }
 
-/* Master layout: Sidebar left, Content right */
 .adminLayout {
   display: flex;
   height: 100vh;
   box-sizing: border-box;
 }
 
-/* Sidebar styling */
 .sideBar {
   width: 250px;
-  height: 100vh; /* Fill full viewport height */
+  height: 100vh;
   border-right: 3px solid #333;
   background: #fff;
   display: flex;
@@ -22,7 +20,7 @@ body {
   padding: 15px;
   gap: 15px;
   box-sizing: border-box;
-  overflow: hidden; /* Prevent sidebar outer overflow */
+  overflow: hidden; 
 }
 
 .sidebarLogo {
@@ -40,8 +38,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  overflow-y: auto; /* Allows navigation to scroll internally if screen is too short */
-  flex: 1; /* Takes up available middle space */
+  overflow-y: auto; 
+  flex: 1; 
 }
 
 .sidebarNav li {
@@ -52,7 +50,6 @@ body {
   cursor: pointer;
 }
 
-/* Main Area Layout */
 .adminMain {
   flex: 1;
   display: flex;
@@ -63,7 +60,6 @@ body {
   gap: 20px;
 }
 
-/* Top user bar alignment */
 .adminTopBar {
   display: flex;
   justify-content: flex-end;
@@ -96,7 +92,6 @@ body {
   cursor: pointer;
 }
 
-/* Main Header Banner */
 .adminSubHeader {
   border: 3px solid #333;
   padding: 5px 15px;
@@ -109,7 +104,6 @@ body {
   font-size: 1.4rem;
 }
 
-/* Content Columns Area */
 .adminContentArea {
   display: flex;
   gap: 20px;
@@ -154,7 +148,6 @@ body {
   flex: 1;
 }
 
-/* Sub-sections (Memberships / Bulletin elements) */
 .subSection {
   border: 2px solid #333;
   padding: 8px;
