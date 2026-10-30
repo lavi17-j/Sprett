@@ -51,7 +51,7 @@
 }
 
 .sidebarNav li:hover {
-  background:#0f172a;
+  background: #0f172a;
   color: #ffffff;
 }
 
@@ -155,7 +155,10 @@
   border: 1px solid #e2e8f0;
 }
 
-.adminCard button, .adminCard input, .adminCard select, .adminCard textarea {
+.adminCard button,
+.adminCard input,
+.adminCard select,
+.adminCard textarea {
   border: 1px solid #cbd5e1;
   padding: 10px 12px;
   background: #ffffff;
@@ -163,10 +166,14 @@
   font-family: inherit;
   font-size: 0.9rem;
   color: #1e293b;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 
-.adminCard input:focus, .adminCard select:focus, .adminCard textarea:focus {
+.adminCard input:focus,
+.adminCard select:focus,
+.adminCard textarea:focus {
   outline: none;
   border-color: #f44e01;
   box-shadow: 0 0 0 3px rgba(244, 78, 1, 0.12);
@@ -211,7 +218,8 @@
   letter-spacing: 0.05em;
 }
 
-.applicationItem, .bulletinItem {
+.applicationItem,
+.bulletinItem {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   padding: 12px;
@@ -287,9 +295,12 @@
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #cbd5e1;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 24px;
 }
 
@@ -301,9 +312,9 @@
   left: 3px;
   bottom: 3px;
   background-color: white;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 input:checked + .slider {
@@ -314,7 +325,10 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-.roomRow, .equipmentRow, .signupRow, .calenderRow {
+.roomRow,
+.equipmentRow,
+.signupRow,
+.calenderRow {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -352,9 +366,22 @@ input:checked + .slider:before {
   margin: 0;
 }
 
-
 .feedbackUnread {
   border-width: 3px;
   background: #fffbe6;
 }
 
+.signUpsCard {
+  flex-direction: column;
+}
+
+.signUpEventRow {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.signUpEventRow span:first-child {
+  flex: 1;
+}
