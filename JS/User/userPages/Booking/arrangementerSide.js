@@ -11,7 +11,7 @@ function tegnArrangementerSide() {
               <button
                 class="reservation-row"
                 style="width: 100%; text-align: left; cursor: pointer; background: #ffffff;"
-                onclick="visArrangementDetaljer('${arrangement.id}')"
+                onclick="model.app.valgtArrangementId = '${arrangement.id}'; navigateTo('eventDetailsPage')"
               >
                 <strong>${unnslippBookingHtml(arrangement.title || "Arrangement")}</strong>
                 <span>Dato: ${unnslippBookingHtml(formatDate(arrangement.startDate))}</span>

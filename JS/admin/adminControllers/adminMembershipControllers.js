@@ -33,11 +33,9 @@ function getMembershipName(membershipId) {
   return membership ? membership.name : "Manglende medlemskapstype";
 }
 
-//Fikse opp denne senere
 function revokeMembership(membershipId) {}
 
 function drawApplications(maxDisplay) {
-  let html = "";
   let awaitingApproval = [];
 
   for (let i = 0; i < model.users.length; i++) {
@@ -53,25 +51,25 @@ function drawApplications(maxDisplay) {
   }
 
   if (awaitingApproval.length === 0) {
-    return `<p>No New Applicants</p>`;
+    return `<p class="empty-state">No New Applicants</p>`;
   }
 
+  let html = "";
   for (let i = 0; i < awaitingApproval.length; i++) {
     const user = awaitingApproval[i];
-
     const membershipName = getMembershipName(user.membershipType);
 
     html += /*HTML*/ `
       <div class="applicantInfo">
         <div class="avatarCircle"></div>
         <div>
-          <div>${user.username}</div>
-          <small>${membershipName} Medlemskap</small>
+          <div style="font-weight: 500; color: #0f172a;">${user.username}</div>
+          <small style="color: #64748b;">${membershipName} Medlemskap</small>
         </div>
       </div>
-      <div class="actionButtons">
-        <button class="approve" onclick ="approveMembership(${user.userId})" >Godkjenn</button>
-        <button class="deny" onclick ="denyMembership(${user.userId})">Avslå</button>
+      <div style="display: flex; gap: 6px; margin-top: 4px;">
+        <button onclick="approveMembership(${user.userId})">Godkjenn</button>
+        <button onclick="denyMembership(${user.userId})">Avslå</button>
       </div>
     `;
   }
@@ -93,16 +91,16 @@ function drawDetailedApplications() {
   }
 
   if (awaitingApproval.length === 0 && pendingCancellations.length === 0) {
-    return `<p style="font-size: 0.85rem; color: #666; padding: 10px;">Ingen nye søknader eller oppsigelser til behandling.</p>`;
+    return `<p class="empty-state" style="padding: 12px; font-size: 0.9rem;">Ingen nye søknader eller oppsigelser til behandling.</p>`;
   }
 
   let html = "";
 
   if (awaitingApproval.length > 0) {
     html += `
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; margin-bottom: 20px;">
-        <h3 style="font-size: 0.9rem; margin: 0; padding-bottom: 4px; border-bottom: 2px solid #333;">Nye Medlemssøknader</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; width: 100%;">
+      <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; margin-bottom: 24px;">
+        <h3 style="font-size: 0.95rem; font-weight: 600; color: #0f172a; margin: 0 0 4px 0; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">Nye Medlemssøknader</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
     `;
 
     for (let i = 0; i < awaitingApproval.length; i++) {
@@ -110,20 +108,20 @@ function drawDetailedApplications() {
       const membershipName = getMembershipName(user.membershipType);
 
       html += /*HTML*/ `
-        <div class="applicationItem" style="height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between;">
-          <div class="applicantInfo" style="align-items: flex-start;">
+        <div class="applicationItem">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
             <div class="avatarCircle"></div>
-            <div style="display: flex; flex-direction: column; gap: 2px; flex: 1; word-break: break-word;">
-              <div><strong>${user.username}</strong></div>
-              <small style="font-weight: bold;">${membershipName} Medlemskap</small>
-              <span style="color: #555;"><strong>Adresse:</strong> ${user.address}, ${user.postCode}</span>
-              <span style="color: #555;"><strong>Betaling:</strong> ${user.paymentMethod}</span>
-              <span style="color: #555;"><strong>Startdato:</strong> ${user.membershipStartUpDate}</span>
+            <div style="display: flex; flex-direction: column; gap: 4px; flex: 1; word-break: break-word; font-size: 0.9rem;">
+              <div><strong style="color: #0f172a;">${user.username}</strong></div>
+              <small style="font-weight: 600; color: #475569;">${membershipName} Medlemskap</small>
+              <span style="color: #64748b; font-size: 0.85rem;"><strong>Adresse:</strong> ${user.address}, ${user.postCode}</span>
+              <span style="color: #64748b; font-size: 0.85rem;"><strong>Betaling:</strong> ${user.paymentMethod}</span>
+              <span style="color: #64748b; font-size: 0.85rem;"><strong>Startdato:</strong> ${user.membershipStartUpDate}</span>
             </div>
           </div>
-          <div class="actionButtons" style="margin-top: 10px;">
-            <button onclick="approveMembership(${user.userId})" style="background: #e6f4ea; color: #006600; font-weight: bold;">Godkjenn</button>
-            <button onclick="denyMembership(${user.userId})" style="background: #fff0f0; color: #cc0000; font-weight: bold;">Avslå</button>
+          <div style="display: flex; gap: 8px; margin-top: 12px;">
+            <button onclick="approveMembership(${user.userId})">Godkjenn</button>
+            <button onclick="denyMembership(${user.userId})">Avslå</button>
           </div>
         </div>
       `;
@@ -133,9 +131,9 @@ function drawDetailedApplications() {
 
   if (pendingCancellations.length > 0) {
     html += `
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-        <h3 style="font-size: 0.9rem; margin: 0; padding-bottom: 4px; border-bottom: 2px solid #333;">Innleverte Oppsigelser</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; width: 100%;">
+      <div style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+        <h3 style="font-size: 0.95rem; font-weight: 600; color: #0f172a; margin: 0 0 4px 0; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">Innleverte Oppsigelser</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
     `;
 
     for (let i = 0; i < pendingCancellations.length; i++) {
@@ -143,18 +141,18 @@ function drawDetailedApplications() {
       const membershipName = getMembershipName(user.membershipType);
 
       html += /*HTML*/ `
-        <div class="applicationItem" style="background: #fff9f9; border-color: #ff9999; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between;">
-          <div class="applicantInfo" style="align-items: flex-start;">
-            <div class="avatarCircle" style="background: #ffcccc;"></div>
-            <div style="display: flex; flex-direction: column; gap: 2px; flex: 1; word-break: break-word;">
-              <div><strong>${user.username}</strong> <span style="color: #cc0000; font-size: 0.75rem;">(Ønsker oppsigelse)</span></div>
-              <small style="font-weight: bold;">${membershipName} Medlemskap</small>
-              <span style="color: #555;"><strong>Startdato:</strong> ${user.membershipStartUpDate}</span>
+        <div class="applicationItem" style="background: #fef2f2; border-color: #fca5a5;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div class="avatarCircle" style="background: #fee2e2; color: #991b1b; border-color: #fca5a5;"></div>
+            <div style="display: flex; flex-direction: column; gap: 4px; flex: 1; word-break: break-word; font-size: 0.9rem;">
+              <div><strong style="color: #0f172a;">${user.username}</strong> <span style="color: #ef4444; font-size: 0.75rem; font-weight: 600;">(Ønsker oppsigelse)</span></div>
+              <small style="font-weight: 600; color: #475569;">${membershipName} Medlemskap</small>
+              <span style="color: #64748b; font-size: 0.85rem;"><strong>Startdato:</strong> ${user.membershipStartUpDate}</span>
             </div>
           </div>
-          <div class="actionButtons" style="margin-top: 10px;">
-            <button onclick="approveCancellation(${user.userId})" style="background: #cc0000; color: white; font-weight: bold;">Godkjenn</button>
-            <button onclick="denyCancellation(${user.userId})" style="font-weight: bold;">Avslå</button>
+          <div style="display: flex; gap: 8px; margin-top: 12px;">
+            <button onclick="approveCancellation(${user.userId})">Godkjenn</button>
+            <button onclick="denyCancellation(${user.userId})">Avslå</button>
           </div>
         </div>
       `;
@@ -223,6 +221,6 @@ function generateCodeOfTheDay() {
     );
   }
   model.codeOfTheDay = dailyCode;
-  console.log(model.codeOfTheDay)
+  console.log(model.codeOfTheDay);
   return dailyCode;
 }

@@ -106,7 +106,7 @@ function lagArrangementerHtml() {
           <button
             class="wide-button"
             style="margin: 0 0 8px 0; width: 100%;"
-            onclick="visArrangementDetaljer('${arrangement.id}')"
+            onclick="model.app.valgtArrangementId = '${arrangement.id}'; navigateTo('eventDetailsPage')"
           >
             ${unnslippBookingHtml(arrangement.title)}
           </button>
@@ -118,7 +118,7 @@ function lagArrangementerHtml() {
               : ""
           }
           <span>Påmeldte: ${pameldteAntall} / ${arrangement.maxParticipants || "Ubegrenset"}</span>
-          <button class="wide-button" style="margin: 8px 0 0 0; width: 100%;" onclick="visArrangementDetaljer('${arrangement.id}')">
+          <button class="wide-button" style="margin: 8px 0 0 0; width: 100%;" onclick="model.app.valgtArrangementId = '${arrangement.id}'; navigateTo('eventDetailsPage')">
             Detaljer om arrangementet
           </button>
         </div>

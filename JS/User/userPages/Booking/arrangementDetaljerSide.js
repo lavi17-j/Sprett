@@ -1,9 +1,3 @@
-function visArrangementDetaljer(arrangementId) {
-  model.app.valgtArrangementId = arrangementId;
-  model.app.currentPage = "eventDetailsPage";
-  updateView();
-}
-
 function tegnArrangementDetaljerSide() {
   const arrangement = model.events.find(
     (element) => String(element.id) === String(model.app.valgtArrangementId),

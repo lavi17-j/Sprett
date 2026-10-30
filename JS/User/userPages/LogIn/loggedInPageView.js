@@ -13,7 +13,7 @@ function updateViewLoggedInPage() {
           />
           <button 
             class="wide-button" 
-            style="margin: 0; width: 100%; background-color: #000000; color: #ffffff;"
+            style="margin: 0; width: 100%;"
             onclick="checkCodeOfTheDay(model.viewState.userHomePage.codeOfTheDayInput); updateView();"
           >
             Sjekk kode
