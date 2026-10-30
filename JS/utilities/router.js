@@ -1,7 +1,12 @@
 function updateView() {
   const app = document.getElementById("app");
 
-  const publicPages = ["startPage", "LoginScreen", "newUserRegistration"];
+  const publicPages = [
+    "startPage",
+    "LoginScreen",
+    "newUserRegistration",
+    "userRecoverPassword",
+  ];
 
   if (
     model.app.loggedInUserId === null &&
@@ -19,6 +24,9 @@ function updateView() {
       break;
     case "LoginScreen":
       html = drawLoginScreen();
+      break;
+    case "userRecoverPassword":
+      html = drawRecoverPasswordScreen();
       break;
     case "newUserRegistration":
       html = drawNewUserRegistration();

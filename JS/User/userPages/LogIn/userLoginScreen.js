@@ -2,7 +2,7 @@ function drawLoginScreen() {
   const loginState = model.viewState.loginPage.loginForm;
 
   const loginContent = /*HTML*/ `
-    <div class="info-box" style="margin-top: 10px;">
+    <div class="info-box">
       <h3>Innlogging</h3>
 
       <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px;">
@@ -33,15 +33,15 @@ function drawLoginScreen() {
             : ""
         }
 
-        <button class="wide-button" onclick="handleLogin()" style="margin: 4px 0 0 0;">
+        <button class="wide-button" onclick="handleLogin()">
           Logg inn
         </button>
 
         <div style="display: flex; gap: 8px;">
-          <button onclick="navigateTo('startPage')" style="flex: 1; padding: 10px; font-family: inherit; font-size: 0.9rem; font-weight: 500; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer;">
+          <button class="wide-button" style="flex: 1; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;" onclick="navigateTo('startPage')">
             Tilbake
           </button>
-          <button onclick="alert('Glemt passord-funksjonalitet kommer senere')" style="flex: 1; padding: 10px; font-family: inherit; font-size: 0.9rem; font-weight: 500; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer;">
+          <button class="wide-button" style="flex: 1;" onclick="navigateTo('userRecoverPassword')">
             Glemt passord?
           </button>
         </div>
