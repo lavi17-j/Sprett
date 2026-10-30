@@ -1,12 +1,295 @@
+/* ==========================================================================
+   ADMIN LAYOUT & DASHBOARD
+   ========================================================================== */
+.adminLayout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sideBar {
+  width: 260px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+}
+
+.sidebarLogo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  border-radius: 8px;
+  letter-spacing: -0.025em;
+}
+
+.sidebarNav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.sidebarNav li {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sidebarNav li:hover {
+  background:#0f172a;
+  color: #ffffff;
+}
+
+.adminMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  gap: 24px;
+  background: #f8fafc;
+}
+
+.adminTopBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 30px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.userAvatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: 1px solid #cbd5e1;
+}
+
+.logoutBtn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.logoutBtn:hover {
+  background: #f1f5f9;
+}
+
+.adminSubHeader {
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.adminHeaderBar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+}
+
+.adminContentArea {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.adminCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.adminCard h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  text-align: left;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.adminCard button, .adminCard input, .adminCard select, .adminCard textarea {
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #1e293b;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.adminCard input:focus, .adminCard select:focus, .adminCard textarea:focus {
+  outline: none;
+  border-color: #f44e01;
+  box-shadow: 0 0 0 3px rgba(244, 78, 1, 0.12);
+}
+
+.adminCard button {
+  font-weight: 600;
+  cursor: pointer;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  transition: background 0.15s;
+}
+
+.adminCard button:hover {
+  background: #414c5f;
+}
+
+.stackedColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.subSection {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subSection h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.applicationItem, .bulletinItem {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.applicantInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.avatarCircle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e2e8f0;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 6px;
+}
+
+.actionButtons button {
+  flex: 1;
+  padding: 6px;
+  font-size: 0.8rem;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.actionButtons button:hover {
+  background: #f1f5f9;
+}
+
+.bulletinHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.closeX {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+/* Sliding Switch Styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-color: #cbd5e1;
-  transition: 0.3s;
+  transition: .3s;
   border-radius: 24px;
 }
 
@@ -18,9 +301,9 @@
   left: 3px;
   bottom: 3px;
   background-color: white;
-  transition: 0.3s;
+  transition: .3s;
   border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 
 input:checked + .slider {
@@ -31,10 +314,7 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-.roomRow,
-.equipmentRow,
-.signupRow,
-.calenderRow {
+.roomRow, .equipmentRow, .signupRow, .calenderRow {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -72,20 +352,6 @@ input:checked + .slider:before {
   margin: 0;
 }
 
-.signUpsCard {
-  flex-direction: column;
-}
-
-.signUpEventRow {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.signUpEventRow span:first-child {
-  flex: 1;
-}
 
 .feedbackUnread {
   border-width: 3px;
