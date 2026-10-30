@@ -32,7 +32,9 @@ function updateViewLoggedInPage() {
 }
 
 function createReservationsHtml() {
+  cleanBookings();
   const currentUser = model.users.find(
+    
     (user) => user.userId === model.app.loggedInUserId,
   );
 
@@ -73,7 +75,7 @@ function createReservationsHtml() {
 
 function checkCodeOfTheDay(inputCode) {
   const pageState = model.viewState.userHomePage;
-  const today = new Date().toISOString().split("T")[0]; 
+  const today = new Date().toISOString().split("T")[0];
 
   if (inputCode === "") {
     pageState.errorMessage = "Skriv inn kode i feltet over";
