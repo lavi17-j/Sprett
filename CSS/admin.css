@@ -1,357 +1,73 @@
-body {
-  font-family: sans-serif;
-  margin: 0;
-  background-color: #f9f9f9;
-}
-
-.adminLayout {
-  display: flex;
-  height: 100vh;
-  box-sizing: border-box;
-}
-
-.sideBar {
-  width: 250px;
-  height: 100vh;
-  border-right: 3px solid #333;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  gap: 15px;
-  box-sizing: border-box;
-  overflow: hidden; 
-}
-
-.sidebarLogo {
-  border: 2px solid #333;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 4px;
-}
-
-.sidebarNav {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  overflow-y: auto; 
-  flex: 1; 
-}
-
-.sidebarNav li {
-  border: 2px solid #333;
-  padding: 7px;
-  border-radius: 4px;
-  background: #fff;
-  cursor: pointer;
-}
-
-.adminMain {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  gap: 20px;
-}
-
-.adminTopBar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 15px;
-}
-
-.userInfo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 2px solid #333;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: #fff;
-}
-
-.userAvatar {
-  width: 22px;
-  height: 22px;
-  border: 2px solid #333;
-  border-radius: 50%;
-}
-
-.logoutBtn {
-  border: 2px solid #333;
-  padding: 6px 12px;
-  background: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.adminSubHeader {
-  border: 3px solid #333;
-  padding: 5px 15px;
-  background: #fff;
-  border-radius: 4px;
-}
-
-.adminHeaderBar h1 {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
-.adminContentArea {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.adminCard {
-  border: 3px solid #333;
-  background: #fff;
-  padding: 12px;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-  box-sizing: border-box;
-}
-
-.adminCard h2 {
-  font-size: 1rem;
-  margin: 0 0 5px 0;
-  text-align: center;
-  border: 2px solid #333;
-  padding: 6px;
-  border-radius: 4px;
-  background: #f1f1f1;
-}
-
-.adminCard button {
-  border: 2px solid #333;
-  padding: 8px;
-  background: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.stackedColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex: 1;
-}
-
-.subSection {
-  border: 2px solid #333;
-  padding: 8px;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.subSection h3 {
-  font-size: 0.85rem;
-  margin: 0;
-}
-
-.applicationItem, .bulletinItem {
-  border: 2px solid #333;
-  padding: 6px;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  background: #fafafa;
-}
-
-.applicantInfo {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-}
-
-.avatarCircle {
-  width: 18px;
-  height: 18px;
-  border: 2px solid #333;
-  border-radius: 50%;
-}
-
-.actionButtons {
-  display: flex;
-  gap: 4px;
-}
-
-.actionButtons button {
-  flex: 1;
-  padding: 4px;
-  font-size: 0.75rem;
-}
-
-.bulletinHeader {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  position: relative;
-  font-size: 0.85rem;
-}
-
-.closeX {
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-}
-
-/* Sliding Switch Styles */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 44px;
-  height: 24px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc;
-  transition: .3s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: 0.3s;
   border-radius: 24px;
-  border: 1px solid #333;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
+  height: 18px;
+  width: 18px;
   left: 3px;
   bottom: 3px;
   background-color: white;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 input:checked + .slider {
-  background-color: #4CAF50;
+  background-color: #10b981;
 }
 
 input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-.roomRow {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.roomRow .actionButtons button {
-  flex: none;
-  width: 32px;
-}
-
-.equipmentList {
-  max-width: 220px;
-}
-
-.equipmentListItem {
-  text-align: left;
-}
-
-.actionButtons button.active {
-  font-weight: bold;
-  background: #e0e0e0;
-}
-
-.equipmentRow {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.equipmentRow .equipmentListItem {
-  flex: 1;
-  text-align: left;
-}
-
-.codeoftheday{
- margin-top: auto;
- flex: none !important;
- width: 100%;
- box-sizing: border-box;
-}
-
-.calenderCard {
-  flex-direction: column;
-}
-
-.calenderColumns {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.calenderDateList {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-}
-
+.roomRow,
+.equipmentRow,
+.signupRow,
 .calenderRow {
-  flex-direction: row;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.calenderRow.selected {
-  border-width: 3px;
+.codeoftheday {
+  margin-top: auto;
+  flex: none !important;
+  width: 100%;
+  box-sizing: border-box;
+  background: #f8fafc !important;
+  text-align: center;
 }
 
-.eventDetail {
-  flex: 1;
+.codeoftheday h2 {
+  background: transparent !important;
+  border: none !important;
+  font-size: 1.5rem !important;
+  color: #f44e01;
+  letter-spacing: 0.05em;
+  justify-content: center;
+  text-align: center;
 }
 
-.signupRow {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
+/* ==========================================================================
+   APPLICATIONS & ADMIN MANAGEMENT STYLES
+   ========================================================================== */
 
-.signUpsCard {
-  flex-direction: column;
-}
-
-.signUpEventRow {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.signUpEventRow span:first-child {
-  flex: 1;
-}
-
-.feedbackUnread {
-  border-width: 3px;
-  background: #fffbe6;
+.empty-state {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+  padding: 12px;
+  margin: 0;
 }
