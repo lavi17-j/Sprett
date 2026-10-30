@@ -11,7 +11,7 @@ function getSignUpEvent() {
     return null;
 }
 
-function getSignUpUsername() {
+function getSignUpUsername(userId) {
     for (const user of model.users) {
         if (user.userId === userId) {
             return user.username;
@@ -82,5 +82,10 @@ function cancelEvent(eventId) {
     }
 
     model.viewState.adminSignUpsPage.selectedEventId = null;
+    updateView();
+}
+
+function selectSignUpEvent(eventId) {
+    model.viewState.adminSignUpsPage.selectedEventId = eventId;
     updateView();
 }

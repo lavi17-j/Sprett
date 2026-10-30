@@ -22,7 +22,9 @@ function createEventRowsHtml() {
 
         html += /*HTML*/ `
             <div class="subSection signUpEventRow">
-                <span>${event.title}</span>
+                <span class="eventTitleLink" onclick="selectSignUpEvent(${event.id})">
+                    ${event.title}
+                </span>
                 <span>Start ${formatDate(event.startDate)}</span>
                 <span>kl ${event.startTime}</span>
                 <button onclick="cancelEvent(${event.id})">Avlys</button>
@@ -54,7 +56,7 @@ function createSignupListHtml() {
                     <button onclick="rejectSignUp(${event.id}, ${signup.userId})"
                         class="${signup.approved ? "" : "active"}">X</button>
                 </div>
-            <div>
+            </div>
         `;
     }
 
