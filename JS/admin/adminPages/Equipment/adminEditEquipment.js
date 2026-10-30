@@ -44,6 +44,7 @@ function drawAdminEditEquipment() {
 }
 
 function createEquipmentListHtml() {
+    cleanBookings();
     let html = "";
 
     for (const item of model.equipment) {
