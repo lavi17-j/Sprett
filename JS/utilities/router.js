@@ -19,6 +19,10 @@ function updateView() {
   let html = "";
 
   switch (model.app.currentPage) {
+    //------------------------------------------------------------------------
+    //                             SHARED AREA
+    //------------------------------------------------------------------------
+    
     case "startPage":
       html = updateViewNotLoggedInPage();
       break;
@@ -31,9 +35,88 @@ function updateView() {
     case "newUserRegistration":
       html = drawNewUserRegistration();
       break;
+    
+    //------------------------------------------------------------------------
+    //                             ADMIN AREA
+    //------------------------------------------------------------------------
+
+    case "adminDashboard":
+      html = drawAdminDashboard();
+      break;
+
+    //Admin Members
+
+    case "memberships":
+      html = drawAdminMemberships();
+      break;
+    case "applications":
+      html = drawManageApplication();
+      break;
+    case "editSubscriptions":
+      html = drawAdminEditSubscriptions();
+      break;
+
+    //Admin Bulletins
+
+    case "editBulletins":
+      html = drawAdminEditBulletins();
+      break;
+    case "manageBulletins":
+      html = drawAdminManageBulletins();
+      break;
+
+    //Admin Events
+
+    case "calender":
+      html = drawAdminCalender();
+      break;
+    case "signUps":
+      html = drawAdminSignUps();
+      break;
+    case "addEvent":
+      html = drawAdminAddEvents();
+      break;
+
+    //Admin Shop
+
+    case "addProduct":
+      html = drawAdminAddProducts();
+      break;
+    case "editProduct":
+      html = drawAdminEditProducts();
+      break;
+    case "adminOrders":
+      html = drawAdminOrderFulfillment();
+      break;
+
+    //Admin Equipment
+
+    case "addEquipment":
+      html = drawAdminAddEquipment();
+      break;
+    case "editEquipment":
+      html = drawAdminEditEquipment();
+      break;
+    case "manageRooms":
+      html = drawAdminManageRooms();
+      break;
+
+    //Admin Feedback
+
+    case "adminFeedback":
+      html = drawAdminFeedback();
+      break;
+
+    //------------------------------------------------------------------------
+    //                             USER AREA
+    //------------------------------------------------------------------------
+    //Home Page Users
     case "loggedInPage":
       html = updateViewLoggedInPage();
       break;
+
+    //Booking Pages
+
     case "bookingOverview":
       html = drawBookingOverviewScreen();
       break;
@@ -46,51 +129,15 @@ function updateView() {
     case "arrangementerSide":
       html = tegnArrangementerSide();
       break;
-    case "adminDashboard":
-      html = drawAdminDashboard();
-      break;
-    case "memberships":
-      html = drawAdminMemberships();
-      break;
-    case "applications":
-      html = drawManageApplication();
-      break;
-    case "editSubscriptions":
-      html = drawAdminEditSubscriptions();
-      break;
-    case "editBulletins":
-      html = drawAdminEditBulletins();
-      break;
-    case "manageBulletins":
-      html = drawAdminManageBulletins();
-      break;
-    case "calender":
-      html = drawAdminCalender();
-      break;
-    case "signUps":
-      html = drawAdminSignUps();
-      break;
-    case "addEvent":
-      html = drawAdminAddEvents();
-      break;
-    case "addProduct":
-      html = drawAdminAddProducts();
-      break;
-    case "editProduct":
-      html = drawAdminEditProducts();
-      break;
-    case "addEquipment":
-      html = drawAdminAddEquipment();
-      break;
-    case "editEquipment":
-      html = drawAdminEditEquipment();
-      break;
-    case "manageRooms":
-      html = drawAdminManageRooms();
-      break;
+
+    //Bulletin Area
+
     case "userBulletinBoard":
       html = drawUserBulletinBoard();
       break;
+
+    //Profile Area
+
     case "userProfileHome":
       html = drawUserProfileHomePage();
       break;
@@ -103,18 +150,20 @@ function updateView() {
     case "userChangeMembershipType":
       html = drawUserSelectSub();
       break;
+
+    //Webstore
+
     case "userWebstore":
       html = drawUserWebstore();
       break;
-    case "adminOrders":
-      html = drawAdminOrderFulfillment();
+
+    //User Feedback
+
+    case "userFeedback":
+      html = drawUserFeedbackPage();
       break;
-      case "userFeedback":
-        html = drawUserFeedbackPage();
-        break;
-      case "adminFeedback":
-        html = drawAdminFeedback();
-        break;
+
+    // Page Missing
     default:
       html = `<p>404 - Page not found</p>`;
   }
